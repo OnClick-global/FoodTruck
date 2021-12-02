@@ -7,6 +7,7 @@ use App\CentralLogics\OrderLogic;
 use App\CentralLogics\RestaurantLogic;
 use App\CentralLogics\CampaignLogic;
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
 use App\Models\Vendor;
 use App\Models\Order;
 use App\Models\RestaurantWallet;
@@ -118,7 +119,7 @@ class VendorController extends Controller
             $query->where('id', $vendor->id);
         })
         ->with('customer')
-         
+
         ->where(function($query){
             if(config('order_confirmation_model') == 'restaurant')
             {
@@ -141,7 +142,7 @@ class VendorController extends Controller
         $orders= Helpers::order_data_formatting($orders, true);
         return response()->json($orders, 200);
     }
-    
+
     public function get_completed_orders(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -202,7 +203,7 @@ class VendorController extends Controller
         ->where('id', $request['order_id'])
         ->Notpos()
         ->first();
-        
+
         if($request['status'] =="confirmed" && config('order_confirmation_model') == 'deliveryman' && $order->order_type != 'take_away')
         {
             return response()->json([
@@ -241,7 +242,7 @@ class VendorController extends Controller
         if ($request->status == 'delivered' && $order->transaction == null) {
             $ol = OrderLogic::create_transaction($order,'restaurant', null);
             $order->payment_status = 'paid';
-        } 
+        }
 
         if($request->status == 'delivered')
         {
@@ -354,7 +355,7 @@ class VendorController extends Controller
         $notifications->append('data');
 
         $user_notifications = UserNotification::where('vendor_id', $vendor->id)->where('created_at', '>=', \Carbon\Carbon::today()->subDays(7))->get();
-        
+
         $notifications =  $notifications->merge($user_notifications);
 
         try {
@@ -446,7 +447,7 @@ class VendorController extends Controller
             'limit' => $limit,
             'offset' => $offset,
             'products' => Helpers::product_data_formatting($paginator->items(), true)
-        ];   
+        ];
 
         return response()->json($data, 200);
     }
@@ -538,5 +539,14 @@ class VendorController extends Controller
                 ['code'=>'amount', 'message'=>trans('messages.insufficient_balance')]
             ]
         ],403);
+    }
+    public function change_place(Request $request)
+    {
+        $vendor = $request['vendor'];
+        $restaurant = Helpers::restaurant_data_formatting($vendor->restaurants[0], false);
+        $vendor["restaurants"] = $restaurant;
+        Restaurant::where('id', $vendor["restaurants"]->id)->update(['longitude'=>$request->longitude,'latitude'=>$request->latitude]);
+        return response()->json(['message' => trans('Restaurant place changed ')], 200);
+
     }
 }

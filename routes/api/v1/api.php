@@ -68,7 +68,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
             Route::put('update-fcm-token', 'DeliverymanController@update_fcm_token');
         });
     });
-    
+
     Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware'=>['vendor.api']], function () {
         Route::get('notifications', 'VendorController@get_notifications');
         Route::get('profile', 'VendorController@get_profile');
@@ -88,7 +88,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
         Route::get('get-products-list', 'VendorController@get_products');
         Route::put('update-bank-info', 'VendorController@update_bank_info');
         Route::post('request-withdraw', 'VendorController@request_withdraw');
-        
+        Route::get('change-place', 'VendorController@change_place');
         // Business setup
         Route::put('update-business-setup', 'BusinessSettingsController@update_restaurant_setup');
         // Attributes
