@@ -96,7 +96,7 @@ class RestaurantController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
-        
+
         $zone_id= $request->header('zoneId');
         $restaurants = RestaurantLogic::search_restaurants($request['name'], $zone_id, $request['limit'], $request['offset']);
         $restaurants['restaurants'] = Helpers::restaurant_data_formatting($restaurants['restaurants'], true);
@@ -130,6 +130,38 @@ class RestaurantController extends Controller
         }
 
         return response()->json($storage, 200);
+    }
+
+    public static function calcCoordinates($longitude, $latitude, $radius = 20)
+    {
+        $lng_min = $longitude - $radius / abs(cos(deg2rad($latitude)) * 69);
+        $lng_max = $longitude + $radius / abs(cos(deg2rad($latitude)) * 69);
+        $lat_min = $latitude - ($radius / 69);
+        $lat_max = $latitude + ($radius / 69);
+
+        return [
+            'min' => [
+                'lat' => $lat_min,
+                'lng' => $lng_min,
+            ],
+            'max' => [
+                'lat' => $lat_max,
+                'lng' => $lng_max,
+            ],
+        ];
+    }
+    public function scopeDistance( $from_latitude, $from_longitude, $distance)
+    {
+        $between_coords = $this->calcCoordinates($from_longitude, $from_latitude, $distance);
+
+        return Restaurant::where('status',1)
+
+            ->where(function ($q) use ($between_coords) {
+                $q->whereBetween('longitude', [$between_coords['min']['lng'], $between_coords['max']['lng']]);
+            })
+            ->where(function ($q) use ($between_coords) {
+                $q->whereBetween('latitude', [$between_coords['min']['lat'], $between_coords['max']['lat']]);
+            })->get();
     }
 
     // public function get_product_rating($id)

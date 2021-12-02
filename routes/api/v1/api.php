@@ -158,6 +158,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
         Route::get('details/{id}', 'RestaurantController@get_details');
         Route::get('reviews', 'RestaurantController@reviews');
         Route::get('search', 'RestaurantController@get_searched_restaurants');
+        Route::get('nearest/{lang}/{lant}/{dist}', 'RestaurantController@scopeDistance');
     });
 
     Route::group(['prefix' => 'banners'], function () {
