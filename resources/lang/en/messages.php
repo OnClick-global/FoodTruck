@@ -847,4 +847,7 @@ return [
     'wednesday'=>'Wednesday',
     'thirsday'=>'Thursday',
     'friday'=>'Friday',
+    'ads_type'=>'Ads Type',
+    'clicks'=>'clicks',
+    'views'=>'views',
 ];

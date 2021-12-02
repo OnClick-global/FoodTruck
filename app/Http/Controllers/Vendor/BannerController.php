@@ -12,6 +12,7 @@ class BannerController extends Controller
 {
     function list()
     {
+        //test
         $banners=Banner::latest()->paginate(config('default_pagination'));
         return view('vendor-views.banner.list',compact('banners'));
     }

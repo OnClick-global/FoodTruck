@@ -12,7 +12,9 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title"><i class="tio-add-circle-outlined"></i> {{__('messages.add')}} {{__('messages.new')}} {{__('messages.banner')}}</h1>
+                    <h1 class="page-header-title"><i
+                            class="tio-add-circle-outlined"></i> {{__('messages.add')}} {{__('messages.new')}} {{__('messages.banner')}}
+                    </h1>
                 </div>
             </div>
         </div>
@@ -26,12 +28,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="input-label" for="exampleFormControlInput1">{{__('messages.title')}}</label>
-                                        <input type="text" name="title" class="form-control" placeholder="{{__('messages.new_banner')}}" required>
+                                        <label class="input-label"
+                                               for="exampleFormControlInput1">{{__('messages.title')}}</label>
+                                        <input type="text" name="title" class="form-control" placeholder="New banner"
+                                               required>
                                     </div>
                                     <div class="form-group">
                                         <label class="input-label" for="title">{{__('messages.zone')}}</label>
-                                        <select name="zone_id" id="zone" class="form-control js-select2-custom" onchange="getRequest('{{url('/')}}/admin/food/get-foods?zone_id='+this.value,'choice_item')">
+                                        <select name="zone_id" id="zone" class="form-control js-select2-custom"
+                                                onchange="getRequest('{{url('/')}}/admin/food/get-foods?zone_id='+this.value,'choice_item')">
                                             <option disabled selected>---{{__('messages.select')}}---</option>
                                             @php($zones=\App\Models\Zone::all())
                                             @foreach($zones as $zone)
@@ -40,23 +45,31 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="input-label" for="exampleFormControlInput1">{{__('messages.banner')}} {{__('messages.type')}}</label>
-                                        <select name="banner_type" class="form-control" onchange="banner_type_change(this.value)">
-                                            <option value="restaurant_wise">{{__('messages.restaurant')}} {{__('messages.wise')}}</option>
-                                            <option value="item_wise">{{__('messages.food')}} {{__('messages.wise')}}</option>
+                                        <label class="input-label"
+                                               for="exampleFormControlInput1">{{__('messages.banner')}} {{__('messages.type')}}</label>
+                                        <select name="banner_type" class="form-control"
+                                                onchange="banner_type_change(this.value)">
+                                            <option
+                                                value="restaurant_wise">{{__('messages.restaurant')}} {{__('messages.wise')}}</option>
+                                            <option
+                                                value="item_wise">{{__('messages.food')}} {{__('messages.wise')}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group" id="restaurant_wise">
-                                        <label class="input-label" for="exampleFormControlSelect1">{{__('messages.restaurant')}}<span
+                                        <label class="input-label"
+                                               for="exampleFormControlSelect1">{{__('messages.restaurant')}}<span
                                                 class="input-label-secondary"></span></label>
-                                        <select name="restaurant_id" class="js-data-example-ajax form-control"  title="Select Restaurant">
-                                            
+                                        <select name="restaurant_id" class="js-data-example-ajax form-control"
+                                                title="Select Restaurant">
+
                                         </select>
                                     </div>
                                     <div class="form-group" id="item_wise">
-                                        <label class="input-label" for="exampleFormControlInput1">{{__('messages.select')}} {{__('messages.food')}}</label>
-                                        <select name="item_id" id="choice_item" class="form-control js-select2-custom" placeholder="{{__('messages.select_food')}}">
-                                            
+                                        <label class="input-label"
+                                               for="exampleFormControlInput1">{{__('messages.select')}} {{__('messages.food')}}</label>
+                                        <select name="item_id" id="choice_item" class="form-control js-select2-custom"
+                                                placeholder="Select Food">
+
                                         </select>
                                     </div>
                                 </div>
@@ -66,39 +79,76 @@
                                         <small style="color: red">* ( {{__('messages.ratio')}} 3:1 )</small>
                                         <div class="custom-file">
                                             <input type="file" name="image" id="customFileEg1" class="custom-file-input"
-                                                accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" required>
-                                            <label class="custom-file-label" for="customFileEg1">{{__('messages.choose')}} {{__('messages.file')}}</label>
+                                                   accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" required>
+                                            <label class="custom-file-label"
+                                                   for="customFileEg1">{{__('messages.choose')}} {{__('messages.file')}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-bottom:0%;">
                                         <center>
                                             <img style="width: 80%;border: 1px solid; border-radius: 10px;" id="viewer"
-                                                src="{{asset('public/assets/admin/img/900x400/img1.jpg')}}" alt="campaign image"/>
+                                                 src="{{asset('public/assets/admin/img/900x400/img1.jpg')}}"
+                                                 alt="campaign image"/>
                                         </center>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-3">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">{{__('messages.ads_type')}}</label>
+                                    <select name="ads_type" class="form-control"
+                                            onchange="banner_ads_change(this.value)">
+
+                                        <option disabled selected>---{{__('messages.select')}}---</option>
+                                        <option value="clicks">{{__('messages.clicks')}}</option>
+                                        <option value="views">{{__('messages.views')}}</option>
+                                        <option value="duration">{{__('messages.duration')}}</option>
+                                    </select>
+                                </div>
+                                <div class=" col-3" id="count">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">count</label>
+                                    <input type="text" name="type_count" class="form-control">
+                                </div>
+
+                                <div class=" col-3" id="duration_start">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">Starts at</label>
+                                    <input type="date" name="start_date" class="form-control" id="date_from">
+                                </div>
+
+                                <div class=" col-3" id="duration_end">
+                                    <label class="input-label"
+                                           for="exampleFormControlInput1">Ends at</label>
+                                    <input type="date" name="end_date" class="form-control" id="date_from">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">{{__('messages.submit')}}</button>
                         </form>
                     </div>
                 </div>
-                
+
             </div>
 
             <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
                 <div class="card">
                     <div class="card-header">
-                        <h5>{{__('messages.banner')}} {{__('messages.list')}}<span class="badge badge-soft-dark ml-2" id="itemCount">{{$banners->count()}}</span></h5>
+                        <h5>{{__('messages.banner')}} {{__('messages.list')}}<span class="badge badge-soft-dark ml-2"
+                                                                                   id="itemCount">{{$banners->count()}}</span>
+                        </h5>
                         <form id="search-form">
-                            @csrf
-                            <!-- Search -->
+                        @csrf
+                        <!-- Search -->
                             <div class="input-group input-group-merge input-group-flush">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="tio-search"></i>
                                     </div>
                                 </div>
-                                <input id="datatableSearch" type="search" name="search" class="form-control" placeholder="{{__('messages.search_here')}}" aria-label="{{__('messages.search_here')}}">
+                                <input id="datatableSearch" type="search" name="search" class="form-control"
+                                       placeholder="Search here" aria-label="Search here">
                             </div>
                             <!-- End Search -->
                         </form>
@@ -117,13 +167,14 @@
                                 "paging": false,
                                }'>
                             <thead class="thead-light">
-                                <tr>
-                                    <th>{{__('messages.#')}}</th>
-                                    <th>{{__('messages.title')}}</th>
-                                    <th>{{__('messages.type')}}</th>
-                                    <th>{{__('messages.status')}}</th>
-                                    <th>{{__('messages.action')}}</th>
-                                </tr>
+                            <tr>
+                                <th>{{__('messages.#')}}</th>
+                                <th>{{__('messages.title')}}</th>
+                                <th>{{__('messages.ads_type')}}</th>
+                                <th>{{__('messages.type')}}</th>
+                                <th>{{__('messages.status')}}</th>
+                                <th>{{__('messages.action')}}</th>
+                            </tr>
                             </thead>
 
                             <tbody id="set-rows">
@@ -132,33 +183,49 @@
                                     <td>{{$key+$banners->firstItem()}}</td>
                                     <td>
                                         <span class="media align-items-center">
-                                            <img class="avatar avatar-lg mr-3" src="{{asset('storage/app/public/banner')}}/{{$banner['image']}}" 
-                                                 onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'" alt="{{$banner->name}} image">
+                                            <img class="avatar avatar-lg mr-3"
+                                                 src="{{asset('storage/app/public/banner')}}/{{$banner['image']}}"
+                                                 onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'"
+                                                 alt="{{$banner->name}} image">
                                             <div class="media-body">
                                                 <h5 class="text-hover-primary mb-0">{{$banner['title']}}</h5>
                                             </div>
                                         </span>
-                                    <span class="d-block font-size-sm text-body">
-                                        
+                                        <span class="d-block font-size-sm text-body">
                                     </span>
                                     </td>
+                                    <td>{{$banner['ads_type']}}</td>
                                     <td>{{$banner['type']}}</td>
                                     <td>
-                                        <label class="toggle-switch toggle-switch-sm" for="statusCheckbox{{$banner->id}}">
-                                            <input type="checkbox" onclick="location.href='{{route('admin.banner.status',[$banner['id'],$banner->status?0:1])}}'" class="toggle-switch-input" id="statusCheckbox{{$banner->id}}" {{$banner->status?'checked':''}}>
-                                            <span class="toggle-switch-label">
+                                        @if($banner['ad_show']==0)
+                                            <h3 class="text-danger"> Finished</h3>
+                                        @else
+                                            <label class="toggle-switch toggle-switch-sm"
+                                                   for="statusCheckbox{{$banner->id}}">
+                                                <input type="checkbox"
+                                                       onclick="location.href='{{route('admin.banner.status',[$banner['id'],$banner->status?0:1])}}'"
+                                                       class="toggle-switch-input"
+                                                       id="statusCheckbox{{$banner->id}}" {{$banner->status?'checked':''}}>
+                                                <span class="toggle-switch-label">
                                                 <span class="toggle-switch-indicator"></span>
                                             </span>
-                                        </label>
+                                            </label>
+                                        @endif
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-white" href="{{route('admin.banner.edit',[$banner['id']])}}"title="{{__('messages.edit')}} {{__('messages.banner')}}"><i class="tio-edit"></i>
+                                        <a class="btn btn-sm btn-white"
+                                           href="{{route('admin.banner.edit',[$banner['id']])}}"
+                                           title="{{__('messages.edit')}} {{__('messages.banner')}}"><i
+                                                class="tio-edit"></i>
                                         </a>
-                                        <a class="btn btn-sm btn-white" href="javascript:" onclick="form_alert('banner-{{$banner['id']}}','Want to delete this banner ?')" title="{{__('messages.delete')}} {{__('messages.banner')}}"><i class="tio-delete-outlined"></i>
+                                        <a class="btn btn-sm btn-white" href="javascript:"
+                                           onclick="form_alert('banner-{{$banner['id']}}','Want to delete this banner ?')"
+                                           title="{{__('messages.delete')}} {{__('messages.banner')}}"><i
+                                                class="tio-delete-outlined"></i>
                                         </a>
                                         <form action="{{route('admin.banner.delete',[$banner['id']])}}"
-                                                    method="post" id="banner-{{$banner['id']}}">
-                                                @csrf @method('delete')
+                                              method="post" id="banner-{{$banner['id']}}">
+                                            @csrf @method('delete')
                                         </form>
                                     </td>
                                 </tr>
@@ -169,11 +236,11 @@
                         <div class="page-area">
                             <table>
                                 <tfoot>
-                                    {!! $banners->links() !!}
+                                {!! $banners->links() !!}
                                 </tfoot>
                             </table>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -184,70 +251,71 @@
 @endsection
 
 @push('script_2')
-<script>
-    function getRequest(route, id) {
-        $.get({
-            url: route,
-            dataType: 'json',
-            success: function (data) {
-                $('#' + id).empty().append(data.options);
-            },
-        });
-    }
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#viewer').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
+    <script>
+        function getRequest(route, id) {
+            $.get({
+                url: route,
+                dataType: 'json',
+                success: function (data) {
+                    $('#' + id).empty().append(data.options);
+                },
+            });
         }
-    }
 
-    $("#customFileEg1").change(function () {
-        readURL(this);
-    });
-</script>
-<script>
-    $(document).on('ready', function () {
-        var zone_id = [];
-        $('#zone').on('change', function(){
-            if($(this).val())
-            {
-                zone_id = $(this).val();
-            }
-            else
-            {
-                zone_id = [];
-            }
-        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-        $('.js-data-example-ajax').select2({
-            ajax: {
-                url: '{{url('/')}}/admin/vendor/get-restaurants',
-                data: function (params) {
-                    return {
-                        q: params.term, // search term
-                        zone_ids: [zone_id],
-                        page: params.page
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                    results: data
-                    };
-                },
-                __port: function (params, success, failure) {
-                    var $request = $.ajax(params);
-
-                    $request.then(success);
-                    $request.fail(failure);
-
-                    return $request;
+                reader.onload = function (e) {
+                    $('#viewer').attr('src', e.target.result);
                 }
+                reader.readAsDataURL(input.files[0]);
             }
+        }
+
+        $("#customFileEg1").change(function () {
+            readURL(this);
         });
+    </script>
+    <script>
+        $(document).on('ready', function () {
+            $('#count').hide();
+            $('#duration_start').hide();
+            $('#duration_end').hide();
+            var zone_id = [];
+            $('#zone').on('change', function () {
+                if ($(this).val()) {
+                    zone_id = $(this).val();
+                } else {
+                    zone_id = [];
+                }
+            });
+
+            $('.js-data-example-ajax').select2({
+                ajax: {
+                    url: '{{url('/')}}/admin/vendor/get-restaurants',
+                    data: function (params) {
+                        return {
+                            q: params.term, // search term
+                            zone_ids: [zone_id],
+                            page: params.page
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    __port: function (params, success, failure) {
+                        var $request = $.ajax(params);
+
+                        $request.then(success);
+                        $request.fail(failure);
+
+                        return $request;
+                    }
+                }
+            });
             // INITIALIZATION OF DATATABLES
             // =======================================================
             var datatable = $.HSCore.components.HSDatatables.init($('#columnSearchDatatable'), {
@@ -261,9 +329,9 @@
                 },
                 language: {
                     zeroRecords: '<div class="text-center p-4">' +
-                    '<img class="mb-3" src="{{asset('public/assets/admin/svg/illustrations/sorry.svg')}}" alt="Image Description" style="width: 7rem;">' +
-                    '<p class="mb-0">No data to show</p>' +
-                    '</div>'
+                        '<img class="mb-3" src="{{asset('public/assets/admin/svg/illustrations/sorry.svg')}}" alt="Image Description" style="width: 7rem;">' +
+                        '<p class="mb-0">No data to show</p>' +
+                        '</div>'
                 }
             });
 
@@ -273,12 +341,12 @@
 
                 if (oldValue == "") return;
 
-                setTimeout(function(){
+                setTimeout(function () {
                     var newValue = $input.val();
 
-                    if (newValue == ""){
-                    // Gotcha
-                    datatable.search('').draw();
+                    if (newValue == "") {
+                        // Gotcha
+                        datatable.search('').draw();
                     }
                 }, 1);
             });
@@ -290,20 +358,37 @@
             });
         });
         $('#item_wise').hide();
+
         function banner_type_change(order_type) {
-           if(order_type=='item_wise')
-            {
+            if (order_type == 'item_wise') {
                 $('#restaurant_wise').hide();
                 $('#item_wise').show();
-            }
-            else if(order_type=='restaurant_wise')
-            {
+            } else if (order_type == 'restaurant_wise') {
                 $('#restaurant_wise').show();
                 $('#item_wise').hide();
-            }
-            else{
+            } else {
                 $('#item_wise').hide();
                 $('#restaurant_wise').hide();
+            }
+        }
+
+        function banner_ads_change(order_type) {
+            if (order_type == 'clicks') {
+                $('#duration_start').hide();
+                $('#duration_end').hide();
+                $('#count').show();
+            } else if (order_type == 'views') {
+                $('#duration_start').hide();
+                $('#duration_end').hide();
+                $('#count').show();
+            } else if (order_type == 'duration') {
+                $('#count').hide();
+                $('#duration_start').show();
+                $('#duration_end').show();
+            } else {
+                $('#count').hide();
+                $('#duration_start').hide();
+                $('#duration_end').hide();
             }
         }
 

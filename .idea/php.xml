@@ -153,6 +153,17 @@
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-diactoros" />
       <path value="$PROJECT_DIR$/vendor/laravelpkg/laravelchk" />
+      <path value="$PROJECT_DIR$/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/kingflamez/laravelrave" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/vendor/box/spout" />
+      <path value="$PROJECT_DIR$/vendor/rap2hpoutre/fast-excel" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-cors" />
+      <path value="$PROJECT_DIR$/vendor/mercadopago/dx-php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
