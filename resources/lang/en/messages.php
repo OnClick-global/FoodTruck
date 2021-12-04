@@ -850,4 +850,9 @@ return [
     'ads_type'=>'Ads Type',
     'clicks'=>'clicks',
     'views'=>'views',
+    'Profit_Ratio'=>'Profit Ratio',
+    'Annual_subscription'=>'Annual Subscription',
+    'register coupons'=>'Register Coupons',
+    'discount_annual'=>'Discount Annual',
+    'discount_percentage'=>'Discount Percentage',
 ];

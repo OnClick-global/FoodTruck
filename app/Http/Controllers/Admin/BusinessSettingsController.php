@@ -38,11 +38,11 @@ class BusinessSettingsController extends Controller
         DB::table('business_settings')->updateOrInsert(['key' => 'currency'], [
             'value' => $request['currency']
         ]);
-        
+
         DB::table('business_settings')->updateOrInsert(['key' => 'timezone'], [
             'value' => $request['timezone']
         ]);
-        
+
         $curr_logo = BusinessSetting::where(['key' => 'logo'])->first();
         if ($request->has('logo')) {
             $image_name = Helpers::update('business/', $curr_logo->value, 'png', $request->file('logo'));
@@ -69,11 +69,11 @@ class BusinessSettingsController extends Controller
         DB::table('business_settings')->updateOrInsert(['key' => 'footer_text'], [
             'value' => $request['footer_text']
         ]);
-        
+
         DB::table('business_settings')->updateOrInsert(['key' => 'customer_verification'], [
             'value' => $request['customer_verification']
         ]);
-        
+
         DB::table('business_settings')->updateOrInsert(['key' => 'order_delivery_verification'], [
             'value' => $request['odc']
         ]);
@@ -110,7 +110,7 @@ class BusinessSettingsController extends Controller
         ]);
 
         DB::table('business_settings')->updateOrInsert(['key' => 'default_location'], [
-            'value' => json_encode(['lat'=>$request['latitude'], 'lng'=>$request['longitude']]) 
+            'value' => json_encode(['lat'=>$request['latitude'], 'lng'=>$request['longitude']])
         ]);
 
         DB::table('business_settings')->updateOrInsert(['key' => 'admin_order_notification'], [
@@ -123,6 +123,14 @@ class BusinessSettingsController extends Controller
 
         DB::table('business_settings')->updateOrInsert(['key' => 'dm_maximum_orders'], [
             'value' => $request['dm_maximum_orders']
+        ]);
+
+        DB::table('business_settings')->updateOrInsert(['key' => 'Profit_Ratio'], [
+            'value' => $request['Profit_Ratio']
+        ]);
+
+        DB::table('business_settings')->updateOrInsert(['key' => 'Annual_subscription'], [
+            'value' => $request['Annual_subscription']
         ]);
 
         Toastr::success(trans('messages.successfully_updated_to_changes_restart_user_app'));
@@ -466,8 +474,8 @@ class BusinessSettingsController extends Controller
         {
             DB::table('business_settings')->updateOrInsert(['key' => 'landing_page_text'], [
                 'value' => json_encode([
-                    'header_title_1'=>$request['header_title_1'], 
-                    'header_title_2'=>$request['header_title_2'], 
+                    'header_title_1'=>$request['header_title_1'],
+                    'header_title_2'=>$request['header_title_2'],
                     'header_title_3'=>$request['header_title_3'],
                     'about_title'=>$request['about_title'],
                     'why_choose_us'=>$request['why_choose_us'],
@@ -482,8 +490,8 @@ class BusinessSettingsController extends Controller
         {
             DB::table('business_settings')->updateOrInsert(['key' => 'landing_page_links'], [
                 'value' => json_encode([
-                    'app_url_android_status'=>$request['app_url_android_status'], 
-                    'app_url_android'=>$request['app_url_android'], 
+                    'app_url_android_status'=>$request['app_url_android_status'],
+                    'app_url_android'=>$request['app_url_android'],
                     'app_url_ios_status'=>$request['app_url_ios_status'],
                     'app_url_ios'=>$request['app_url_ios'],
                     'web_app_url_status'=>$request['web_app_url_status'],
@@ -579,7 +587,7 @@ class BusinessSettingsController extends Controller
         $item = BusinessSetting::where('key', $tab)->first();
         $data = $item?json_decode($item->value, true): null;
         if($data && array_key_exists($key, $data))
-        {   
+        {
             if($data[$key]['img'] && file_exists(public_path('assets/landing/image').$data[$key]['img']))
             {
                 unlink(public_path('assets/landing/image').$data[$key]['img']);
@@ -785,7 +793,7 @@ class BusinessSettingsController extends Controller
                 'message' => $request['delivery_boy_delivered_message']
             ])
         ]);
-        
+
         DB::table('business_settings')->updateOrInsert(['key' => 'order_handover_message'], [
             'value' => json_encode([
                 'status' => $request['order_handover_message_status'] == 1 ? 1 : 0,
@@ -821,7 +829,7 @@ class BusinessSettingsController extends Controller
         Toastr::success(trans('messages.settings_updated'));
         return back();
     }
-    
+
     public function config_setup()
     {
         return view('admin-views.business-settings.config');

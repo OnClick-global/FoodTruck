@@ -667,6 +667,16 @@
                             </a>
                         </li>
 
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/business-settings/register-coupons')?'active':''}}">
+                            <a class="nav-link " href="{{route('admin.register-coupons.add-new')}}"
+                               title="{{__('messages.register coupons')}}"
+                            >
+                                <span class="tio-gift nav-icon"></span>
+                                <span
+                                    class="text-truncate">{{__('messages.register coupons')}}</span>
+                            </a>
+                        </li>
+
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/business-settings/payment-method')?'active':''}}">
                             <a class="nav-link " href="{{route('admin.business-settings.payment-method')}}"
                                title="{{__('messages.payment')}} {{__('messages.methods')}}"

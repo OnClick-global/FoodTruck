@@ -27,7 +27,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         Route::resource('provide-deliveryman-earnings', 'ProvideDMEarningController')->middleware('module:provide_dm_earning');
 
         Route::get('maintenance-mode', 'SystemController@maintenance_mode')->name('maintenance-mode');
-        
+
         Route::group(['prefix' => 'dashboard-stats', 'as' => 'dashboard-stats.'], function () {
             Route::post('order', 'DashboardController@order')->name('order');
             Route::post('zone', 'DashboardController@zone')->name('zone');
@@ -114,6 +114,17 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::delete('delete/{id}', 'CouponController@delete')->name('delete');
             Route::post('search', 'CouponController@search')->name('search');
         });
+
+        Route::group(['prefix' => 'register-coupons', 'as' => 'register-coupons.', 'middleware' => ['module:register-coupon']], function () {
+            Route::get('add-new', 'RegisterCouponController@add_new')->name('add-new');
+            Route::post('store', 'RegisterCouponController@store')->name('store');
+            Route::get('update/{id}', 'RegisterCouponController@edit')->name('update');
+            Route::post('update/{id}', 'RegisterCouponController@update');
+            Route::get('status/{id}/{status}', 'RegisterCouponController@status')->name('status');
+            Route::delete('delete/{id}', 'RegisterCouponController@delete')->name('delete');
+            Route::post('search', 'RegisterCouponController@search')->name('search');
+        });
+
 
         Route::group(['prefix' => 'attribute', 'as' => 'attribute.', 'middleware' => ['module:attribute']], function () {
             Route::get('add-new', 'AttributeController@index')->name('add-new');
@@ -256,6 +267,9 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::get('status/{id}/{status}', 'NotificationController@status')->name('status');
             Route::delete('delete/{id}', 'NotificationController@delete')->name('delete');
         });
+
+
+
 
         Route::group(['prefix' => 'business-settings', 'as' => 'business-settings.', 'middleware' => ['module:settings','actch']], function () {
             Route::get('business-setup', 'BusinessSettingsController@business_index')->name('business-setup');
