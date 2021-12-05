@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Api\V1'], function () {
 
+
+    Route::get('/Zones', 'RestaurantController@zones');
+
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         Route::post('register', 'CustomerAuthController@register');
         Route::post('login', 'CustomerAuthController@login');
@@ -163,6 +166,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
 
     Route::group(['prefix' => 'banners'], function () {
         Route::get('/', 'BannerController@get_banners');
+        Route::get('/useonce/{id}', 'BannerController@useonce');
     });
 
 

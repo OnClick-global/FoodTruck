@@ -12,6 +12,7 @@ class RegisterCouponController extends Controller
 {
     public function add_new()
     {
+//        return $Annual_subscription=\App\Models\BusinessSetting::where('key','Annual_subscription')->first();
         $coupons = RegisterCoupon::latest()->paginate(config('default_pagination'));
         return view('admin-views.RegisterCoupon.index', compact('coupons'));
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BusinessSetting;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Models\Admin;
@@ -29,6 +30,7 @@ class VendorController extends Controller
 {
     public function index()
     {
+//       return BusinessSetting::where('key','Annual_subscription')->first()->value;
         return view('admin-views.vendor.index');
     }
 
@@ -87,7 +89,10 @@ class VendorController extends Controller
         $restaurant->vendor_id = $vendor->id;
         $restaurant->zone_id = $request->zone_id;
         $restaurant->tax = $request->tax;
-        $restaurant->delivery_time = $request->minimum_delivery_time .'-'. $request->maximum_delivery_time;
+        $restaurant->Annual_subscription =BusinessSetting::where('key','Annual_subscription')->first()->value;
+        $restaurant->Profit_Ratio =BusinessSetting::where('key','Profit_Ratio')->first()->value;
+
+
 
         $restaurant->save();
         // $restaurant->zones()->attach($request->zone_ids);
@@ -315,13 +320,13 @@ class VendorController extends Controller
         catch (\Exception $e) {
             Toastr::warning(trans('messages.push_notification_faild'));
         }
-        
+
         $vendor->save();
 
         Toastr::success(trans('messages.restaurant').trans('messages.status_updated'));
         return back();
     }
-    
+
     public function restaurant_status(Restaurant $restaurant, Request $request)
     {
         if((($request->menu == "delivery" && $restaurant->take_away==0) || ($request->menu == "take_away" && $restaurant->delivery==0)) &&  $request->status == 0 )

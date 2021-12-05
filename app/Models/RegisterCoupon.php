@@ -14,4 +14,5 @@ class RegisterCoupon extends Model
     {
         return $query->where('expire', '=', 1);
     }
+
 }

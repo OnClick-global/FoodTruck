@@ -6,6 +6,7 @@ use App\CentralLogics\Helpers;
 use App\CentralLogics\RestaurantLogic;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
+use App\Models\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Review;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class RestaurantController extends Controller
 {
-    public function get_restaurants(Request $request, $filter_data="all")
+    public function get_restaurants(Request $request, $filter_data = "all")
     {
         if (!$request->hasHeader('zoneId')) {
             $errors = [];
@@ -22,14 +23,14 @@ class RestaurantController extends Controller
                 'errors' => $errors
             ], 403);
         }
-        $zone_id= $request->header('zoneId');
+        $zone_id = $request->header('zoneId');
         $restaurants = RestaurantLogic::get_restaurants($request['limit'], $request['offset'], $zone_id, $filter_data);
         $restaurants['restaurants'] = Helpers::restaurant_data_formatting($restaurants['restaurants'], true);
 
         return response()->json($restaurants, 200);
     }
 
-    public function get_latest_restaurants(Request $request, $filter_data="all")
+    public function get_latest_restaurants(Request $request, $filter_data = "all")
     {
         if (!$request->hasHeader('zoneId')) {
             $errors = [];
@@ -38,7 +39,7 @@ class RestaurantController extends Controller
                 'errors' => $errors
             ], 403);
         }
-        $zone_id= $request->header('zoneId');
+        $zone_id = $request->header('zoneId');
         $restaurants = RestaurantLogic::get_latest_restaurants($request['limit'], $request['offset'], $zone_id, $filter_data);
         $restaurants['restaurants'] = Helpers::restaurant_data_formatting($restaurants['restaurants'], true);
 
@@ -54,7 +55,7 @@ class RestaurantController extends Controller
                 'errors' => $errors
             ], 403);
         }
-        $zone_id= $request->header('zoneId');
+        $zone_id = $request->header('zoneId');
         $restaurants = RestaurantLogic::get_popular_restaurants($request['limit'], $request['offset'], $zone_id);
         $restaurants['restaurants'] = Helpers::restaurant_data_formatting($restaurants['restaurants'], true);
 
@@ -64,15 +65,14 @@ class RestaurantController extends Controller
     public function get_details($id)
     {
         $restaurant = RestaurantLogic::get_restaurant_details($id);
-        if($restaurant)
-        {
+        if ($restaurant) {
             $category_ids = DB::table('food')
-            ->join('categories', 'food.category_id', '=', 'categories.id')
-            ->selectRaw('IF((categories.position = "0"), categories.id, categories.parent_id) as categories')
-            ->where('food.restaurant_id', $id)
-            ->where('categories.status',1)
-            ->groupBy('categories')
-            ->get();
+                ->join('categories', 'food.category_id', '=', 'categories.id')
+                ->selectRaw('IF((categories.position = "0"), categories.id, categories.parent_id) as categories')
+                ->where('food.restaurant_id', $id)
+                ->where('categories.status', 1)
+                ->groupBy('categories')
+                ->get();
             // dd($category_ids->pluck('categories'));
             $restaurant = Helpers::restaurant_data_formatting($restaurant);
             $restaurant['category_ids'] = array_map('intval', $category_ids->pluck('categories')->toArray());
@@ -97,7 +97,7 @@ class RestaurantController extends Controller
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
 
-        $zone_id= $request->header('zoneId');
+        $zone_id = $request->header('zoneId');
         $restaurants = RestaurantLogic::search_restaurants($request['name'], $zone_id, $request['limit'], $request['offset']);
         $restaurants['restaurants'] = Helpers::restaurant_data_formatting($restaurants['restaurants'], true);
         return response()->json($restaurants, 200);
@@ -116,10 +116,10 @@ class RestaurantController extends Controller
 
 
         $reviews = Review::with(['customer', 'food'])
-        ->whereHas('food', function($query)use($id){
-            return $query->where('restaurant_id', $id);
-        })
-        ->get();
+            ->whereHas('food', function ($query) use ($id) {
+                return $query->where('restaurant_id', $id);
+            })
+            ->get();
 
         $storage = [];
         foreach ($reviews as $item) {
@@ -150,12 +150,12 @@ class RestaurantController extends Controller
             ],
         ];
     }
-    public function scopeDistance( $from_latitude, $from_longitude, $distance)
+
+    public function scopeDistance($from_latitude, $from_longitude, $distance)
     {
         $between_coords = $this->calcCoordinates($from_longitude, $from_latitude, $distance);
 
-        return Restaurant::where('status',1)
-
+        return Restaurant::where('status', 1)
             ->where(function ($q) use ($between_coords) {
                 $q->whereBetween('longitude', [$between_coords['min']['lng'], $between_coords['max']['lng']]);
             })
@@ -163,6 +163,62 @@ class RestaurantController extends Controller
                 $q->whereBetween('latitude', [$between_coords['min']['lat'], $between_coords['max']['lat']]);
             })->get();
     }
+
+    public function register(Request $request)
+    {
+//   BusinessSetting::where('key','Annual_subscription')->first();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'f_name' => 'required',
+            'l_name' => 'required',
+            'address' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'email' => 'required|unique:vendors',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors',
+            'minimum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
+            'maximum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
+            'password' => 'required|min:6',
+            'logo' => 'required',
+            'cover_photo' => 'required',
+            'tax' => 'required',
+            'cobon' => 'nullable',
+        ], [
+            'f_name.required' => 'First name is required!'
+        ]);
+
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $vendor = new Vendor();
+        $vendor->f_name = $request->f_name;
+        $vendor->l_name = $request->l_name;
+        $vendor->email = $request->email;
+        $vendor->phone = $request->phone;
+        $vendor->password = bcrypt($request->password);
+        $vendor->save();
+
+        $restaurant = new Restaurant;
+        $restaurant->name = $request->name;
+        $restaurant->phone = $request->phone;
+        $restaurant->email = $request->email;
+        $restaurant->logo = Helpers::upload('restaurant/', 'png', $request->file('logo'));
+        $restaurant->cover_photo = Helpers::upload('restaurant/cover/', 'png', $request->file('cover_photo'));
+        $restaurant->address = $request->address;
+        $restaurant->latitude = $request->latitude;
+        $restaurant->longitude = $request->longitude;
+        $restaurant->vendor_id = $vendor->id;
+        $restaurant->tax = $request->tax;
+        $restaurant->delivery_time = $request->minimum_delivery_time .'-'. $request->maximum_delivery_time;
+
+        $restaurant->save();
+        // $restaurant->zones()->attach($request->zone_ids);
+        $msg="Restaurant registered successfully";
+        return response()->json($msg , 200);    }
 
     // public function get_product_rating($id)
     // {

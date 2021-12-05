@@ -34,21 +34,9 @@
                                                placeholder="{{__('messages.new_coupon')}}" required>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="form-group" id="restaurant_wise">
-                                        <label class="input-label"
-                                               for="exampleFormControlSelect1">{{__('messages.restaurant')}}<span
-                                                class="input-label-secondary"></span></label>
-                                        <select name="restaurant_ids[]" class="js-data-example-ajax form-control"
-                                                data-placeholder="{{__('messages.select_restaurant')}}"
-                                                title="{{__('messages.select_restaurant')}}">
-                                        </select>
-                                    </div>
-                                </div>
                             </div>
-
                             <div class="row">
-                                <div class="col-md-3 col-6">
+                                <div class="col-md-4     col-6">
                                     <div class="form-group">
                                         <label class="input-label"
                                                for="exampleFormControlInput1">{{__('messages.code')}}</label>
@@ -59,19 +47,19 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3 col-6">
+                                <div class="col-md-3 col-6" hidden>
                                     <div class="form-group">
                                         <label class="input-label"
                                                for="discount_annual">{{__('messages.discount_annual')}}</label>
-                                        <input type="number" name="discount_annual" id="discount_annual"
+                                        <input type="number" max="100" name="discount_annual" id="discount_annual" value="100"
                                                class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-6">
+                                <div class="col-md-3 col-6" hidden>
                                     <div class="form-group">
                                         <label class="input-label"
                                                for="discount_percentage">{{__('messages.discount_percentage')}}</label>
-                                        <input type="number" name="discount_percentage" id="discount_percentage"
+                                        <input type="number" name="discount_percentage" id="discount_percentage" value="100"
                                                class="form-control">
                                     </div>
                                 </div>
@@ -123,8 +111,8 @@
                                 <th>{{__('messages.#')}}</th>
                                 <th>{{__('messages.title')}}</th>
                                 <th>{{__('messages.code')}}</th>
-                                <th>{{__('messages.discount_annual')}}</th>
-                                <th>{{__('messages.discount_percentage')}}</th>
+                                <th hidden>{{__('messages.discount_annual')}}</th>
+                                <th hidden>{{__('messages.discount_percentage')}}</th>
                                 <th>{{__('messages.action')}}</th>
                             </tr>
                             </thead>
@@ -139,11 +127,11 @@
                                     </span>
                                     </td>
                                     <td>{{$coupon['code']}}</td>
-                                    <td>{{$coupon['discount_annual']}}</td>
-                                    <td>{{$coupon['discount_percentage']}}</td>
+                                    <td hidden >{{$coupon['discount_annual']}}</td>
+                                    <td hidden >{{$coupon['discount_percentage']}}</td>
 
                                     <td>
-                                        @if($coupon['expire'] == 1)
+                                        @if($coupon['expire'] == 0)
                                             <a class="btn btn-sm btn-white"
                                                href="{{route('admin.register-coupons.update',[$coupon['id']])}}"
                                                title="{{__('messages.edit')}} {{__('messages.coupon')}}"><i

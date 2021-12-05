@@ -17,7 +17,7 @@ class CreateRegisterCouponsTable extends Migration
             $table->id();
             $table->string('title',100);
             $table->string('code',15);
-            $table->tinyInteger('expire')->default(1);
+            $table->tinyInteger('expire')->default(0);
             $table->decimal('discount_annual')->nullable();
             $table->decimal('discount_percentage')->nullable();
             $table->foreignId('restaurant_id')->nullable();
