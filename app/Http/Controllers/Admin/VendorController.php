@@ -41,6 +41,7 @@ class VendorController extends Controller
             'name' => 'required',
             'address' => 'required',
             'latitude' => 'required',
+            'restaurant_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:restaurants',
             'longitude' => 'required',
             'email' => 'required|unique:vendors',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors',
@@ -85,6 +86,7 @@ class VendorController extends Controller
         $restaurant->cover_photo = Helpers::upload('restaurant/cover/', 'png', $request->file('cover_photo'));
         $restaurant->address = $request->address;
         $restaurant->latitude = $request->latitude;
+        $restaurant->restaurant_phone = $request->restaurant_phone;
         $restaurant->longitude = $request->longitude;
         $restaurant->vendor_id = $vendor->id;
         $restaurant->zone_id = $request->zone_id;

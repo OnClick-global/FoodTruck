@@ -855,4 +855,5 @@ return [
     'register coupons'=>'Register Coupons',
     'discount_annual'=>'Discount Annual',
     'discount_percentage'=>'Discount Percentage',
+    'restaurant phone'=>'Restaurant phone',
 ];

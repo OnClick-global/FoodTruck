@@ -176,10 +176,10 @@ class RestaurantController extends Controller
             'address' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
+            'restaurant_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:restaurants',
             'minimum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
             'maximum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
             'logo' => 'required',
-            'tax' => 'required',
             'f_name' => 'required',
             'l_name' => 'required',
             'email' => 'required|unique:vendors',
@@ -217,9 +217,11 @@ class RestaurantController extends Controller
         $restaurant->latitude = $request->latitude;
         $restaurant->longitude = $request->longitude;
         $restaurant->vendor_id = $vendor->id;
-        $restaurant->tax = $request->tax;
+        $restaurant->tax = 0;
+        $restaurant->status = 0;
+        $restaurant->status = 0;
+        $restaurant->restaurant_phone = $request->restaurant_phone;
         $restaurant->delivery_time = $request->minimum_delivery_time .'-'. $request->maximum_delivery_time;
-        $restaurant->Annual_subscription =BusinessSetting::where('key','Annual_subscription')->first()->value;
         $restaurant->Profit_Ratio =BusinessSetting::where('key','Profit_Ratio')->first()->value;
         $restaurant->save();
 

@@ -14,7 +14,8 @@ class UpdateResturantPersentage extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->string('Annual_subscription');
+            $table->string('restaurant_phone');
+            $table->string('Annual_subscription')->nullable();
             $table->string('Profit_Ratio');
             $table->enum('payment_status',['paid','unpaid','coupon'])->default('unpaid');
         });

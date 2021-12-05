@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8de7019d-e2bb-4d1b-9272-623980507709" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/VendorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/VendorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RestaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RestaurantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_05_035300_update_resturant_persentage.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_05_035300_update_resturant_persentage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/vendor/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/vendor/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +287,7 @@
       <workItem from="1630746551123" duration="2315000" />
       <workItem from="1638434547862" duration="9250000" />
       <workItem from="1638626359231" duration="6159000" />
-      <workItem from="1638695614218" duration="14960000" />
+      <workItem from="1638695614218" duration="17021000" />
     </task>
     <servers />
   </component>
