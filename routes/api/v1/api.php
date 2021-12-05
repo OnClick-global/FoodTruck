@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Api\V1'], function () {
 
-
-    Route::get('/Zones', 'RestaurantController@zones');
+    Route::post('estaurant-register', 'RestaurantController@register');
 
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         Route::post('register', 'CustomerAuthController@register');

@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Api\V1;
 use App\CentralLogics\Helpers;
 use App\CentralLogics\RestaurantLogic;
 use App\Http\Controllers\Controller;
+use App\Models\BusinessSetting;
+use App\Models\RegisterCoupon;
 use App\Models\Restaurant;
+use App\Models\Vendor;
 use App\Models\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Review;
 use Illuminate\Support\Facades\DB;
+
 
 class RestaurantController extends Controller
 {
@@ -166,33 +170,34 @@ class RestaurantController extends Controller
 
     public function register(Request $request)
     {
-//   BusinessSetting::where('key','Annual_subscription')->first();
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'f_name' => 'required',
-            'l_name' => 'required',
             'address' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
-            'email' => 'required|unique:vendors',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors',
             'minimum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
             'maximum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
-            'password' => 'required|min:6',
             'logo' => 'required',
-            'cover_photo' => 'required',
             'tax' => 'required',
-            'cobon' => 'nullable',
+            'f_name' => 'required',
+            'l_name' => 'required',
+            'email' => 'required|unique:vendors',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors',
+            'password' => 'required|confirmed|min:6',
         ], [
             'f_name.required' => 'First name is required!'
         ]);
 
+        $coupon=RegisterCoupon::get('code');
+
+        $request->coupon;
 
         if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
+            return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
+
+
 
         $vendor = new Vendor();
         $vendor->f_name = $request->f_name;
@@ -214,10 +219,12 @@ class RestaurantController extends Controller
         $restaurant->vendor_id = $vendor->id;
         $restaurant->tax = $request->tax;
         $restaurant->delivery_time = $request->minimum_delivery_time .'-'. $request->maximum_delivery_time;
-
+        $restaurant->Annual_subscription =BusinessSetting::where('key','Annual_subscription')->first()->value;
+        $restaurant->Profit_Ratio =BusinessSetting::where('key','Profit_Ratio')->first()->value;
         $restaurant->save();
-        // $restaurant->zones()->attach($request->zone_ids);
+
         $msg="Restaurant registered successfully";
+
         return response()->json($msg , 200);    }
 
     // public function get_product_rating($id)
