@@ -72,7 +72,7 @@
                                 <th style="width: 20%;">{{__('messages.restaurant')}}</th>
                                 <th style="width: 15%;">{{__('messages.owner')}}</th>
                                 <th style="width: 15%;">{{__('messages.zone')}}</th>
-                                <th style="width: 10%;">{{__('messages.phone')}}</th>
+                                <th style="width: 10%;">{{__('messages.restaurant phone')}}</th>
                                 <th class="text-uppercase" style="width: 10%;">{{__('messages.active')}}/{{__('messages.inactive')}}</th>
                                 <th style="width: 10%;">{{__('messages.action')}}</th>
                             </tr>
@@ -108,7 +108,7 @@
                                         {{--<span class="d-block font-size-sm">{{$banner['image']}}</span>--}}
                                     </td>
                                     <td>
-                                        {{$dm['phone']}}
+                                        {{$dm['restaurant_phone']}}
                                     </td>
                                     <td>
                                         <label class="toggle-switch toggle-switch-sm" for="stocksCheckbox{{$dm->id}}">

@@ -119,7 +119,9 @@ class VendorController extends Controller
         $validator = Validator::make($request->all(), [
             'f_name' => 'required',
             'name' => 'required',
+            'Profit_Ratio' => 'required',
             'email' => 'required|unique:vendors,email,'.$restaurant->vendor->id,
+            'restaurant_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:restaurants',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors,phone,'.$restaurant->vendor->id,
             'zone_id'=>'required',
             'latitude' => 'required',
@@ -163,7 +165,9 @@ class VendorController extends Controller
         $restaurant->name = $request->name;
         $restaurant->address = $request->address;
         $restaurant->latitude = $request->latitude;
+        $restaurant->Profit_Ratio = $request->Profit_Ratio;
         $restaurant->longitude = $request->longitude;
+        $restaurant->restaurant_phone = $request->restaurant_phone;
         $restaurant->zone_id = $request->zone_id;
         $restaurant->tax = $request->tax;
         $restaurant->delivery_time = $request->minimum_delivery_time .'-'. $request->maximum_delivery_time;

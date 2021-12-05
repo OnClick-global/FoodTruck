@@ -33,7 +33,7 @@
                       enctype="multipart/form-data">
                     @csrf
 
-                    
+
                     <small class="nav-subtitle text-secondary border-bottom">{{__('messages.restaurant')}} {{__('messages.info')}}</small>
                     <br>
                     <div class="row">
@@ -44,13 +44,21 @@
                                        required value="{{$restaurant->name}}">
                             </div>
                             <div class="form-group">
+                                <label class="input-label" for="restaurant_phone">{{__('messages.restaurant phone')}}</label>
+                                <input type="text" name="restaurant_phone" class="form-control" placeholder="{{__('messages.restaurant phone')}}"  required value="{{$restaurant->restaurant_phone}}" >
+                            </div>
+                            <div class="form-group">
+                                <label class="input-label" for="Profit_Ratio">{{__('messages.Profit_Ratio')}}</label>
+                                <input type="text" name="Profit_Ratio" class="form-control" placeholder="{{__('messages.restaurant phone')}}"  required value="{{$restaurant->Profit_Ratio}}" >
+                            </div>
+                            <div class="form-group">
                                 <label class="input-label" for="address">{{__('messages.restaurant')}} {{__('messages.address')}}</label>
                                 <textarea  type="text" name="address" class="form-control" placeholder="{{__('messages.restaurant')}} {{__('messages.address')}}"
                                        required>{{$restaurant->address}}</textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label class="input-label" for="address">{{__('messages.vat/tax')}} (%)</label>
-                                <input type="number" name="tax" class="form-control" placeholder="{{__('messages.vat/tax')}}" min="0" step=".01" required value="{{$restaurant->tax}}">
+                                <input type="number" name="tax" class="form-control" placeholder="{{__('messages.vat/tax')}}" min="0" step=".01" required value="0">
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
@@ -72,7 +80,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-12" style="margin-top: auto;margin-bottom: auto;">
-                            <div class="form-group" style="margin-bottom:0%;">                       
+                            <div class="form-group" style="margin-bottom:0%;">
                                 <center>
                                     <img style="height: 200px;border: 1px solid; border-radius: 10px;" id="viewer"
                                         src="{{asset('storage/app/public/restaurant').'/'.$restaurant->logo}}" alt="delivery-man image"/>
@@ -133,13 +141,13 @@
                                 accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
                             <label class="custom-file-label" for="customFileUpload">{{__('messages.choose')}} {{__('messages.file')}}</label>
                         </div>
-                    </div> 
+                    </div>
                     <center>
                         <img style="max-width: 100%;border: 1px solid; border-radius: 10px; max-height:200px;" id="coverImageViewer"
                         onerror="this.src='{{asset('public/assets/admin/img/900x400/img1.jpg')}}'"
                         src="{{asset('storage/app/public/restaurant/cover/'.$restaurant->cover_photo)}}" alt="Product thumbnail"/>
-                    </center>  
-                    
+                    </center>
+
                     <br>
                     <small class="nav-subtitle text-secondary border-bottom">{{__('messages.vendor')}} {{__('messages.info')}}</small>
                     <br>
@@ -167,7 +175,7 @@
                         </div>
                     </div>
                     <br>
-                    
+
                     <small class="nav-subtitle text-secondary border-bottom">{{__('messages.login')}} {{__('messages.info')}}</small>
                     <br>
                     <div class="row">
@@ -251,7 +259,7 @@
         });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{\App\Models\BusinessSetting::where('key', 'map_api_key')->first()->value}}&callback=initMap&v=3.45.8"></script>
-    <script> 
+    <script>
         let myLatlng = { lat: {{$restaurant->latitude}}, lng: {{$restaurant->longitude}} };
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 13,
@@ -270,7 +278,7 @@
                 map,
                 title: "{{$restaurant->name}}",
             });
-            infoWindow.open(map);            
+            infoWindow.open(map);
         }
         initMap();
         function get_zone_data(id)
@@ -306,7 +314,7 @@
                         document.getElementById('latitude').value = coordinates['lat'];
                         document.getElementById('longitude').value = coordinates['lng'];
                         infoWindow.open(map);
-                    });    
+                    });
                 },
             });
         }
@@ -349,7 +357,7 @@
                         document.getElementById('latitude').value = coordinates['lat'];
                         document.getElementById('longitude').value = coordinates['lng'];
                         infoWindow.open(map);
-                    });    
+                    });
                 },
             });
         });

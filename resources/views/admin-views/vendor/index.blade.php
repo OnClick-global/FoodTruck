@@ -48,9 +48,9 @@
                                 <label class="input-label" for="address">{{__('messages.restaurant')}} {{__('messages.address')}}</label>
                                 <textarea type="text" name="address" class="form-control" placeholder="{{__('messages.restaurant')}} {{__('messages.address')}}" required >{{old('address')}}</textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label class="input-label" for="tax">{{__('messages.vat/tax')}} (%)</label>
-                                <input type="number" name="tax" class="form-control" placeholder="{{__('messages.vat/tax')}}" min="0" step=".01" required value="{{old('tax')}}">
+                                <input type="number" name="tax" class="form-control" placeholder="{{__('messages.vat/tax')}}" min="0" step=".01" required value="0">
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
