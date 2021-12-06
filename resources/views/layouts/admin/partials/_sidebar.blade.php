@@ -247,7 +247,7 @@
 {{--                            </a>--}}
 {{--                        </li>--}}
 {{--                    @endif--}}
-                    
+
                     @if(\App\CentralLogics\Helpers::module_permission_check('restaurant'))
                     <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/vendor*') && !Request::is('admin/vendor/withdraw_list'))?'active':''}}">
                         <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
