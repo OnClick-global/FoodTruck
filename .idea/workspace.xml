@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8de7019d-e2bb-4d1b-9272-623980507709" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/RegisterCouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/RegisterCouponController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RestaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RestaurantController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_04_062824_create_register_coupons_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_04_062824_create_register_coupons_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,7 +284,7 @@
       <workItem from="1638434547862" duration="9250000" />
       <workItem from="1638626359231" duration="6159000" />
       <workItem from="1638695614218" duration="18955000" />
-      <workItem from="1638787082890" duration="4390000" />
+      <workItem from="1638787082890" duration="5126000" />
     </task>
     <servers />
   </component>
