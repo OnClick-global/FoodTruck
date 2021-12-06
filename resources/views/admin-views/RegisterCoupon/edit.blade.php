@@ -19,7 +19,7 @@
         <!-- End Page Header -->
         <div class="row gx-2 gx-lg-3">
             <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
-                <form action="{{route('admin.coupon.update',[$coupon['id']])}}" method="post">
+                <form action="{{route('admin.register-coupons.update',[$coupon['id']])}}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-4">
@@ -43,29 +43,29 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group" id="restaurant_wise" style="display: {{$coupon['coupon_type']=='restaurant_wise'?'block':'none'}}">
-                                    <label class="input-label" for="exampleFormControlSelect1">{{__('messages.restaurant')}}<span
-                                            class="input-label-secondary"></span></label>
-                                    <select name="restaurant_ids[]" class="js-data-example-ajax form-control"  title="Select Restaurant">
+                                <label class="input-label" for="exampleFormControlSelect1">{{__('messages.restaurant')}}<span
+                                        class="input-label-secondary"></span></label>
+                                <select name="restaurant_ids[]" class="js-data-example-ajax form-control"  title="Select Restaurant">
                                     @if($coupon->coupon_type == 'restaurant_wise')
-                                    @php($restaurant=\App\Models\Restaurant::find(json_decode($coupon->data)[0]))
+                                        @php($restaurant=\App\Models\Restaurant::find(json_decode($coupon->data)[0]))
                                         @if($restaurant)
-                                        <option value="{{$restaurant->id}}">{{$restaurant->name}}</option>
+                                            <option value="{{$restaurant->id}}">{{$restaurant->name}}</option>
                                         @endif
                                     @else
-                                    <option selected>Select Restaurant</option>
+                                        <option selected>Select Restaurant</option>
                                     @endif
-                                    </select>
-                                </div>
-                                <div class="form-group" id="zone_wise" style="display: {{$coupon['coupon_type']=='zone_wise'?'block':'none'}}">
-                                    <label class="input-label" for="exampleFormControlInput1">{{__('messages.select')}} {{__('messages.zone')}}</label>
-                                    <select name="zone_ids[]" id="choice_zones"
+                                </select>
+                            </div>
+                            <div class="form-group" id="zone_wise" style="display: {{$coupon['coupon_type']=='zone_wise'?'block':'none'}}">
+                                <label class="input-label" for="exampleFormControlInput1">{{__('messages.select')}} {{__('messages.zone')}}</label>
+                                <select name="zone_ids[]" id="choice_zones"
                                         class="form-control js-select2-custom"
                                         multiple="multiple" placeholder="{{__('messages.select_zone')}}">
                                     @foreach(\App\Models\Zone::all() as $zone)
                                         <option value="{{$zone->id}}" {{($coupon->coupon_type=='zone_wise'&&json_decode($coupon->data))?(in_array($zone->id, json_decode($coupon->data))?'selected':''):''}}>{{$zone->name}}</option>
                                     @endforeach
-                                    </select>
-                                </div>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -159,29 +159,29 @@
             $('#date_from').attr('max','{{date("Y-m-d",strtotime($coupon["expire_date"]))}}');
             $('#date_to').attr('min','{{date("Y-m-d",strtotime($coupon["start_date"]))}}');
             $('.js-data-example-ajax').select2({
-            ajax: {
-                url: '{{url('/')}}/admin/vendor/get-restaurants',
-                data: function (params) {
-                    return {
-                        q: params.term, // search term
-                        page: params.page
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                    results: data
-                    };
-                },
-                __port: function (params, success, failure) {
-                    var $request = $.ajax(params);
+                ajax: {
+                    url: '{{url('/')}}/admin/vendor/get-restaurants',
+                    data: function (params) {
+                        return {
+                            q: params.term, // search term
+                            page: params.page
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    __port: function (params, success, failure) {
+                        var $request = $.ajax(params);
 
-                    $request.then(success);
-                    $request.fail(failure);
+                        $request.then(success);
+                        $request.fail(failure);
 
-                    return $request;
+                        return $request;
+                    }
                 }
-            }
-        });
+            });
             // INITIALIZATION OF FLATPICKR
             // =======================================================
             $('.js-flatpickr').each(function () {
@@ -190,7 +190,7 @@
         });
 
         function coupon_type_change(coupon_type) {
-           if(coupon_type=='zone_wise')
+            if(coupon_type=='zone_wise')
             {
                 $('#restaurant_wise').hide();
                 $('#zone_wise').show();

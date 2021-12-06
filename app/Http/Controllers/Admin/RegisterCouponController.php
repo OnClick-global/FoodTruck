@@ -12,7 +12,6 @@ class RegisterCouponController extends Controller
 {
     public function add_new()
     {
-//        return $Annual_subscription=\App\Models\BusinessSetting::where('key','Annual_subscription')->first();
         $coupons = RegisterCoupon::latest()->paginate(config('default_pagination'));
         return view('admin-views.RegisterCoupon.index', compact('coupons'));
     }
@@ -23,17 +22,36 @@ class RegisterCouponController extends Controller
         $request->validate([
             'code' => 'required|unique:register_coupons',
             'title' => 'required',
-            'discount_annual' => 'required_if:discount_percentage,null',
-            'discount_percentage' => 'required_if:discount_annual,null',
+            'start_date' => 'required',
+            'expire_date' => 'required',
+            'discount' => 'required',
+            'coupon_type' => 'required|in:zone_wise,restaurant_wise,free_delivery,first_order,default',
+            'zone_ids' => 'required_if:coupon_type,zone_wise',
             'restaurant_ids' => 'required_if:coupon_type,restaurant_wise'
         ]);
-
+        $data  = '';
+        if($request->coupon_type == 'zone_wise')
+        {
+            $data = $request->zone_ids;
+        }
+        else if($request->coupon_type == 'restaurant_wise')
+        {
+            $data = $request->restaurant_ids;
+        }
 
         DB::table('register_coupons')->insert([
             'title' => $request->title,
             'code' => $request->code,
-            'discount_annual'  => $request->discount_annual,
-            'discount_percentage'  => $request->discount_percentage,
+            'limit' => $request->coupon_type=='first_order'?1:$request->limit,
+            'coupon_type' => $request->coupon_type,
+            'start_date' => $request->start_date,
+            'expire_date' => $request->expire_date,
+            'min_purchase' => $request->min_purchase != null ? $request->min_purchase : 0,
+            'max_discount' => $request->max_discount != null ? $request->max_discount : 0,
+            'discount' => $request->discount_type == 'amount' ? $request->discount : $request['discount'],
+            'discount_type' => $request->discount_type??'',
+            'status' => 1,
+            'data' => json_encode($data),
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -52,7 +70,7 @@ class RegisterCouponController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'code' => 'required|unique:coupons,code,'.$id,
+            'code' => 'required|unique:register_coupons,code,'.$id,
             'title' => 'required',
             'start_date' => 'required',
             'expire_date' => 'required',
@@ -70,7 +88,7 @@ class RegisterCouponController extends Controller
             $data = $request->restaurant_ids;
         }
 
-        DB::table('coupons')->where(['id' => $id])->update([
+        DB::table('register_coupons')->where(['id' => $id])->update([
             'title' => $request->title,
             'code' => $request->code,
             'limit' => $request->coupon_type=='first_order'?1:$request->limit,
@@ -111,7 +129,7 @@ class RegisterCouponController extends Controller
         $coupons=RegisterCoupon::where(function ($q) use ($key) {
             foreach ($key as $value) {
                 $q->orWhere('title', 'like', "%{$value}%")
-                ->orWhere('code', 'like', "%{$value}%");
+                    ->orWhere('code', 'like', "%{$value}%");
             }
         })->limit(50)->get();
         return response()->json([

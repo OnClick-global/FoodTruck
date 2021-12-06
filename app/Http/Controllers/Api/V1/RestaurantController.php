@@ -170,7 +170,6 @@ class RestaurantController extends Controller
 
     public function register(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'address' => 'required',
@@ -188,17 +187,9 @@ class RestaurantController extends Controller
         ], [
             'f_name.required' => 'First name is required!'
         ]);
-
-        $coupon=RegisterCoupon::get('code');
-
-        $request->coupon;
-
         if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
-
-
-
         $vendor = new Vendor();
         $vendor->f_name = $request->f_name;
         $vendor->l_name = $request->l_name;

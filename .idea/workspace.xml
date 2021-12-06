@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8de7019d-e2bb-4d1b-9272-623980507709" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/VendorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/VendorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/RegisterCouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/RegisterCouponController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RestaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RestaurantController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/vendor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/vendor/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/vendor/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/vendor/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_04_062824_create_register_coupons_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_04_062824_create_register_coupons_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +219,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin-views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -229,11 +230,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\dashboard\FoodTruck\resources\views\admin-views\RegisterCoupon" />
       <recent name="C:\xampp\htdocs\dashboard\FoodTruck\resources\views\admin-views" />
       <recent name="C:\xampp\htdocs\dashboard\FoodTruck\app\Http\Controllers\Admin" />
       <recent name="$PROJECT_DIR$/public/assets/landing/image" />
       <recent name="$PROJECT_DIR$/installation" />
-      <recent name="$PROJECT_DIR$/routes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Api/V2" />
@@ -287,7 +288,8 @@
       <workItem from="1630746551123" duration="2315000" />
       <workItem from="1638434547862" duration="9250000" />
       <workItem from="1638626359231" duration="6159000" />
-      <workItem from="1638695614218" duration="18628000" />
+      <workItem from="1638695614218" duration="18955000" />
+      <workItem from="1638787082890" duration="4390000" />
     </task>
     <servers />
   </component>
