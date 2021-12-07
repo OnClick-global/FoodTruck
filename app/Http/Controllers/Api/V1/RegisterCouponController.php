@@ -50,14 +50,13 @@ class RegisterCouponController extends Controller
                         ], 407);
 
                     case 100:
-
-                        RegisterCoupon::where('code',$request['code'])->get();
-
                         return response()->json([
-                            'mashy' => [
-                                ['code' => 'coupon', 'message' => trans('messages.coupon_expire')]
-                            ]
-                        ], 407);
+
+                            'message' => trans('messages.coupon_available'),
+                            'code' => $coupon['code'],
+                            'type' => $coupon['discount_type'],
+                            
+                        ], 200);
 
                     default:
                         return response()->json([

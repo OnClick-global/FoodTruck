@@ -109,6 +109,7 @@ return [
     'coupon_status_updated'=>'Coupon status updated',
     'coupon_usage_limit_over'=>'Coupon usage limit is over for you!',
     'coupon_expire'=>'coupon expire',
+    'coupon_available'=>'coupon is Available',
     'cover'=>'cover',
     'currency_symbol_positon'=> 'Currency symbol position',
     'currency_added_successfully'=>'Currency added successfully!',

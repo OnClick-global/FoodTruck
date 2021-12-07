@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8de7019d-e2bb-4d1b-9272-623980507709" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RegisterCouponController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/AnnualSubscription.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_12_07_043118_create_annual_subscriptions_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CentralLogics/coupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/CentralLogics/coupon.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/CouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/CouponController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RegisterCoupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RegisterCoupon.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/v1/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/v1/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RegisterCouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RegisterCouponController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/messages.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,6 +291,7 @@
       <workItem from="1638695614218" duration="18955000" />
       <workItem from="1638787082890" duration="5126000" />
       <workItem from="1638867956246" duration="10076000" />
+      <workItem from="1638904397385" duration="1256000" />
     </task>
     <servers />
   </component>
