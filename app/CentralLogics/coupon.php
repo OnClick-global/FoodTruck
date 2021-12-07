@@ -40,8 +40,8 @@ class CouponLogic
         }
 
         if($coupon->coupon_type == 'restaurant_wise' && !in_array($restaurant_id, json_decode($coupon->data, true)))
-        {  
-            return 404;   
+        {
+            return 404;
         }
         else if($coupon->coupon_type == 'zone_wise')
         {
@@ -77,5 +77,23 @@ class CouponLogic
             }
         }
         return 404; //not found
+    }
+
+
+    public static function is_reg_valide($coupon)
+    {
+
+        $start_date = Carbon::parse($coupon->start_date);
+        $expire_date = Carbon::parse($coupon->expire_date);
+
+        $today = Carbon::now();
+        if($start_date->format('Y-m-d') > $today->format('Y-m-d') || $expire_date->format('Y-m-d') < $today->format('Y-m-d'))
+        {
+            return 407;  //coupon expire
+        }else{
+            return 100;
+        }
+
+
     }
 }

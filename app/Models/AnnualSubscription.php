@@ -5,14 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RegisterCoupon extends Model
+class AnnualSubscription extends Model
 {
     use HasFactory;
     protected $guarded=[];
-
-    public function scopeActive($query)
-    {
-        return $query->where('status', '=', 1);
-    }
-
 }

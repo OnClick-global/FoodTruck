@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Api\V1'], function () {
 
-    Route::post('estaurant-register', 'RestaurantController@register');
+    Route::post('restaurant-register', 'RestaurantController@register');
 
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         Route::post('register', 'CustomerAuthController@register');
@@ -226,8 +226,8 @@ Route::group(['namespace' => 'Api\V1'], function () {
         Route::get('item', 'CampaignController@get_item_campaigns');
     });
 
-    Route::group(['prefix' => 'coupon', 'middleware' => 'auth:api'], function () {
-        Route::get('list', 'CouponController@list');
-        Route::get('apply', 'CouponController@apply');
+    Route::group(['prefix' => 'register-coupons'], function () {
+        Route::get('list', 'RegisterCouponController@list');
+        Route::post('apply', 'RegisterCouponController@apply');
     });
 });

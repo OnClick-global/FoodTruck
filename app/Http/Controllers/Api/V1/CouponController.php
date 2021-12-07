@@ -15,6 +15,7 @@ class CouponController extends Controller
 {
     public function list()
     {
+
         try {
             $coupon = Coupon::active()->get();
             return response()->json($coupon, 200);
@@ -34,7 +35,7 @@ class CouponController extends Controller
         if ($validator->errors()->count()>0) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
-        
+
         try {
             $coupon = Coupon::active()->where(['code' => $request['code']])->first();
             if (isset($coupon)) {
@@ -42,7 +43,7 @@ class CouponController extends Controller
 
                 switch ($staus) {
                 case 200:
-                    return response()->json($coupon, 200); 
+                    return response()->json($coupon, 200);
                 case 406:
                     return response()->json([
                         'errors' => [
@@ -58,7 +59,7 @@ class CouponController extends Controller
                 default:
                     return response()->json([
                         'errors' => [
-                            ['code' => 'coupon', 'message' => trans('messages.not_found')]                            
+                            ['code' => 'coupon', 'message' => trans('messages.not_found')]
                         ]
                     ], 404);
                 }

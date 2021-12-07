@@ -941,6 +941,7 @@ class ComposerStaticInit91cec6739e4b3abbc0b90b7b21f563ac
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\AdminRole' => __DIR__ . '/../..' . '/app/Models/AdminRole.php',
         'App\\Models\\AdminWallet' => __DIR__ . '/../..' . '/app/Models/AdminWallet.php',
+        'App\\Models\\AnnualSubscription' => __DIR__ . '/../..' . '/app/Models/AnnualSubscription.php',
         'App\\Models\\Attribute' => __DIR__ . '/../..' . '/app/Models/Attribute.php',
         'App\\Models\\Banner' => __DIR__ . '/../..' . '/app/Models/Banner.php',
         'App\\Models\\BusinessSetting' => __DIR__ . '/../..' . '/app/Models/BusinessSetting.php',

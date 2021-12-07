@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title','Add new coupon')
+@section('title','Add new Register Coupons')
 
 @push('css_or_js')
 
@@ -12,7 +12,7 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title"><i class="tio-add-circle-outlined"></i> {{__('messages.add')}} {{__('messages.new')}} {{__('messages.coupon')}}</h1>
+                    <h1 class="page-header-title"><i class="tio-add-circle-outlined"></i> {{__('messages.add')}} {{__('messages.new')}} {{__('messages.register coupons')}}</h1>
                 </div>
             </div>
         </div>
@@ -31,35 +31,35 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="form-group">
+                                    <div class="form-group" hidden>
                                         <label class="input-label" for="exampleFormControlInput1">{{__('messages.coupon')}} {{__('messages.type')}}</label>
                                         <select name="coupon_type" class="form-control" onchange="coupon_type_change(this.value)">
-                                            <option value="restaurant_wise">{{__('messages.restaurant')}} {{__('messages.wise')}}</option>
-                                            <option value="zone_wise">{{__('messages.zone')}} {{__('messages.wise')}}</option>
-                                            <option value="free_delivery">{{__('messages.free_delivery')}}</option>
-                                            <option value="first_order">{{__('messages.first')}} {{__('messages.order')}}</option>
+{{--                                            <option value="restaurant_wise">{{__('messages.restaurant')}} {{__('messages.wise')}}</option>--}}
+{{--                                            <option value="zone_wise">{{__('messages.zone')}} {{__('messages.wise')}}</option>--}}
+{{--                                            <option value="free_delivery">{{__('messages.free_delivery')}}</option>--}}
+{{--                                            <option value="first_order">{{__('messages.first')}} {{__('messages.order')}}</option>--}}
                                             <option value="default">{{__('messages.default')}}</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-4" >
-                                    <div class="form-group" id="restaurant_wise">
-                                        <label class="input-label" for="exampleFormControlSelect1">{{__('messages.restaurant')}}<span
-                                                class="input-label-secondary"></span></label>
-                                        <select name="restaurant_ids[]" class="js-data-example-ajax form-control" data-placeholder="{{__('messages.select_restaurant')}}" title="{{__('messages.select_restaurant')}}">
-                                        </select>
-                                    </div>
-                                    <div class="form-group" id="zone_wise">
-                                        <label class="input-label" for="exampleFormControlInput1">{{__('messages.select')}} {{__('messages.zone')}}</label>
-                                        <select name="zone_ids[]" id="choice_zones"
-                                                class="form-control js-select2-custom"
-                                                multiple="multiple" data-placeholder="{{__('messages.select_zone')}}">
-                                            @foreach(\App\Models\Zone::all() as $zone)
-                                                <option value="{{$zone->id}}">{{$zone->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+{{--                                <div class="col-4" >--}}
+{{--                                    <div class="form-group" id="restaurant_wise">--}}
+{{--                                        <label class="input-label" for="exampleFormControlSelect1">{{__('messages.restaurant')}}<span--}}
+{{--                                                class="input-label-secondary"></span></label>--}}
+{{--                                        <select name="restaurant_ids[]" class="js-data-example-ajax form-control" data-placeholder="{{__('messages.select_restaurant')}}" title="{{__('messages.select_restaurant')}}">--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-group" id="zone_wise">--}}
+{{--                                        <label class="input-label" for="exampleFormControlInput1">{{__('messages.select')}} {{__('messages.zone')}}</label>--}}
+{{--                                        <select name="zone_ids[]" id="choice_zones"--}}
+{{--                                                class="form-control js-select2-custom"--}}
+{{--                                                multiple="multiple" data-placeholder="{{__('messages.select_zone')}}">--}}
+{{--                                            @foreach(\App\Models\Zone::all() as $zone)--}}
+{{--                                                <option value="{{$zone->id}}">{{$zone->name}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
 
                             <div class="row">
@@ -106,19 +106,19 @@
                                         <input type="number" step="0.01" min="1" max="10000" name="discount" id="discount" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-group">
-                                        <label class="input-label" for="max_discount">{{__('messages.max')}} {{__('messages.discount')}}</label>
-                                        <input type="number" step="0.01" min="0" value="0" max="1000000" name="max_discount" id="max_discount" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-group">
-                                        <label class="input-label" for="exampleFormControlInput1">{{__('messages.min')}} {{__('messages.purchase')}}</label>
-                                        <input type="number" step="0.01" name="min_purchase" value="0" min="0" max="100000" class="form-control"
-                                               placeholder="100">
-                                    </div>
-                                </div>
+{{--                                <div class="col-md-3 col-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label class="input-label" for="max_discount">{{__('messages.max')}} {{__('messages.discount')}}</label>--}}
+{{--                                        <input type="number" step="0.01" min="0" value="0" max="1000000" name="max_discount" id="max_discount" class="form-control" readonly>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-3 col-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label class="input-label" for="exampleFormControlInput1">{{__('messages.min')}} {{__('messages.purchase')}}</label>--}}
+{{--                                        <input type="number" step="0.01" name="min_purchase" value="0" min="0" max="100000" class="form-control"--}}
+{{--                                               placeholder="100">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
                             <button type="submit" class="btn btn-primary">{{__('messages.submit')}}</button>
                         </form>
@@ -196,7 +196,7 @@
                                     <td>{{$coupon['expire_date']}}</td>
                                     <td>
                                         <label class="toggle-switch toggle-switch-sm" for="couponCheckbox{{$coupon->id}}">
-                                            <input type="checkbox" onclick="location.href='{{route('admin.coupon.status',[$coupon['id'],$coupon->status?0:1])}}'" class="toggle-switch-input" id="couponCheckbox{{$coupon->id}}" {{$coupon->status?'checked':''}}>
+                                            <input type="checkbox" onclick="location.href='{{route('admin.register-coupons.status',[$coupon['id'],$coupon->status?0:1])}}'" class="toggle-switch-input" id="couponCheckbox{{$coupon->id}}" {{$coupon->status?'checked':''}}>
                                             <span class="toggle-switch-label">
                                                 <span class="toggle-switch-indicator"></span>
                                             </span>

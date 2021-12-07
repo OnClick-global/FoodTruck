@@ -129,6 +129,7 @@ return array(
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
     'App\\Models\\AdminRole' => $baseDir . '/app/Models/AdminRole.php',
     'App\\Models\\AdminWallet' => $baseDir . '/app/Models/AdminWallet.php',
+    'App\\Models\\AnnualSubscription' => $baseDir . '/app/Models/AnnualSubscription.php',
     'App\\Models\\Attribute' => $baseDir . '/app/Models/Attribute.php',
     'App\\Models\\Banner' => $baseDir . '/app/Models/Banner.php',
     'App\\Models\\BusinessSetting' => $baseDir . '/app/Models/BusinessSetting.php',

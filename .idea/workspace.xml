@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8de7019d-e2bb-4d1b-9272-623980507709" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RegisterCouponController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/AnnualSubscription.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_12_07_043118_create_annual_subscriptions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/CentralLogics/coupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/CentralLogics/coupon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/CouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/CouponController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/RegisterCoupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RegisterCoupon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/partials/_sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/v1/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/v1/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +46,9 @@
     <setting file="file://$PROJECT_DIR$/.env" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vendor/laravelpkg/laravelchk/src/Http/Controllers/LaravelchkController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -214,7 +229,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin-views/RegisterCoupon" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Api/V1" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -225,11 +240,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\dashboard\FoodTruck\app\Http\Controllers\Api\V1" />
       <recent name="C:\xampp\htdocs\dashboard\FoodTruck\resources\views\admin-views\RegisterCoupon" />
       <recent name="C:\xampp\htdocs\dashboard\FoodTruck\resources\views\admin-views" />
       <recent name="C:\xampp\htdocs\dashboard\FoodTruck\app\Http\Controllers\Admin" />
       <recent name="$PROJECT_DIR$/public/assets/landing/image" />
-      <recent name="$PROJECT_DIR$/installation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Api/V2" />
@@ -285,6 +300,7 @@
       <workItem from="1638626359231" duration="6159000" />
       <workItem from="1638695614218" duration="18955000" />
       <workItem from="1638787082890" duration="5126000" />
+      <workItem from="1638867956246" duration="10076000" />
     </task>
     <servers />
   </component>
