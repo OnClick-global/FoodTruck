@@ -136,13 +136,13 @@ class RestaurantController extends Controller
         return response()->json($storage, 200);
     }
 
-    public static function calcCoordinates($longitude, $latitude, $radius = 20)
+    public static function calcCoordinates($longitude, $latitude, $radius)
     {
         $lng_min = $longitude - $radius / abs(cos(deg2rad($latitude)) * 69);
         $lng_max = $longitude + $radius / abs(cos(deg2rad($latitude)) * 69);
         $lat_min = $latitude - ($radius / 69);
         $lat_max = $latitude + ($radius / 69);
-
+      
         return [
             'min' => [
                 'lat' => $lat_min,
@@ -213,13 +213,20 @@ class RestaurantController extends Controller
         $restaurant->status = 0;
         $restaurant->zone_id = 1;
         $restaurant->restaurant_phone = $request->restaurant_phone;
-        $restaurant->delivery_time = $request->minimum_delivery_time .'-'. $request->maximum_delivery_time;
-        $restaurant->Profit_Ratio =BusinessSetting::where('key','Profit_Ratio')->first()->value;
+        $restaurant->delivery_time = $request->minimum_delivery_time . '-' . $request->maximum_delivery_time;
+        $restaurant->Profit_Ratio = BusinessSetting::where('key', 'Profit_Ratio')->first()->value;
         $restaurant->save();
 
-        $msg="Restaurant registered successfully";
 
-        return response()->json($msg , 200);    }
+        $msg = "Restaurant registered successfully";
+
+        return response()->json([
+            'message' => $msg,
+            'restaurant' => $restaurant,
+            '$vendor' => $vendor
+
+        ], 200);
+    }
 
     // public function get_product_rating($id)
     // {

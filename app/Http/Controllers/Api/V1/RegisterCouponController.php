@@ -55,7 +55,7 @@ class RegisterCouponController extends Controller
                             'message' => trans('messages.coupon_available'),
                             'code' => $coupon['code'],
                             'type' => $coupon['discount_type'],
-                            
+
                         ], 200);
 
                     default:
