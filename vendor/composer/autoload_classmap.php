@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Commands\\DatabaseRefresh' => $baseDir . '/app/Console/Commands/DatabaseRefresh.php',
     'App\\Console\\Commands\\InstallablePackage' => $baseDir . '/app/Console/Commands/InstallablePackage.php',
+    'App\\Console\\Commands\\MonthelyReport' => $baseDir . '/app/Console/Commands/MonthelyReport.php',
     'App\\Console\\Commands\\UpdatablePackage' => $baseDir . '/app/Console/Commands/UpdatablePackage.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -57,6 +58,7 @@ return array(
     'App\\Http\\Controllers\\Api\\V1\\NotificationController' => $baseDir . '/app/Http/Controllers/Api/V1/NotificationController.php',
     'App\\Http\\Controllers\\Api\\V1\\OrderController' => $baseDir . '/app/Http/Controllers/Api/V1/OrderController.php',
     'App\\Http\\Controllers\\Api\\V1\\ProductController' => $baseDir . '/app/Http/Controllers/Api/V1/ProductController.php',
+    'App\\Http\\Controllers\\Api\\V1\\RegisterCouponController' => $baseDir . '/app/Http/Controllers/Api/V1/RegisterCouponController.php',
     'App\\Http\\Controllers\\Api\\V1\\RestaurantController' => $baseDir . '/app/Http/Controllers/Api/V1/RestaurantController.php',
     'App\\Http\\Controllers\\Api\\V1\\Vendor\\AddOnController' => $baseDir . '/app/Http/Controllers/Api/V1/Vendor/AddOnController.php',
     'App\\Http\\Controllers\\Api\\V1\\Vendor\\AttributeController' => $baseDir . '/app/Http/Controllers/Api/V1/Vendor/AttributeController.php',
@@ -149,6 +151,7 @@ return array(
     'App\\Models\\Food' => $baseDir . '/app/Models/Food.php',
     'App\\Models\\ItemCampaign' => $baseDir . '/app/Models/ItemCampaign.php',
     'App\\Models\\MailConfig' => $baseDir . '/app/Models/MailConfig.php',
+    'App\\Models\\MonthlyReport' => $baseDir . '/app/Models/MonthlyReport.php',
     'App\\Models\\Notification' => $baseDir . '/app/Models/Notification.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\OrderDeliveryHistory' => $baseDir . '/app/Models/OrderDeliveryHistory.php',

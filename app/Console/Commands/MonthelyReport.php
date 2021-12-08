@@ -1,23 +1,39 @@
 <?php
 
-namespace App\Console;
+namespace App\Console\Commands;
 
-use App\Console\Commands\MonthelyReport;
-use App\Models\MonthlyReport;
 use App\Models\Order;
 use App\Models\Restaurant;
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Console\Command;
 
-class Kernel extends ConsoleKernel
+class MonthelyReport extends Command
 {
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'Report:Monthly';
 
-    protected $commands = [
-        MonthelyReport::class,
-    ];
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Make Monthly report';
 
-    protected function schedule(Schedule $schedule)
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+
+    public function handle()
     {
         $resturants = Restaurant::select('id', 'Profit_Ratio')->get();
         foreach ($resturants as $key => $resturant) {
@@ -32,19 +48,7 @@ class Kernel extends ConsoleKernel
             $data['client_amount'] =  $restaurant_amount ;
             $data['Company_amount'] = $compuny_amount ;
             $data['withdraw_status'] = '0';
-            MonthlyReport::create($data);
+            MonthelyReport::Create($data);
         }
-    }
-
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
-    {
-        $this->load(__DIR__ . '/Commands');
-
-        require base_path('routes/console.php');
     }
 }

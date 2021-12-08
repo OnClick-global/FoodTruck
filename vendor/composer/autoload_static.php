@@ -820,6 +820,7 @@ class ComposerStaticInit91cec6739e4b3abbc0b90b7b21f563ac
     public static $classMap = array (
         'App\\Console\\Commands\\DatabaseRefresh' => __DIR__ . '/../..' . '/app/Console/Commands/DatabaseRefresh.php',
         'App\\Console\\Commands\\InstallablePackage' => __DIR__ . '/../..' . '/app/Console/Commands/InstallablePackage.php',
+        'App\\Console\\Commands\\MonthelyReport' => __DIR__ . '/../..' . '/app/Console/Commands/MonthelyReport.php',
         'App\\Console\\Commands\\UpdatablePackage' => __DIR__ . '/../..' . '/app/Console/Commands/UpdatablePackage.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -869,6 +870,7 @@ class ComposerStaticInit91cec6739e4b3abbc0b90b7b21f563ac
         'App\\Http\\Controllers\\Api\\V1\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/NotificationController.php',
         'App\\Http\\Controllers\\Api\\V1\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/OrderController.php',
         'App\\Http\\Controllers\\Api\\V1\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/ProductController.php',
+        'App\\Http\\Controllers\\Api\\V1\\RegisterCouponController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/RegisterCouponController.php',
         'App\\Http\\Controllers\\Api\\V1\\RestaurantController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/RestaurantController.php',
         'App\\Http\\Controllers\\Api\\V1\\Vendor\\AddOnController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/Vendor/AddOnController.php',
         'App\\Http\\Controllers\\Api\\V1\\Vendor\\AttributeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/Vendor/AttributeController.php',
@@ -961,6 +963,7 @@ class ComposerStaticInit91cec6739e4b3abbc0b90b7b21f563ac
         'App\\Models\\Food' => __DIR__ . '/../..' . '/app/Models/Food.php',
         'App\\Models\\ItemCampaign' => __DIR__ . '/../..' . '/app/Models/ItemCampaign.php',
         'App\\Models\\MailConfig' => __DIR__ . '/../..' . '/app/Models/MailConfig.php',
+        'App\\Models\\MonthlyReport' => __DIR__ . '/../..' . '/app/Models/MonthlyReport.php',
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
         'App\\Models\\OrderDeliveryHistory' => __DIR__ . '/../..' . '/app/Models/OrderDeliveryHistory.php',

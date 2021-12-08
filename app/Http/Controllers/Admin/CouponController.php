@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Console\Commands\MonthelyReport;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
+use App\Models\MonthlyReport;
+use App\Models\Order;
+use App\Models\Restaurant;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +15,21 @@ use Illuminate\Support\Facades\DB;
 class CouponController extends Controller
 {
     public function add_new()
-    {
+    {$resturants = Restaurant::select('id', 'Profit_Ratio')->get();
+        foreach ($resturants as $key => $resturant) {
+            $totalAmount = Order::where('restaurant_id', $resturant['id'])->sum('order_amount');
+            $monthly_percentage = $resturant['Profit_Ratio'];
+            $compuny_amount = $totalAmount * (100 / $monthly_percentage);
+            $restaurant_amount = $totalAmount - $compuny_amount;
+
+            $data['restaurant_id'] = $resturant->id ;
+            $data['monthly_percentage'] = $monthly_percentage;
+            $data['Total_amount'] = $totalAmount ;
+            $data['client_amount'] =  $restaurant_amount ;
+            $data['Company_amount'] = $compuny_amount ;
+            $data['withdraw_status'] = '0';
+            MonthlyReport::create($data);
+        }
         $coupons = Coupon::latest()->paginate(config('default_pagination'));
         return view('admin-views.coupon.index', compact('coupons'));
     }
