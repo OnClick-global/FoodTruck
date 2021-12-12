@@ -47,10 +47,10 @@
                                 <label class="input-label" for="restaurant_phone">{{__('messages.restaurant phone')}}</label>
                                 <input type="text" name="restaurant_phone" class="form-control" placeholder="{{__('messages.restaurant phone')}}"  required value="{{$restaurant->restaurant_phone}}" >
                             </div>
-                            <div class="form-group">
-                                <label class="input-label" for="Profit_Ratio">{{__('messages.Profit_Ratio')}}</label>
-                                <input type="text" name="Profit_Ratio" class="form-control" placeholder="{{__('messages.restaurant phone')}}"  required value="{{$restaurant->Profit_Ratio}}" >
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label class="input-label" for="Profit_Ratio">{{__('messages.Profit_Ratio')}}</label>--}}
+{{--                                <input type="text" name="Profit_Ratio" class="form-control" placeholder="{{__('messages.restaurant phone')}}"  required value="{{$restaurant->Profit_Ratio}}" >--}}
+{{--                            </div>--}}
                             <div class="form-group">
                                 <label class="input-label" for="address">{{__('messages.restaurant')}} {{__('messages.address')}}</label>
                                 <textarea  type="text" name="address" class="form-control" placeholder="{{__('messages.restaurant')}} {{__('messages.address')}}"
