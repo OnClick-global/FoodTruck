@@ -249,12 +249,12 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         });
 
         Route::group(['prefix' => 'zone', 'as' => 'zone.', 'middleware' => ['module:zone']], function () {
-//            Route::get('/', 'ZoneController@index')->name('home');
+           Route::get('/', 'ZoneController@index')->name('home');
             Route::post('store', 'ZoneController@store')->name('store');
-//            Route::get('edit/{id}', 'ZoneController@edit')->name('edit');
-//            Route::post('update/{id}', 'ZoneController@update')->name('update');
-//            Route::delete('delete/{zone}', 'ZoneController@destroy')->name('delete');
-//            Route::get('status/{id}/{status}', 'ZoneController@status')->name('status');
+           Route::get('edit/{id}', 'ZoneController@edit')->name('edit');
+           Route::post('update/{id}', 'ZoneController@update')->name('update');
+           Route::delete('delete/{zone}', 'ZoneController@destroy')->name('delete');
+           Route::get('status/{id}/{status}', 'ZoneController@status')->name('status');
             Route::post('search', 'ZoneController@search')->name('search');
             Route::get('get-coordinates/{id}', 'ZoneController@get_coordinates')->name('get-coordinates');
             Route::get('zone-filter/{id}', 'ZoneController@zone_filter')->name('zonefilter');
