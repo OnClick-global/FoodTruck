@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-<div class="content container-fluid"> 
+<div class="content container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('messages.dashboard')}}</a></li>
@@ -100,13 +100,13 @@
                                     <label class="form-check-label qcont text-dark" for="customerList">{{__('messages.customers')}}</label>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="modules[]" value="deliveryman" class="form-check-input"
-                                           id="deliveryman">
-                                    <label class="form-check-label qcont text-dark" for="deliveryman">{{__('messages.deliveryman')}}</label>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-3">--}}
+{{--                                <div class="form-group form-check">--}}
+{{--                                    <input type="checkbox" name="modules[]" value="deliveryman" class="form-check-input"--}}
+{{--                                           id="deliveryman">--}}
+{{--                                    <label class="form-check-label qcont text-dark" for="deliveryman">{{__('messages.deliveryman')}}</label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-md-3">
                                 <div class="form-group form-check">
                                     <input type="checkbox" name="modules[]" value="provide_dm_earning" class="form-check-input"
@@ -163,7 +163,7 @@
                                     <label class="form-check-label qcont text-dark" for="settings">{{__('messages.business')}} {{__('messages.settings')}}</label>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-3">
                                 <div class="form-group form-check">
                                     <input type="checkbox" name="modules[]" value="withdraw_list" class="form-check-input"

@@ -121,7 +121,7 @@ return [
     'day_wise_report'=>'Day Wise Report',
     'food_wise_report'=>'Food Wise Report',
     'deleted'=>'deleted',
-    'delivered' => 'Delivered',
+    'delivered' => 'Done',
     'deliverymen_earning_provide'=>'Distribute DM Earning',
     'delivery_zone'=>'Delivery Zone',
     'delivery_charge'=>'Delivery Fee',

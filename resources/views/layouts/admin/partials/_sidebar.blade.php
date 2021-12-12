@@ -189,43 +189,43 @@
                             </ul>
                         </li>
                         <!-- Order dispachment -->
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/dispatch/*')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
-                               href="javascript:" title="{{__('messages.dispatchManagement')}}">
-                                <i class="tio-clock nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{__('messages.dispatchManagement')}}
-                                </span>
-                            </a>
-                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
-                                style="display: {{Request::is('admin/dispatch*')?'block':'none'}}">
-                                <li class="nav-item {{Request::is('admin/dispatch/list/searching_for_deliverymen')?'active':''}}">
-                                    <a class="nav-link "
-                                       href="{{route('admin.dispatch.list',['searching_for_deliverymen'])}}"
-                                       title="{{__('messages.searchingDM')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">
-                                            {{__('messages.searchingDM')}}
-                                            <span class="badge badge-soft-info badge-pill ml-1">
-                                                {{\App\Models\Order::SearchingForDeliveryman()->OrderScheduledIn(30)->count()}}
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item {{Request::is('admin/dispatch/list/on_going')?'active':''}}">
-                                    <a class="nav-link " href="{{route('admin.dispatch.list',['on_going'])}}"
-                                       title="{{__('messages.ongoingOrders')}}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">
-                                            {{__('messages.ongoingOrders')}}
-                                                <span class="badge badge-soft-dark bg-light badge-pill ml-1">
-                                                {{\App\Models\Order::Ongoing()->OrderScheduledIn(30)->count()}}
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/dispatch/*')?'active':''}}">--}}
+{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"--}}
+{{--                               href="javascript:" title="{{__('messages.dispatchManagement')}}">--}}
+{{--                                <i class="tio-clock nav-icon"></i>--}}
+{{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
+{{--                                    {{__('messages.dispatchManagement')}}--}}
+{{--                                </span>--}}
+{{--                            </a>--}}
+{{--                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"--}}
+{{--                                style="display: {{Request::is('admin/dispatch*')?'block':'none'}}">--}}
+{{--                                <li class="nav-item {{Request::is('admin/dispatch/list/searching_for_deliverymen')?'active':''}}">--}}
+{{--                                    <a class="nav-link "--}}
+{{--                                       href="{{route('admin.dispatch.list',['searching_for_deliverymen'])}}"--}}
+{{--                                       title="{{__('messages.searchingDM')}}">--}}
+{{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
+{{--                                        <span class="text-truncate">--}}
+{{--                                            {{__('messages.searchingDM')}}--}}
+{{--                                            <span class="badge badge-soft-info badge-pill ml-1">--}}
+{{--                                                {{\App\Models\Order::SearchingForDeliveryman()->OrderScheduledIn(30)->count()}}--}}
+{{--                                            </span>--}}
+{{--                                        </span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li class="nav-item {{Request::is('admin/dispatch/list/on_going')?'active':''}}">--}}
+{{--                                    <a class="nav-link " href="{{route('admin.dispatch.list',['on_going'])}}"--}}
+{{--                                       title="{{__('messages.ongoingOrders')}}">--}}
+{{--                                        <span class="tio-circle nav-indicator-icon"></span>--}}
+{{--                                        <span class="text-truncate">--}}
+{{--                                            {{__('messages.ongoingOrders')}}--}}
+{{--                                                <span class="badge badge-soft-dark bg-light badge-pill ml-1">--}}
+{{--                                                {{\App\Models\Order::Ongoing()->OrderScheduledIn(30)->count()}}--}}
+{{--                                            </span>--}}
+{{--                                        </span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
                         <!-- Order dispachment End-->
                     @endif
                 <!-- End Orders -->
@@ -460,47 +460,47 @@
                     @endif
                 <!-- End Food -->
                 <!-- DeliveryMan -->
-                    @if(\App\CentralLogics\Helpers::module_permission_check('deliveryman'))
-                        <li class="nav-item">
-                            <small class="nav-subtitle"
-                                   title="{{__('messages.deliveryman')}} {{__('messages.section')}}">{{__('messages.deliveryman')}} {{__('messages.section')}}</small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/add')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="{{route('admin.delivery-man.add')}}"
-                               title="{{__('messages.add_delivery_man')}}"
-                            >
-                                <i class="tio-running nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{__('messages.add_delivery_man')}}
-                                </span>
-                            </a>
-                        </li>
+{{--                    @if(\App\CentralLogics\Helpers::module_permission_check('deliveryman'))--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <small class="nav-subtitle"--}}
+{{--                                   title="{{__('messages.deliveryman')}} {{__('messages.section')}}">{{__('messages.deliveryman')}} {{__('messages.section')}}</small>--}}
+{{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
+{{--                        </li>--}}
+{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/add')?'active':''}}">--}}
+{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
+{{--                               href="{{route('admin.delivery-man.add')}}"--}}
+{{--                               title="{{__('messages.add_delivery_man')}}"--}}
+{{--                            >--}}
+{{--                                <i class="tio-running nav-icon"></i>--}}
+{{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
+{{--                                    {{__('messages.add_delivery_man')}}--}}
+{{--                                </span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/list')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="{{route('admin.delivery-man.list')}}"
-                               title="{{__('messages.deliveryman')}} {{__('messages.list')}}"
-                            >
-                                <i class="tio-filter-list nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{__('messages.deliverymen')}}
-                                </span>
-                            </a>
-                        </li>
+{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/list')?'active':''}}">--}}
+{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
+{{--                               href="{{route('admin.delivery-man.list')}}"--}}
+{{--                               title="{{__('messages.deliveryman')}} {{__('messages.list')}}"--}}
+{{--                            >--}}
+{{--                                <i class="tio-filter-list nav-icon"></i>--}}
+{{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
+{{--                                    {{__('messages.deliverymen')}}--}}
+{{--                                </span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/reviews/list')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="{{route('admin.delivery-man.reviews.list')}}" title="{{__('messages.reviews')}}"
-                            >
-                                <i class="tio-star-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{__('messages.reviews')}}
-                                </span>
-                            </a>
-                        </li>
-                    @endif
+{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/reviews/list')?'active':''}}">--}}
+{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
+{{--                               href="{{route('admin.delivery-man.reviews.list')}}" title="{{__('messages.reviews')}}"--}}
+{{--                            >--}}
+{{--                                <i class="tio-star-outlined nav-icon"></i>--}}
+{{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
+{{--                                    {{__('messages.reviews')}}--}}
+{{--                                </span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    @endif--}}
                 <!-- End DeliveryMan -->
                     <!-- Marketing section -->
                     <li class="nav-item">
@@ -635,18 +635,18 @@
                 <!-- End account -->
 
                     <!-- provide_dm_earning -->
-                    @if(\App\CentralLogics\Helpers::module_permission_check('provide_dm_earning'))
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/provide-deliveryman-earnings*')?'active':''}}">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="{{route('admin.provide-deliveryman-earnings.index')}}"
-                               title="{{__('messages.deliverymen_earning_provide')}}"
-                            >
-                                <i class="tio-send nav-icon"></i>
-                                <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{__('messages.deliverymen_earning_provide')}}</span>
-                            </a>
-                        </li>
-                    @endif
+{{--                    @if(\App\CentralLogics\Helpers::module_permission_check('provide_dm_earning'))--}}
+{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/provide-deliveryman-earnings*')?'active':''}}">--}}
+{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
+{{--                               href="{{route('admin.provide-deliveryman-earnings.index')}}"--}}
+{{--                               title="{{__('messages.deliverymen_earning_provide')}}"--}}
+{{--                            >--}}
+{{--                                <i class="tio-send nav-icon"></i>--}}
+{{--                                <span--}}
+{{--                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{__('messages.deliverymen_earning_provide')}}</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    @endif--}}
                 <!-- End provide_dm_earning -->
                     <!-- Custommer -->
                     @if(\App\CentralLogics\Helpers::module_permission_check('customerList'))

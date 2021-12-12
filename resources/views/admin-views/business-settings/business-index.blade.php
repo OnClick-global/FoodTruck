@@ -896,74 +896,74 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 col-12">
-                            @php($admin_commission=\App\Models\BusinessSetting::where('key','admin_commission')->first())
-                            <div class="form-group p-2">
-                                <label class="input-label text-capitalize"
-                                       for="admin_commission">{{__('messages.default_admin_commission')}}</label>
-                                <input type="number" name="admin_commission" class="form-control" id="admin_commission"
-                                       value="{{$admin_commission?$admin_commission->value:0}}" min="0" max="100"
-                                       required>
-                            </div>
-                        </div>
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-6 col-12">--}}
+{{--                            @php($admin_commission=\App\Models\BusinessSetting::where('key','admin_commission')->first())--}}
+{{--                            <div class="form-group p-2">--}}
+{{--                                <label class="input-label text-capitalize"--}}
+{{--                                       for="admin_commission">{{__('messages.default_admin_commission')}}</label>--}}
+{{--                                <input type="number" name="admin_commission" class="form-control" id="admin_commission"--}}
+{{--                                       value="{{$admin_commission?$admin_commission->value:0}}" min="0" max="100"--}}
+{{--                                       required>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-md-6 col-12">
-                            @php($free_delivery_over=\App\Models\BusinessSetting::where('key','free_delivery_over')->first())
-                            <div class="form-group p-2 border">
-                                <label class="input-label d-inline text-capitalize"
-                                       for="free_delivery_over">{{__('messages.free_delivery_over')}}
-                                    ({{\App\CentralLogics\Helpers::currency_symbol()}})</label>
-                                <label class="switch ml-3 float-right">
-                                    <input type="checkbox" class="status" name="free_delivery_over_status"
-                                           id="free_delivery_over_status" value="1"
-                                        {{isset($free_delivery_over->value)?'checked':''}}>
-                                    <span class="slider round"></span>
-                                </label>
-                                <input type="number" name="free_delivery_over" class="form-control"
-                                       id="free_delivery_over"
-                                       value="{{$free_delivery_over?$free_delivery_over->value:0}}" min="0" step=".01"
-                                       required {{isset($free_delivery_over->value)?'':'readonly'}}>
-                            </div>
-                        </div>
+{{--                        <div class="col-md-6 col-12">--}}
+{{--                            @php($free_delivery_over=\App\Models\BusinessSetting::where('key','free_delivery_over')->first())--}}
+{{--                            <div class="form-group p-2 border">--}}
+{{--                                <label class="input-label d-inline text-capitalize"--}}
+{{--                                       for="free_delivery_over">{{__('messages.free_delivery_over')}}--}}
+{{--                                    ({{\App\CentralLogics\Helpers::currency_symbol()}})</label>--}}
+{{--                                <label class="switch ml-3 float-right">--}}
+{{--                                    <input type="checkbox" class="status" name="free_delivery_over_status"--}}
+{{--                                           id="free_delivery_over_status" value="1"--}}
+{{--                                        {{isset($free_delivery_over->value)?'checked':''}}>--}}
+{{--                                    <span class="slider round"></span>--}}
+{{--                                </label>--}}
+{{--                                <input type="number" name="free_delivery_over" class="form-control"--}}
+{{--                                       id="free_delivery_over"--}}
+{{--                                       value="{{$free_delivery_over?$free_delivery_over->value:0}}" min="0" step=".01"--}}
+{{--                                       required {{isset($free_delivery_over->value)?'':'readonly'}}>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-md-4 col-12">
-                            @php($minimum_shipping_charge=\App\Models\BusinessSetting::where('key','minimum_shipping_charge')->first())
-                            <div class="form-group">
-                                <label class="input-label d-inline text-capitalize"
-                                       for="minimum_shipping_charge">{{__('messages.minimum_shipping_charge')}}</label>
-                                <input type="number" name="minimum_shipping_charge" class="form-control"
-                                       id="minimum_shipping_charge" min="0" step=".01"
-                                       value="{{$minimum_shipping_charge?$minimum_shipping_charge->value:0}}" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            @php($per_km_shipping_charge=\App\Models\BusinessSetting::where('key','per_km_shipping_charge')->first())
-                            <div class="form-group">
-                                <label class="input-label d-inline text-capitalize"
-                                       for="per_km_shipping_charge">{{__('messages.per_km_shipping_charge')}}</label>
-                                <input type="number" name="per_km_shipping_charge" class="form-control"
-                                       id="per_km_shipping_charge" min="0" step=".01"
-                                       value="{{$per_km_shipping_charge?$per_km_shipping_charge->value:0}}" required>
-                            </div>
-                        </div>
+{{--                        <div class="col-md-4 col-12">--}}
+{{--                            @php($minimum_shipping_charge=\App\Models\BusinessSetting::where('key','minimum_shipping_charge')->first())--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label class="input-label d-inline text-capitalize"--}}
+{{--                                       for="minimum_shipping_charge">{{__('messages.minimum_shipping_charge')}}</label>--}}
+{{--                                <input type="number" name="minimum_shipping_charge" class="form-control"--}}
+{{--                                       id="minimum_shipping_charge" min="0" step=".01"--}}
+{{--                                       value="{{$minimum_shipping_charge?$minimum_shipping_charge->value:0}}" required>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-4 col-12">--}}
+{{--                            @php($per_km_shipping_charge=\App\Models\BusinessSetting::where('key','per_km_shipping_charge')->first())--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label class="input-label d-inline text-capitalize"--}}
+{{--                                       for="per_km_shipping_charge">{{__('messages.per_km_shipping_charge')}}</label>--}}
+{{--                                <input type="number" name="per_km_shipping_charge" class="form-control"--}}
+{{--                                       id="per_km_shipping_charge" min="0" step=".01"--}}
+{{--                                       value="{{$per_km_shipping_charge?$per_km_shipping_charge->value:0}}" required>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-md-4 col-12">
-                            @php($dm_maximum_orders=\App\Models\BusinessSetting::where('key','dm_maximum_orders')->first())
-                            <div class="form-group">
-                                <label class="input-label d-inline text-capitalize"
-                                       for="dm_maximum_orders">{{__('messages.dm_maximum_order')}}</label><small
-                                    style="color: red"><span
-                                        class="input-label-secondary"
-                                        title="{{__('messages.dm_maximum_order_hint')}}"><img
-                                            src="{{asset('/public/assets/admin/img/info-circle.svg')}}"
-                                            alt="{{__('messages.dm_maximum_order_hint')}}"></span> *</small>
-                                <input type="number" name="dm_maximum_orders" class="form-control"
-                                       id="dm_maximum_orders" min="1"
-                                       value="{{$dm_maximum_orders?$dm_maximum_orders->value:1}}" required>
-                            </div>
-                        </div>
-                    </div>
+{{--                        <div class="col-md-4 col-12">--}}
+{{--                            @php($dm_maximum_orders=\App\Models\BusinessSetting::where('key','dm_maximum_orders')->first())--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label class="input-label d-inline text-capitalize"--}}
+{{--                                       for="dm_maximum_orders">{{__('messages.dm_maximum_order')}}</label><small--}}
+{{--                                    style="color: red"><span--}}
+{{--                                        class="input-label-secondary"--}}
+{{--                                        title="{{__('messages.dm_maximum_order_hint')}}"><img--}}
+{{--                                            src="{{asset('/public/assets/admin/img/info-circle.svg')}}"--}}
+{{--                                            alt="{{__('messages.dm_maximum_order_hint')}}"></span> *</small>--}}
+{{--                                <input type="number" name="dm_maximum_orders" class="form-control"--}}
+{{--                                       id="dm_maximum_orders" min="1"--}}
+{{--                                       value="{{$dm_maximum_orders?$dm_maximum_orders->value:1}}" required>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <div class="row">
                         @php($phone=\App\Models\BusinessSetting::where('key','phone')->first())
