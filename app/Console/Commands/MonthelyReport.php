@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\MonthlyReport;
 use App\Models\Order;
 use App\Models\Restaurant;
 use Illuminate\Console\Command;
@@ -35,6 +36,7 @@ class MonthelyReport extends Command
 
     public function handle()
     {
+
         $resturants = Restaurant::select('id', 'Profit_Ratio')->get();
         foreach ($resturants as $key => $resturant) {
             $totalAmount = Order::where('restaurant_id', $resturant['id'])->sum('order_amount');
@@ -48,7 +50,7 @@ class MonthelyReport extends Command
             $data['client_amount'] =  $restaurant_amount ;
             $data['Company_amount'] = $compuny_amount ;
             $data['withdraw_status'] = '0';
-            MonthelyReport::Create($data);
+            MonthlyReport::create($data);
         }
     }
 }
