@@ -214,7 +214,6 @@ class RestaurantController extends Controller
         $restaurant->zone_id = 1;
         $restaurant->restaurant_phone = $request->restaurant_phone;
         $restaurant->delivery_time = $request->minimum_delivery_time . '-' . $request->maximum_delivery_time;
-        $restaurant->Profit_Ratio = BusinessSetting::where('key', 'Profit_Ratio')->first()->value;
         $restaurant->save();
 
 
