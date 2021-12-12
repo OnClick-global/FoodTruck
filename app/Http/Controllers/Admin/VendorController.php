@@ -119,7 +119,7 @@ class VendorController extends Controller
         $validator = Validator::make($request->all(), [
             'f_name' => 'required',
             'name' => 'required',
-            'Profit_Ratio' => 'required',
+//            'Profit_Ratio' => 'required',
             'email' => 'required|unique:vendors,email,'.$restaurant->vendor->id,
             'restaurant_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors,phone,'.$restaurant->restaurant_phone,
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors,phone,'.$restaurant->vendor->id,
