@@ -12,7 +12,7 @@ class BannerLogic
 
     public static function get_banners($zone_id)
     {
-        $banners = Banner::active()->where('zone_id', $zone_id)->where('ad_show', 1)->get();
+        $banners = Banner::active()->where('zone_id', $zone_id)->where('ad_show', 1)->inRandomOrder()->take(5)->get();
         $data = [];
         foreach($banners as $banner)
         {

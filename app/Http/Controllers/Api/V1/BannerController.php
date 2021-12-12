@@ -45,7 +45,7 @@ class BannerController extends Controller
         $banners = BannerLogic::get_banners($zone_id);
         $campaigns = Campaign::whereHas('restaurants', function($query)use($zone_id){
             $query->where('zone_id', $zone_id);
-        })->running()->active()->inRandomOrder()->take(5)->get();
+        })->running()->active()->get();
         try {
             return response()->json(['campaigns'=>$campaigns,'banners'=>$banners], 200);
         } catch (\Exception $e) {
