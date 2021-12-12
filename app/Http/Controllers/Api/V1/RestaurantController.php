@@ -142,7 +142,7 @@ class RestaurantController extends Controller
         $lng_max = $longitude + $radius / abs(cos(deg2rad($latitude)) * 69);
         $lat_min = $latitude - ($radius / 69);
         $lat_max = $latitude + ($radius / 69);
-      
+
         return [
             'min' => [
                 'lat' => $lat_min,
@@ -227,6 +227,7 @@ class RestaurantController extends Controller
 
         ], 200);
     }
+
 
     // public function get_product_rating($id)
     // {

@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'Api\V1'], function () {
-
     Route::post('restaurant-register', 'RestaurantController@register');
 
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
