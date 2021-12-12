@@ -4,7 +4,12 @@
     <list default="true" id="8de7019d-e2bb-4d1b-9272-623980507709" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/VendorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/VendorController.php" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/resources/views/admin-views/vendor/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin-views/vendor/edit.blade.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RestaurantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/V1/RestaurantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_12_05_035300_update_resturant_persentage.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_12_05_035300_update_resturant_persentage.php" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,7 +304,11 @@
       <workItem from="1638867956246" duration="10076000" />
       <workItem from="1638904397385" duration="5407000" />
       <workItem from="1638962228482" duration="8780000" />
+<<<<<<< Updated upstream
       <workItem from="1639299941094" duration="1329000" />
+=======
+      <workItem from="1639299941094" duration="6784000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
