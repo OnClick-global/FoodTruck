@@ -56,7 +56,7 @@ class BannerController extends Controller
 
     public function useonce(Request $request,$id)
     {
-        $banner=Banner::where('id',$id)->pluck('type_count')->first();
+        $banner=Banner::find($id);
         if ($banner > 0){
             $banner->decrement('type_count', 1);
             return response()->json(['msg'=>'one click count'], 200);
