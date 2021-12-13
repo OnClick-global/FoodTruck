@@ -20,10 +20,11 @@ class Food extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
     ];
+    protected $appends = ['cetring'];
 
     public function scopeActive($query)
     {
-        return $query->where('status', 1)->whereHas('restaurant', function($query){
+        return $query->where('status', 1)->whereHas('restaurant', function ($query) {
             return $query->where('status', 1);
         });
     }
@@ -54,25 +55,37 @@ class Food extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
-    
+
     public function orders()
     {
         return $this->hasMany(OrderDetail::class);
     }
 
-    
+
     public function getCategoryAttribute()
     {
-        $category=Category::find(json_decode($this->category_ids)[0]->id);
-        return $category?$category->name:trans('messages.uncategorize');
+        $category = Category::find(json_decode($this->category_ids)[0]->id);
+        return $category ? $category->name : trans('messages.uncategorize');
+    }
+
+    public function getCetringAttribute()
+    {
+        foreach ($this->category_ids as $row) {
+            if ($row['position'] == 1) {
+                if($row['id'] == 12){
+                    return true ;
+                }else{
+                    return false ;
+                }
+            }
+        }
     }
 
     protected static function booted()
     {
-        if(auth('vendor')->check())
-        {
+        if (auth('vendor')->check()) {
             static::addGlobalScope(new RestaurantScope);
-        } 
+        }
     }
-    
+
 }

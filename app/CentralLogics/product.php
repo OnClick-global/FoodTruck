@@ -22,8 +22,7 @@ class ProductLogic
                 return $q->whereId($category_id)->orWhere('parent_id', $category_id);
             });
         }
-        $paginator = $paginator->with(['rating'])->where('restaurant_id', $restaurant_id)->latest()->paginate($limit, ['*'], 'page', $offset);
-
+        $paginator = $paginator->with(['rating','category'])->where('restaurant_id', $restaurant_id)->latest()->paginate($limit, ['*'], 'page', $offset);
         return [
             'total_size' => $paginator->total(),
             'limit' => $limit,
@@ -63,7 +62,7 @@ class ProductLogic
             'products' => $paginator->items()
         ];
     }
-    
+
     public static function popular_products($zone_id, $limit = null, $offset = null)
     {
         if($limit != null && $offset != null)
@@ -89,7 +88,7 @@ class ProductLogic
             'offset' => $offset,
             'products' => $paginator
         ];
-        
+
     }
 
     public static function most_reviewed_products($zone_id, $limit = null, $offset = null)
@@ -122,7 +121,7 @@ class ProductLogic
             'offset' => $offset,
             'products' => $paginator
         ];
-        
+
     }
 
     public static function get_product_review($id)
