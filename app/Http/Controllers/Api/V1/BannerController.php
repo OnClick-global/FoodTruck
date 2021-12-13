@@ -58,8 +58,7 @@ class BannerController extends Controller
     {
         $banner=Banner::where('id',$id)->pluck('type_count')->first();
         if ($banner > 0){
-            $click= $banner -1;
-            $banner=Banner::where('id',$id)->update(['type_count'=>$click]);
+            $banner->decrement('type_count', 1);
             return response()->json(['msg'=>'one click count'], 200);
         }else
             return response()->json(['msg'=>'ad is finished'], 200);
