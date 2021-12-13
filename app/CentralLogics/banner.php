@@ -21,7 +21,8 @@ class BannerLogic
                 $banner->decrement('type_count', 1);
             }elseif($banner->ads_type == "duration"){
                 if($banner->end_date <= Carbon::now() ){
-                    $banner->status == 0;
+                    $banner->status = 0;
+                    $banner->ad_show = 0;
                     $banner->save();
                 }
             }
