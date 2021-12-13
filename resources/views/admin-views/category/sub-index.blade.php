@@ -116,7 +116,7 @@
                                         </td>
                                         <td style="width:max-content;">
                                             <form action="{{route('admin.category.priority',$category->id)}}">
-                                            <select name="priority" id="priority" onchange="this.form.submit()"> 
+                                            <select name="priority" id="priority" onchange="this.form.submit()">
                                                 <option value="0" {{$category->priority == 0?'selected':''}}>{{__('messages.normal')}}</option>
                                                 <option value="1" {{$category->priority == 1?'selected':''}}>{{__('messages.medium')}}</option>
                                                 <option value="2" {{$category->priority == 2?'selected':''}}>{{__('messages.high')}}</option>
@@ -127,9 +127,11 @@
                                             <a class="btn btn-sm btn-white"
                                                 href="{{route('admin.category.edit',[$category['id']])}}" title="{{__('messages.edit')}} {{__('messages.category')}}"><i class="tio-edit"></i>
                                             </a>
+                                            @if($category->parent_id != 12)
                                             <a class="btn btn-sm btn-white" href="javascript:"
                                             onclick="form_alert('category-{{$category['id']}}','Want to delete this category')" title="{{__('messages.delete')}} {{__('messages.category')}}"><i class="tio-delete-outlined"></i>
                                             </a>
+                                            @endif
                                             <form action="{{route('admin.category.delete',[$category['id']])}}" method="post" id="category-{{$category['id']}}">
                                                 @csrf @method('delete')
                                             </form>
@@ -142,7 +144,7 @@
                     </div>
                     <div class="card-footer">
                         <!-- Pagination -->
-                        <div class="row justify-content-center justify-content-sm-between align-items-sm-center"> 
+                        <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
                             <div class="col-sm-auto">
                                 <div class="d-flex justify-content-center justify-content-sm-end">
                                     <!-- Pagination -->
