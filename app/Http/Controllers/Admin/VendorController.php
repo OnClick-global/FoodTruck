@@ -119,7 +119,7 @@ class VendorController extends Controller
             'f_name' => 'required',
             'name' => 'required',
             'email' => 'required|unique:vendors,email,'.$restaurant->vendor->id,
-            'restaurant_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors,phone,'.$restaurant->restaurant_phone,
+            'restaurant_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors,phone,'.$restaurant->vendor->id,
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:vendors,phone,'.$restaurant->vendor->id,
             'zone_id'=>'required',
             'latitude' => 'required',
