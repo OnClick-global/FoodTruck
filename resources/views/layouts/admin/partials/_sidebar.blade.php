@@ -243,7 +243,7 @@
                                href="{{route('admin.zone.home')}}" title="{{__('messages.zone')}}">
                                 <i class="tio-city nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    {{__('messages.delivery_zone')}}                                </span>
+                                    {{__('messages.zone')}}                                </span>
                             </a>
                         </li>
                     @endif
