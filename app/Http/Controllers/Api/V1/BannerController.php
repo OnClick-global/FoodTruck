@@ -43,9 +43,9 @@ class BannerController extends Controller
         }
         $zone_id= $request->header('zoneId');
         $banners = BannerLogic::get_banners($zone_id);
-        $campaigns = Campaign::/*whereHas('restaurants', function($query)use($zone_id){
+        $campaigns = Campaign::whereHas('restaurants', function($query)use($zone_id){
             $query->where('zone_id', $zone_id);
-        })->*/running()->active()->get();
+        })/*->running()*/->active()->get();
         try {
             return response()->json(['campaigns'=>$campaigns,'banners'=>$banners], 200);
         } catch (\Exception $e) {
