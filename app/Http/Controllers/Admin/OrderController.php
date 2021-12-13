@@ -171,7 +171,7 @@ class OrderController extends Controller
             }
             else
             {
-                $deliveryMen = DeliveryMan::where('zone_id',$order->restaurant->zone_id)->available()->active()->get();
+                $deliveryMen = DeliveryMan::where('zone_id',$order->restaurant->zone_id)->active()->get();
             }
 
             $category = $request->query('category_id', 0);
