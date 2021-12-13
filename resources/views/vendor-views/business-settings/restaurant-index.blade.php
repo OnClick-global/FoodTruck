@@ -4,7 +4,7 @@
 
 @push('css_or_js')
 <link href="{{asset('public/assets/admin/css/croppie.css')}}" rel="stylesheet">
-<style>    
+<style>
     .slider {
         position: absolute;
         cursor: pointer;
@@ -96,32 +96,32 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
+                                <div class="form-group" hidden>
                                     <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border border-secondary rounded px-4 form-control" for="schedule_order">
-                                        <span class="pr-2">{{__('messages.scheduled')}} {{__('messages.order')}}:</span> 
-                                        <input type="checkbox" class="toggle-switch-input" onclick="location.href='{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->schedule_order?0:1, 'schedule_order'])}}'" id="schedule_order" {{$restaurant->schedule_order?'checked':''}}>
+                                        <span class="pr-2">{{__('messages.scheduled')}} {{__('messages.order')}}:</span>
+                                        <input type="checkbox" class="toggle-switch-input" value="0">
                                         <span class="toggle-switch-label">
                                             <span class="toggle-switch-indicator"></span>
                                         </span>
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" hidden>
                                 <div class="form-group">
                                     <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border border-secondary rounded px-4 form-control" for="delivery">
-                                        <span class="pr-2">{{__('messages.delivery')}}:</span> 
-                                        <input type="checkbox" name="delivery" class="toggle-switch-input" onclick="location.href='{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->delivery?0:1, 'delivery'])}}'" id="delivery" {{$restaurant->delivery?'checked':''}}>
+                                        <span class="pr-2">{{__('messages.delivery')}}:</span>
+                                        <input type="checkbox" name="delivery" class="toggle-switch-input" value="0">
                                         <span class="toggle-switch-label">
                                             <span class="toggle-switch-indicator"></span>
                                         </span>
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" hidden>
                                 <div class="form-group">
                                     <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border border-secondary rounded px-4 form-control" for="take_away">
-                                        <span class="pr-2 text-capitalize">{{__('messages.take_away')}}:</span> 
-                                        <input type="checkbox" class="toggle-switch-input" onclick="location.href='{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->take_away?0:1, 'take_away'])}}'" id="take_away" {{$restaurant->take_away?'checked':''}}>
+                                        <span class="pr-2 text-capitalize">{{__('messages.take_away')}}:</span>
+                                        <input type="checkbox" class="toggle-switch-input" value="1">
                                         <span class="toggle-switch-label">
                                             <span class="toggle-switch-indicator"></span>
                                         </span>
@@ -131,7 +131,7 @@
                         </div>
                         <form action="{{route('vendor.business-settings.update-setup',[$restaurant['id']])}}" method="post"
                             enctype="multipart/form-data">
-                            @csrf 
+                            @csrf
                             <div class="row">
                                 <div class="col-sm-{{$restaurant->self_delivery_system?'6':'4'}} col-12">
                                     <div class="form-group">
@@ -146,14 +146,14 @@
                                 <div class="col-sm-{{$restaurant->self_delivery_system?'6':'4'}} col-12">
                                     <div class="form-group">
                                         <label class="input-label text-capitalize" for="title">{{__('messages.minimum')}} {{__('messages.order')}} {{__('messages.amount')}}</label>
-                                        <input type="number" name="minimum_order" step="0.01" min="0" max="100000" class="form-control" placeholder="100" value="{{$restaurant->minimum_order??'0'}}"> 
+                                        <input type="number" name="minimum_order" step="0.01" min="0" max="100000" class="form-control" placeholder="100" value="{{$restaurant->minimum_order??'0'}}">
                                     </div>
                                 </div>
                                 @if($restaurant->self_delivery_system)
                                 <div class="col-sm-6 col-12">
                                     <div class="form-group">
                                         <label class="input-label text-capitalize" for="title">{{__('messages.delivery_charge')}}</label>
-                                        <input type="number" name="delivery_charge" step="0.01" min="0" max="100000" class="form-control" placeholder="100" value="{{$restaurant->delivery_charge??'0'}}"> 
+                                        <input type="number" name="delivery_charge" step="0.01" min="0" max="100000" class="form-control" placeholder="100" value="{{$restaurant->delivery_charge??'0'}}">
                                     </div>
                                 </div>
                                 @endif

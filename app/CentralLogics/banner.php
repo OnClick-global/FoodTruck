@@ -6,16 +6,27 @@ use App\Models\Banner;
 use App\Models\Food;
 use App\Models\Restaurant;
 use App\CentralLogics\Helpers;
+use Carbon\Carbon;
 
 class BannerLogic
 {
 
     public static function get_banners($zone_id)
     {
-        $banners = Banner::active()->where('zone_id', $zone_id)->where('ad_show', 1)->get();
+        $banners = Banner::active()->where('zone_id', $zone_id)->where('ad_show', 1)->inRandomOrder()->take(5)->get();
         $data = [];
         foreach($banners as $banner)
         {
+            if($banner->ads_type == "views"){
+                $banner->decrement('type_count', 1);
+            }elseif($banner->ads_type == "duration"){
+                if($banner->end_date <= Carbon::now() ){
+                    $banner->status = 0;
+                    $banner->ad_show = 0;
+                    $banner->save();
+                }
+            }
+
             if($banner->type=='restaurant_wise')
             {
                 $restaurant = Restaurant::find($banner->data);

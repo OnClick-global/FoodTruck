@@ -34,8 +34,8 @@
                                  onerror="this.src='{{asset('public/assets/admin/img/160x160/img2.jpg')}}'"
                                  alt="Image Description">
                             <div class="d-block">
-                                
-                                
+
+
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                                         @csrf
                                         <!-- Search -->
                                         <div class="row">
-                                            <div class="input-group-prepend col-md-7">   
+                                            <div class="input-group-prepend col-md-7">
                                             @php($allrestaurants=App\Models\Restaurant::all())
                                                 <select name="restaurant_id" id="restaurant_id" class="form-control">
                                                     @forelse($allrestaurants as $restaurant)
@@ -114,7 +114,7 @@
                                         <!-- End Search -->
                                     </form>
                                 </th>
-                                
+
                                 <th></th>
                                 <th></th>
                             </tr>

@@ -14,7 +14,7 @@ class AddColumnsToRestaurantsTable extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->boolean('delivery')->default(1);
+            $table->boolean('delivery')->default(0);
             $table->boolean('take_away')->default(1);
         });
     }

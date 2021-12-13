@@ -237,16 +237,16 @@
                         <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                     </li>
 
-{{--                    @if(\App\CentralLogics\Helpers::module_permission_check('zone'))--}}
-{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/zone*')?'active':''}}">--}}
-{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-{{--                               href="{{route('admin.zone.home')}}" title="{{__('messages.zone')}}">--}}
-{{--                                <i class="tio-city nav-icon"></i>--}}
-{{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-{{--                                    {{__('messages.delivery_zone')}}                                </span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    @endif--}}
+                    @if(\App\CentralLogics\Helpers::module_permission_check('zone'))
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/zone*')?'active':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{route('admin.zone.home')}}" title="{{__('messages.zone')}}">
+                                <i class="tio-city nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    {{__('messages.zone')}}                                </span>
+                            </a>
+                        </li>
+                    @endif
 
                     @if(\App\CentralLogics\Helpers::module_permission_check('restaurant'))
                     <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/vendor*') && !Request::is('admin/vendor/withdraw_list'))?'active':''}}">
