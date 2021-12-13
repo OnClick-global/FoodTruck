@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Food;
 use App\Models\Restaurant;
 use App\CentralLogics\Helpers;
+use Carbon\Carbon;
 
 class BannerLogic
 {
@@ -16,6 +17,15 @@ class BannerLogic
         $data = [];
         foreach($banners as $banner)
         {
+            if($banner->ads_type == "views"){
+                $banner->decrement('type_count', 1);
+            }elseif($banner->ads_type == "duration"){
+                if($banner->end_date <= Carbon::now() ){
+                    $banner->status == 0;
+                    $banner->save();
+                }
+            }
+
             if($banner->type=='restaurant_wise')
             {
                 $restaurant = Restaurant::find($banner->data);
