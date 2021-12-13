@@ -41,6 +41,10 @@ class Campaign extends Model
                 $q->whereDate('end_date', '>=', date('Y-m-d'))->orWhereNull('end_date');
             })->where(function($q){
                 $q->whereDate('start_date', '<=', date('Y-m-d'))->orWhereNull('start_date');
+            })->where(function($q){
+                $q->whereTime('start_time', '<=', date('H:i:s'))->orWhereNull('start_time');
+            })->where(function($q){
+                $q->whereTime('end_time', '>=', date('H:i:s'))->orWhereNull('end_time');
             });       
     }
 }
