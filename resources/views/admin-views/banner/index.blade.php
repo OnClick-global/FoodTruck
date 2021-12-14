@@ -171,6 +171,7 @@
                                 <th>{{__('messages.#')}}</th>
                                 <th>{{__('messages.title')}}</th>
                                 <th>{{__('messages.ads_type')}}</th>
+                                <th>{{__('messages.count')}}</th>
                                 <th>{{__('messages.type')}}</th>
                                 <th>{{__('messages.status')}}</th>
                                 <th>{{__('messages.action')}}</th>
@@ -195,6 +196,7 @@
                                     </span>
                                     </td>
                                     <td>{{$banner['ads_type']}}</td>
+                                    <td>@if($banner['ads_type'] == 'clicks' or 'views') {{$banner['type_count']}} {{__('messages.of')}} {{$banner['original_count']}}@else __ @endif</td>
                                     <td>{{$banner['type']}}</td>
                                     <td>
                                         @if($banner['ad_show']==0)

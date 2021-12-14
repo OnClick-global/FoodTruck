@@ -79,6 +79,7 @@ class BannerController extends Controller
         $banner->start_date = $request->start_date;
         $banner->end_date = $request->end_date;
         $banner->type_count = $request->type_count;
+        $banner->original_count = $request->type_count;
         $banner->save();
         return response()->json([], 200);
     }
