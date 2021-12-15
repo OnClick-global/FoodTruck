@@ -196,7 +196,7 @@
                                     </span>
                                     </td>
                                     <td>{{$banner['ads_type']}}</td>
-                                    <td>@if($banner['ads_type'] == 'clicks') {{$banner['type_count']}} {{__('messages.of')}} {{$banner['original_count']}}@else __ @endif</td>
+                                    <td>@if($banner['ads_type'] == 'clicks' or 'views') {{$banner['type_count']}} {{__('messages.of')}} {{$banner['original_count']}}@else __ @endif</td>
                                     <td>{{$banner['type']}}</td>
                                     <td>
                                         @if($banner['ad_show']==0)
