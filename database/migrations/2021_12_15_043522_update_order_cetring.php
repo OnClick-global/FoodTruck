@@ -14,7 +14,7 @@ class UpdateOrderCetring extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->enum('cetring',[0,1]);
+            $table->enum('cetring',['0','1'])->default('0');
         });
     }
 
