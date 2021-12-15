@@ -33,8 +33,8 @@ class OrderController extends Controller
         $order = Order::with(['restaurant', 'delivery_man.rating'])->withCount('details')->where(['id' => $request['order_id'], 'user_id' => $request->user()->id])->Notpos()->first();
         if($order)
         {
-            $order['restaurant'] = $order['restaurant']?Helpers::restaurant_data_formatting($order['restaurant']):$order['restaurant'];   
-            $order['delivery_address'] = $order['delivery_address']?json_decode($order['delivery_address']):$order['delivery_address'];   
+            $order['restaurant'] = $order['restaurant']?Helpers::restaurant_data_formatting($order['restaurant']):$order['restaurant'];
+            $order['delivery_address'] = $order['delivery_address']?json_decode($order['delivery_address']):$order['delivery_address'];
             $order['delivery_man'] = $order['delivery_man']?Helpers::deliverymen_data_formatting([$order['delivery_man']]):$order['delivery_man'];
             unset($order['details']);
         }
@@ -96,7 +96,7 @@ class OrderController extends Controller
                 ]
             ], 406);
         }
-        
+
         if($restaurant->opening_time > $restaurant->closeing_time)
         {
             $restaurant->closeing_time->addHours(12);
@@ -110,7 +110,7 @@ class OrderController extends Controller
                 ]
             ], 406);
         }
-        
+
 
         if(str_contains($restaurant->off_day, $schedule_at->dayOfWeek))
         {
@@ -145,7 +145,7 @@ class OrderController extends Controller
                 {
                     return response()->json([
                         'errors' => [
-                            ['code' => 'coupon', 'message' => trans('messages.not_found')]                            
+                            ['code' => 'coupon', 'message' => trans('messages.not_found')]
                         ]
                     ], 404);
                 }
@@ -323,7 +323,7 @@ class OrderController extends Controller
                 $restaurant_discount_amount = $restaurant_discount['max_discount'];
             }
         }
-        $coupon_discount_amount = $coupon ? CouponLogic::get_discount($coupon, $product_price + $total_addon_price - $restaurant_discount_amount) : 0; 
+        $coupon_discount_amount = $coupon ? CouponLogic::get_discount($coupon, $product_price + $total_addon_price - $restaurant_discount_amount) : 0;
         $total_price = $product_price + $total_addon_price - $restaurant_discount_amount - $coupon_discount_amount;
 
         $tax = $restaurant->tax;
@@ -353,7 +353,7 @@ class OrderController extends Controller
         }
         try {
             $order->coupon_discount_amount = round($coupon_discount_amount, config('round_up_to_digit'));
-            $order->coupon_discount_title = $coupon ? $coupon->title : ''; 
+            $order->coupon_discount_title = $coupon ? $coupon->title : '';
 
             $order->restaurant_discount_amount= round($restaurant_discount_amount, config('round_up_to_digit'));
             $order->total_tax_amount= round($total_tax_amount, config('round_up_to_digit'));
@@ -364,7 +364,7 @@ class OrderController extends Controller
             }
             OrderDetail::insert($order_details);
             Helpers::send_order_notification($order);
-    
+
             return response()->json([
                 'message' => trans('messages.order_placed_successfully'),
                 'order_id' => $order->id,
@@ -394,7 +394,7 @@ class OrderController extends Controller
 
         $paginator = Order::with(['restaurant', 'delivery_man.rating'])->withCount('details')->where(['user_id' => $request->user()->id])->whereIn('order_status', ['delivered','canceled','refund_requested','refunded','failed'])->Notpos()->latest()->paginate($request['limit'], ['*'], 'page', $request['offset']);
         $orders = array_map(function ($data) {
-            $data['delivery_address'] = $data['delivery_address']?json_decode($data['delivery_address']):$data['delivery_address'];   
+            $data['delivery_address'] = $data['delivery_address']?json_decode($data['delivery_address']):$data['delivery_address'];
             $data['restaurant'] = $data['restaurant']?Helpers::restaurant_data_formatting($data['restaurant']):$data['restaurant'];
             $data['delivery_man'] = $data['delivery_man']?Helpers::deliverymen_data_formatting([$data['delivery_man']]):$data['delivery_man'];
             return $data;
@@ -420,9 +420,9 @@ class OrderController extends Controller
         }
 
         $paginator = Order::with(['restaurant', 'delivery_man.rating'])->withCount('details')->where(['user_id' => $request->user()->id])->whereNotIn('order_status', ['delivered','canceled','refund_requested','refunded','failed'])->Notpos()->latest()->paginate($request['limit'], ['*'], 'page', $request['offset']);
-        
+
         $orders = array_map(function ($data) {
-            $data['delivery_address'] = $data['delivery_address']?json_decode($data['delivery_address']):$data['delivery_address'];   
+            $data['delivery_address'] = $data['delivery_address']?json_decode($data['delivery_address']):$data['delivery_address'];
             $data['restaurant'] = $data['restaurant']?Helpers::restaurant_data_formatting($data['restaurant']):$data['restaurant'];
             $data['delivery_man'] = $data['delivery_man']?Helpers::deliverymen_data_formatting([$data['delivery_man']]):$data['delivery_man'];
             return $data;
@@ -475,7 +475,7 @@ class OrderController extends Controller
 
             $order->order_status = 'canceled';
             $order->canceled = now();
-            $order->save();            
+            $order->save();
             return response()->json(['message' => 'Order canceled'], 200);
         }
         return response()->json([
@@ -499,7 +499,7 @@ class OrderController extends Controller
 
             $order->order_status = 'refund_requested';
             $order->refund_requested = now();
-            $order->save();            
+            $order->save();
             return response()->json(['message' => 'Refund request placed succfully!'], 200);
         }
         return response()->json([
