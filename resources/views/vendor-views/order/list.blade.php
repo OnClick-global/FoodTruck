@@ -241,6 +241,7 @@
                         <th>{{__('messages.date')}}</th>
                         <th>{{__('messages.customer')}}</th>
                         <th>{{__('messages.payment')}} {{__('messages.status')}}</th>
+                        <th>{{__('messages.type')}}</th>
                         <th>{{__('messages.total')}}</th>
                         <th>{{__('messages.order')}} {{__('messages.status')}}</th>
                         <th>{{__('messages.order')}} {{__('messages.type')}}</th>
@@ -278,6 +279,7 @@
                                     </span>
                                 @endif
                             </td>
+                            <td class="text-capitalize">@if($order['Cetring'] ==  ) @endif  </td> //eslam
                             <td>{{\App\CentralLogics\Helpers::format_currency($order['order_amount'])}}</td>
                             <td class="text-capitalize">
                                 @if($order['order_status']=='pending')

@@ -201,13 +201,13 @@
                 <!-- End Card -->
             </div>
 
-            <div class="col-lg-6 mt-3">
-                <!-- Card -->
-                <div class="card h-100" id="top-deliveryman-view">
-                    @include('admin-views.partials._top-deliveryman',['top_deliveryman'=>$data['top_deliveryman']])
-                </div>
-                <!-- End Card -->
-            </div>
+{{--            <div class="col-lg-6 mt-3">--}}
+{{--                <!-- Card -->--}}
+{{--                <div class="card h-100" id="top-deliveryman-view">--}}
+{{--                    @include('admin-views.partials._top-deliveryman',['top_deliveryman'=>$data['top_deliveryman']])--}}
+{{--                </div>--}}
+{{--                <!-- End Card -->--}}
+{{--            </div>--}}
 
             <div class="col-lg-6 mt-3">
                 <!-- Card -->
@@ -268,16 +268,14 @@
             data: {
                 labels: [
                     'Customer',
-                    'Restaurant',
-                    'Delivery Man'
+                    'Restaurant'
                 ],
                 datasets: [{
                     label: 'User',
-                    data: ['{{$data['customer']}}', '{{$data['restaurants']}}', '{{$data['delivery_man']}}'],
+                    data: ['{{$data['customer']}}', '{{$data['restaurants']}}'],
                     backgroundColor: [
                         '#628395',
                         '#055052',
-                        '#53B8BB'
                     ],
                     hoverOffset: 4
                 }]

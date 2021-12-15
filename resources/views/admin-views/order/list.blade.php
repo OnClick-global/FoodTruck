@@ -298,6 +298,7 @@
                         <th>{{__('messages.customer')}}</th>
                         <th>{{__('messages.restaurant')}}</th>
                         <th>{{__('messages.payment')}} {{__('messages.status')}}</th>
+                        <th>{{__('messages.type')}}</th>
                         <th>{{__('messages.total')}}</th>
                         <th>{{__('messages.order')}} {{__('messages.status')}}</th>
                         <th>{{__('messages.order')}} {{__('messages.type')}}</th>
@@ -341,6 +342,7 @@
                                 @endif
                             </td>
                             <td>{{\App\CentralLogics\Helpers::format_currency($order['order_amount'])}}</td>
+                            <td class="text-capitalize"> normal </td> //eslam
                             <td class="text-capitalize">
                                 @if($order['order_status']=='pending')
                                     <span class="badge badge-soft-info ml-2 ml-sm-3">
@@ -425,7 +427,7 @@
                     </a>
                     <!-- End Toggle Button -->
                 </div>
-                <?php 
+                <?php
                 $filter_count=0;
                 if(isset($zone_ids) && count($zone_ids) > 0) $filter_count += 1;
                 if(isset($vendor_ids) && count($vendor_ids)>0) $filter_count += 1;
@@ -437,7 +439,7 @@
 
                 if(isset($from_date) && isset($to_date)) $filter_count += 1;
                 if(isset($order_type)) $filter_count += 1;
-                
+
                 ?>
                 <!-- Body -->
                 <form class="card-body sidebar-body sidebar-scrollbar" action="{{route('admin.order.filter')}}" method="POST" id="order_filter_form">

@@ -8,57 +8,57 @@
     <label class="badge badge-soft-info">( Zone : {{$zone_name}} )</label>
 </div>
 
-<div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-    <!-- Card -->
-    <a class="card card-hover-shadow h-100" href="{{route('admin.dispatch.list',['searching_for_deliverymen'])}}"
-       style="background: #54436B">
-        <div class="card-body">
-            <h6 class="card-subtitle"
-                style="color: white!important;">{{__('order_texts.searching_for_delivery_man')}}</h6>
-            <div class="row align-items-center gx-2 mb-1">
-                <div class="col-6">
-                                        <span class="card-title h2" style="color: white!important;">
-                                            {{$data['searching_for_dm']}}
-                                        </span>
-                </div>
-                <div class="col-6 mt-2">
-                    <i class="tio-man" style="font-size: 30px;color: white"></i>
-                    <i class="tio-search"
-                       style="font-size: 22px;margin-left:-10px;color: white"></i>
-                </div>
-            </div>
-            <!-- End Row -->
-        </div>
-    </a>
-    <!-- End Card -->
-</div>
+    {{--<div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">--}}
+    {{--    <!-- Card -->--}}
+    {{--    <a class="card card-hover-shadow h-100" href="{{route('admin.dispatch.list',['searching_for_deliverymen'])}}"--}}
+    {{--       style="background: #54436B">--}}
+    {{--        <div class="card-body">--}}
+    {{--            <h6 class="card-subtitle"--}}
+    {{--                style="color: white!important;">{{__('order_texts.searching_for_delivery_man')}}</h6>--}}
+    {{--            <div class="row align-items-center gx-2 mb-1">--}}
+    {{--                <div class="col-6">--}}
+    {{--                                        <span class="card-title h2" style="color: white!important;">--}}
+    {{--                                            {{$data['searching_for_dm']}}--}}
+    {{--                                        </span>--}}
+    {{--                </div>--}}
+    {{--                <div class="col-6 mt-2">--}}
+    {{--                    <i class="tio-man" style="font-size: 30px;color: white"></i>--}}
+    {{--                    <i class="tio-search"--}}
+    {{--                       style="font-size: 22px;margin-left:-10px;color: white"></i>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--            <!-- End Row -->--}}
+    {{--        </div>--}}
+    {{--    </a>--}}
+    {{--    <!-- End Card -->--}}
+    {{--</div>--}}
 
-<div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-    <!-- Card -->
-    <a class="card card-hover-shadow h-100" href="{{route('admin.order.list',['accepted'])}}"
-       style="background: #402218">
-        <div class="card-body">
-            <h6 class="card-subtitle"
-                style="color: white!important;">{{__('order_texts.accepted_by_delivery_man')}}</h6>
+    {{--<div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">--}}
+    {{--    <!-- Card -->--}}
+    {{--    <a class="card card-hover-shadow h-100" href="{{route('admin.order.list',['accepted'])}}"--}}
+    {{--       style="background: #402218">--}}
+    {{--        <div class="card-body">--}}
+    {{--            <h6 class="card-subtitle"--}}
+    {{--                style="color: white!important;">{{__('order_texts.accepted_by_delivery_man')}}</h6>--}}
 
-            <div class="row align-items-center gx-2 mb-1">
-                <div class="col-6">
-                        <span class="card-title h2" style="color: white!important;">
-                            {{$data['accepted_by_dm']}}
-                        </span>
-                </div>
+    {{--            <div class="row align-items-center gx-2 mb-1">--}}
+    {{--                <div class="col-6">--}}
+    {{--                        <span class="card-title h2" style="color: white!important;">--}}
+    {{--                            {{$data['accepted_by_dm']}}--}}
+    {{--                        </span>--}}
+    {{--                </div>--}}
 
-                <div class="col-6 mt-2">
-                    <i class="tio-man" style="font-size: 30px;color: white"></i>
-                    <i class="tio-checkmark-circle-outlined"
-                       style="font-size: 22px;margin-left:-10px;color: white"></i>
-                </div>
-            </div>
-            <!-- End Row -->
-        </div>
-    </a>
-    <!-- End Card -->
-</div>
+    {{--                <div class="col-6 mt-2">--}}
+    {{--                    <i class="tio-man" style="font-size: 30px;color: white"></i>--}}
+    {{--                    <i class="tio-checkmark-circle-outlined"--}}
+    {{--                       style="font-size: 22px;margin-left:-10px;color: white"></i>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--            <!-- End Row -->--}}
+    {{--        </div>--}}
+    {{--    </a>--}}
+    {{--    <!-- End Card -->--}}
+    {{--</div>--}}
 
 <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
     <!-- Card -->

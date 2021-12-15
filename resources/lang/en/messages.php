@@ -857,4 +857,5 @@ return [
     'discount_annual'=>'Discount Annual',
     'discount_percentage'=>'Discount Percentage',
     'restaurant phone'=>'Restaurant phone',
+    'Waiting To Accept Order'=>'Waiting To Accept Order',
 ];
