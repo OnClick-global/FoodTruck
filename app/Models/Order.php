@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 class Order extends Model
 {
+    protected $guarded=[];
 
     protected $casts = [
         'order_amount' => 'float',
@@ -78,22 +79,22 @@ class Order extends Model
     {
         return $query->whereIn('order_status', ['confirmed','processing','handover']);
     }
-    
+
     public function scopeOngoing($query)
     {
         return $query->whereIn('order_status', ['accepted','confirmed','processing','handover','picked_up']);
     }
-    
+
     public function scopeFoodOnTheWay($query)
     {
         return $query->where('order_status','picked_up');
     }
-    
+
     public function scopePending($query)
     {
         return $query->where('order_status','pending');
     }
-    
+
     // public function scopeRefundRequest($query)
     // {
     //     return $query->where('order_status','refund_requested');
@@ -103,45 +104,45 @@ class Order extends Model
     {
         return $query->where('order_status','failed');
     }
-    
+
     public function scopeCanceled($query)
     {
         return $query->where('order_status','canceled');
     }
-    
+
     public function scopeDelivered($query)
     {
         return $query->where('order_status','delivered');
     }
-    
+
     public function scopeRefunded($query)
     {
         return $query->where('order_status','refunded');
     }
-    
+
     public function scopeSearchingForDeliveryman($query)
     {
         return $query->whereNull('delivery_man_id')->where('order_type', '=' , 'delivery');
     }
-    
+
     public function scopeDelivery($query)
     {
         return $query->where('order_type', '=' , 'delivery');
     }
-    
+
     public function scopeScheduled($query)
     {
         return $query->whereRaw('created_at <> schedule_at')->where('scheduled', '1');
     }
-    
+
     public function scopeOrderScheduledIn($query, $interval)
     {
         return $query->where(function($query)use($interval){
             $query->whereRaw('created_at <> schedule_at')->where(function($q) use ($interval) {
-            $q->whereBetween('schedule_at', [Carbon::now()->toDateTimeString(),Carbon::now()->addMinutes($interval)->toDateTimeString()]); 
+            $q->whereBetween('schedule_at', [Carbon::now()->toDateTimeString(),Carbon::now()->addMinutes($interval)->toDateTimeString()]);
             })->orWhere('schedule_at','<',Carbon::now()->toDateTimeString());
         })->orWhereRaw('created_at = schedule_at');
-        
+
     }
 
     public function scopePos($query)

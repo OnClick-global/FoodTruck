@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function list($status)
     {
         Order::where(['checked' => 0])->where('restaurant_id',\App\CentralLogics\Helpers::get_restaurant_id())->update(['checked' => 1]);
-        
+
         $orders = Order::with(['customer'])
         ->when($status == 'searching_for_deliverymen', function($query){
             return $query->SearchingForDeliveryman();
@@ -113,7 +113,7 @@ class OrderController extends Controller
             return back();
         }
     }
- 
+
     public function status(Request $request)
     {
         $request->validate([
@@ -125,6 +125,16 @@ class OrderController extends Controller
 
         $order = Order::where(['id' => $request->id, 'restaurant_id' => Helpers::get_restaurant_id()])->first();
 
+        if($request['order_status'] =="confirmed" & $order->cetring = 1)
+        {
+
+            $order->order_status ='confirmed';
+            $order->payment_method ='digital_payment';
+            $order->save();
+
+            Toastr::success(trans('messages.order').' '.trans('messages.status_updated'));
+            return back();
+        }
         if($order->delivered != null)
         {
             Toastr::warning(trans('messages.cannot_change_status_after_delivered'));
@@ -139,6 +149,7 @@ class OrderController extends Controller
 
         if($request['order_status'] =="confirmed" && config('order_confirmation_model') == 'deliveryman' && $order->order_type != 'take_away')
         {
+
             Toastr::warning(trans('messages.order_confirmation_warning'));
             return back();
         }
@@ -182,52 +193,12 @@ class OrderController extends Controller
                 }
             });
             $order->customer->increment('order_count');
-        } 
+        }
 
         $order->order_status = $request->order_status;
         $order[$request['order_status']] = now();
         $order->save();
 
-        // $fcm_token = $order->customer->cm_firebase_token;
-        // $value = Helpers::order_status_update_message($request->order_status);
-        // try {
-        //     if ($value) {
-        //         $data = [
-        //             'title' =>trans('messages.order_placed_successfully'),
-        //             'description' => $value,
-        //             'order_id' => $order['id'],
-        //             'image' => '',
-        //             'type'=>'order_status'
-        //         ];
-        //         Helpers::send_push_notif_to_device($fcm_token, $data);
-        //         DB::table('user_notifications')->insert([
-        //             'data'=> json_encode($data),
-        //             'user_id'=>$order->customer->id,
-        //             'created_at'=>now(),
-        //             'updated_at'=>now()
-        //         ]);
-        //     }
-            
-            // if(in_array($request->order_status, ['processing', 'handover']) && $order->delivery_man)
-            // {
-            //     $data = [
-            //         'title' =>trans('messages.order_placed_successfully'),
-            //         'description' => $request->order_status=='processing'?trans('messages.Proceed_for_cooking'):trans('messages.ready_for_delivery'),
-            //         'order_id' => $order['id'],
-            //         'image' => '',
-            //         'type'=>'order_status'
-            //     ];
-            //     Helpers::send_push_notif_to_device($order->delivery_man->fcm_token, $data);
-            //     DB::table('user_notifications')->insert([
-            //         'data'=> json_encode($data),
-            //         'delivery_man_id'=>$order->delivery_man->id,
-            //         'created_at'=>now(),
-            //         'updated_at'=>now()
-            //     ]);
-            // }
-        // } catch (\Exception $e) {
-        //     Toastr::warning(trans('messages.push_notification_faild'));
-        // }
         if(!Helpers::send_order_notification($order))
         {
             Toastr::warning(trans('messages.push_notification_faild'));

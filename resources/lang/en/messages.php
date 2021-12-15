@@ -858,4 +858,6 @@ return [
     'discount_percentage'=>'Discount Percentage',
     'restaurant phone'=>'Restaurant phone',
     'Waiting To Accept Order'=>'Waiting To Accept Order',
+    'Cetring'=>'Cetring',
+    'Normal Order'=>'Normal Order',
 ];

@@ -109,9 +109,9 @@
                             @elseif ($order['order_status']=='confirmed' || $order['order_status']=='accepted')
                             <a class="btn btn-sm btn-primary" onclick="order_status_change_alert('{{route('vendor.order.status',['id'=>$order['id'],'order_status'=>'processing'])}}','Change status to cooking ?')" href="javascript:">{{__('messages.Proceed_for_cooking')}}</a>
                             @elseif ($order['order_status']=='processing')
-                            <a class="btn btn-sm btn-primary" onclick="order_status_change_alert('{{route('vendor.order.status',['id'=>$order['id'],'order_status'=>'handover'])}}','Change status to ready for handover ?')" href="javascript:">{{__('messages.make_ready_for_handover')}}</a>    
+                            <a class="btn btn-sm btn-primary" onclick="order_status_change_alert('{{route('vendor.order.status',['id'=>$order['id'],'order_status'=>'handover'])}}','Change status to ready for handover ?')" href="javascript:">{{__('messages.make_ready_for_handover')}}</a>
                             @elseif ($order['order_status']=='handover' && $order['order_type']=='take_away')
-                            <a class="btn btn-sm btn-primary" onclick="order_status_change_alert('{{route('vendor.order.status',['id'=>$order['id'],'order_status'=>'delivered'])}}','Change status to delivered (payment status will be paid if not) ?', {{$order_delivery_verification?'true':'false'}})" href="javascript:">{{__('messages.maek_delivered')}}</a>    
+                            <a class="btn btn-sm btn-primary" onclick="order_status_change_alert('{{route('vendor.order.status',['id'=>$order['id'],'order_status'=>'delivered'])}}','Change status to delivered (payment status will be paid if not) ?', {{$order_delivery_verification?'true':'false'}})" href="javascript:">{{__('messages.maek_delivered')}}</a>
                             @endif
                         </div>
                         <!-- End Unfold -->
@@ -304,12 +304,12 @@
                                 <hr>
                         @endif
                     @endforeach
-                        <?php 
+                        <?php
 
                             $coupon_discount_amount = $order['coupon_discount_amount'];
 
                             $total_price = $product_price + $total_addon_price - $restaurant_discount_amount - $coupon_discount_amount;
-                        
+
                             $total_tax_amount= $order['total_tax_amount'];
 
                             $restaurant_discount_amount = $order['restaurant_discount_amount'];
@@ -369,9 +369,9 @@
                     <!-- End Header -->
 
                     <!-- Body -->
-                    
+
                     <div class="card-body">
-                    @if($order->delivery_man)    
+                    @if($order->delivery_man)
                         <div class="media align-items-center" href="javascript:">
                             <div class="avatar avatar-circle mr-3">
                                 <img
@@ -417,7 +417,7 @@
                             <li>
                                 <a class="deco-none" href="tel:{{$order->delivery_man['phone']}}">
                                     <i class="tio-android-phone-vs mr-2"></i>
-                                {{$order->delivery_man['phone']}}</a> 
+                                {{$order->delivery_man['phone']}}</a>
                             </li>
                         </ul>
 
@@ -444,9 +444,9 @@
                         <span class="d-block text-lowercase qcont">
                                 {{__('messages.deliveryman').' '.__('messages.not_found')}}
                         </span>
-                    @endif    
+                    @endif
                     </div>
-                    
+
                 <!-- End Body -->
                 </div>
                 <!-- End Card -->
@@ -716,7 +716,7 @@
                         location.href = route;
                     }
                 })
-            }   
+            }
         }
 
         function last_location_view() {
