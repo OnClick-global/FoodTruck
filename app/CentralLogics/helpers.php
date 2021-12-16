@@ -782,10 +782,10 @@ class Helpers
                     'updated_at'=>now()
                 ]);
             }
-            if ($order->order_status == 'confirmed' && $order->cetring = 1){
+            if ($order->order_status == 'confirmed' && $order->cetring == '1'){
                 $data = [
                     'title' =>trans('messages.order_push_title'),
-                    'description' => trans('messages.the Order is confirmed , please process the payment'),
+                    'description' => trans('messages.confirmed payment'),
                     'order_id' => $order->id,
                     'image' => asset('storage/app/public/confirmed.png'),
                     'type'=>'order_status',
