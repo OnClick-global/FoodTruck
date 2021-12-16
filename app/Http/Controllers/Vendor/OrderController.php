@@ -31,6 +31,9 @@ class OrderController extends Controller
         ->when($status == 'confirmed', function($query){
             return $query->whereIn('order_status',['confirmed', 'accepted'])->whereNotNull('confirmed');
         })
+        ->when($status == 'cetring', function($query){
+            return $query->where('order_status','confirmed')->where('cetring','1');
+        })
         ->when($status == 'pending', function($query){
             if(config('order_confirmation_model') == 'restaurant')
             {
