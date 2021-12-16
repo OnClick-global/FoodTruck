@@ -740,10 +740,10 @@ class Helpers
             $data = BusinessSetting::where('key', 'order_handover_message')->first()->value;
         } elseif ($status == 'delivered') {
             $data = BusinessSetting::where('key', 'order_delivered_message')->first()->value;
-        } 
+        }
         elseif ($status == 'delivery_boy_delivered') {
             $data = BusinessSetting::where('key', 'delivery_boy_delivered_message')->first()->value;
-        } 
+        }
         elseif ($status == 'accepted') {
             $data = BusinessSetting::where('key', 'delivery_boy_assign_message')->first()->value;
         } elseif ($status == 'cancled') {
@@ -762,7 +762,7 @@ class Helpers
 
     public static function send_order_notification($order)
     {
-    
+
         try {
             $status = ($order->order_status == 'delivered' && $order->delivery_man)?'delivery_boy_delivered':$order->order_status;
             $value = self::order_status_update_message($status);
@@ -778,6 +778,22 @@ class Helpers
                 DB::table('user_notifications')->insert([
                     'data'=> json_encode($data),
                     'user_id'=>$order->user_id,
+                    'created_at'=>now(),
+                    'updated_at'=>now()
+                ]);
+            }
+            if ($order->order_status == 'confirmed' && $order->cetring = 1){
+                $data = [
+                    'title' =>trans('messages.order_push_title'),
+                    'description' => $value,
+                    'order_id' => $order->id,
+                    'image' => '',
+                    'type'=>'order_status',
+                ];
+                self::send_push_notif_to_device($order->restaurant->vendor->firebase_token, $data);
+                DB::table('user_notifications')->insert([
+                    'data'=> json_encode($data),
+                    'vendor_id'=>$order->restaurant->vendor_id,
                     'created_at'=>now(),
                     'updated_at'=>now()
                 ]);
@@ -854,7 +870,7 @@ class Helpers
                     'updated_at'=>now()
                 ]);
             }
-            
+
             if($order->order_status == 'confirmed' && $order->order_type != 'take_away' && config('order_confirmation_model') == 'deliveryman' && $order->payment_method == 'cash_on_delivery')
             {
                 $data = [
@@ -1182,13 +1198,13 @@ class Helpers
     //     return $data;
     // }
     public static function requestSender()
-    {   
-        $curl = curl_init();  
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);   
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);   
-        curl_setopt_array($curl, array(        CURLOPT_URL => route(base64_decode('YWN0aXZhdGlvbi1jaGVjaw==')),        CURLOPT_RETURNTRANSFER => true,        CURLOPT_ENCODING => "",        CURLOPT_MAXREDIRS => 10,        CURLOPT_TIMEOUT => 30,        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,        CURLOPT_CUSTOMREQUEST => "GET",    ));  
-        $response = curl_exec($curl);   
-        $data = json_decode($response, true); 
+    {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt_array($curl, array(        CURLOPT_URL => route(base64_decode('YWN0aXZhdGlvbi1jaGVjaw==')),        CURLOPT_RETURNTRANSFER => true,        CURLOPT_ENCODING => "",        CURLOPT_MAXREDIRS => 10,        CURLOPT_TIMEOUT => 30,        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,        CURLOPT_CUSTOMREQUEST => "GET",    ));
+        $response = curl_exec($curl);
+        $data = json_decode($response, true);
         return $data;
     }
 

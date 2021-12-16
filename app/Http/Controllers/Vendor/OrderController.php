@@ -127,10 +127,10 @@ class OrderController extends Controller
 
         if($request['order_status'] =="confirmed" & $order->cetring = 1)
         {
-
             $order->order_status ='confirmed';
             $order->payment_method ='digital_payment';
             $order->save();
+            Helpers::send_order_notification($order);
 
             Toastr::success(trans('messages.order').' '.trans('messages.status_updated'));
             return back();
