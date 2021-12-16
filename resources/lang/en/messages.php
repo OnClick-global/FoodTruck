@@ -860,4 +860,5 @@ return [
     'Waiting To Accept Order'=>'Waiting To Accept Order',
     'Cetring'=>'Cetring',
     'Normal Order'=>'Normal Order',
+    'the Order is confirmed , please go and process the payment'=>'the Order is confirmed , please go and process the payment',
 ];

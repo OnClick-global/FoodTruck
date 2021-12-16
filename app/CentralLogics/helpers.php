@@ -785,7 +785,7 @@ class Helpers
             if ($order->order_status == 'confirmed' && $order->cetring = 1){
                 $data = [
                     'title' =>trans('messages.order_push_title'),
-                    'description' => $value,
+                    'description' => trans('messages.the Order is confirmed , please go and process the payment'),
                     'order_id' => $order->id,
                     'image' => '',
                     'type'=>'order_status',
