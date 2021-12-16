@@ -49,7 +49,7 @@
                     <!-- End Dashboards -->
 
                     @if(\App\CentralLogics\Helpers::employee_module_permission_check('order'))
-                    <li class="nav-item">   
+                    <li class="nav-item">
                         <small class="nav-subtitle" title="{{__('messages.order')}} {{__('messages.section')}}">{{__('messages.order')}} {{__('messages.section')}}</small>
                         <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                     </li>
@@ -92,6 +92,17 @@
                                     </span>
                                 </a>
                             </li>
+                            <li class="nav-item {{Request::is('vendor-panel/order/list/confirmed')?'active':''}}">
+                                <a class="nav-link " href="{{route('vendor.order.list',['cetring'])}}" title="{{__('messages.Cetring')}}">
+                                    <span class="tio-circle nav-indicator-icon"></span>
+                                    <span class="text-truncate">
+                                        {{__('messages.Cetring')}}
+                                            <span class="badge badge-soft-success badge-pill ml-1">
+                                            {{\App\Models\Order::where('order_status','confirmed')->where('cetring','1')->where('restaurant_id', \App\CentralLogics\Helpers::get_restaurant_id())->count()}}
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
 
                             <li class="nav-item {{Request::is('vendor-panel/order/list/cooking')?'active':''}}">
                                 <a class="nav-link" href="{{route('vendor.order.list',['cooking'])}}" title="{{__('messages.cooking')}}">
@@ -115,17 +126,17 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="nav-item {{Request::is('vendor-panel/order/list/food_on_the_way')?'active':''}}">
-                                <a class="nav-link" href="{{route('vendor.order.list',['food_on_the_way'])}}" title="{{__('messages.foods_on_the_way')}}">
-                                    <span class="tio-circle nav-indicator-icon"></span>
-                                    <span class="text-truncate">
-                                        {{__('messages.food_on_the_way')}}
-                                        <span class="badge badge-info badge-pill ml-1">
-                                            {{\App\Models\Order::where(['order_status'=>'picked_up', 'restaurant_id'=>\App\CentralLogics\Helpers::get_restaurant_id()])->count()}}
-                                        </span>
-                                    </span>
-                                </a>
-                            </li>
+{{--                            <li class="nav-item {{Request::is('vendor-panel/order/list/food_on_the_way')?'active':''}}">--}}
+{{--                                <a class="nav-link" href="{{route('vendor.order.list',['food_on_the_way'])}}" title="{{__('messages.foods_on_the_way')}}">--}}
+{{--                                    <span class="tio-circle nav-indicator-icon"></span>--}}
+{{--                                    <span class="text-truncate">--}}
+{{--                                        {{__('messages.food_on_the_way')}}--}}
+{{--                                        <span class="badge badge-info badge-pill ml-1">--}}
+{{--                                            {{\App\Models\Order::where(['order_status'=>'picked_up', 'restaurant_id'=>\App\CentralLogics\Helpers::get_restaurant_id()])->count()}}--}}
+{{--                                        </span>--}}
+{{--                                    </span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                             <li class="nav-item {{Request::is('vendor-panel/order/list/delivered')?'active':''}}">
                                 <a class="nav-link " href="{{route('vendor.order.list',['delivered'])}}" title="">
                                     <span class="tio-circle nav-indicator-icon"></span>
@@ -190,15 +201,15 @@
                     </li>
                     <!-- End Order -->
                     @endif
-                    
+
                     @if(\App\CentralLogics\Helpers::employee_module_permission_check('pos'))
                     <li class="nav-item">
                         <small
                             class="nav-subtitle">{{__('messages.pos')}} {{__('messages.system')}}</small>
                         <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                     </li>
-                    
-                    
+
+
                     <!-- POS -->
                     <li class="navbar-vertical-aside-has-menu {{Request::is('vendor-panel/pos/*')?'active':''}}">
                         <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
@@ -230,7 +241,7 @@
                         </ul>
                     </li>
                     <!-- End POS -->
-                    @endif      
+                    @endif
                     <li class="nav-item">
                         <small
                             class="nav-subtitle">{{__('messages.food')}} {{__('messages.management')}}</small>

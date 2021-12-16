@@ -163,7 +163,7 @@
                                     </h6>
                                     <h6 class="text-capitalize" style="color: #8a8a8a;">{{__('messages.order')}} {{__('messages.type')}}
                                         : <label style="font-size: 10px"
-                                                 class="badge badge-soft-primary">{{str_replace('_',' ',$order['order_type'])}}</label>
+                                                 class="badge badge-soft-primary"> @if($order['cetring'] =='1')  {{__('messages.Cetring')}} @else {{str_replace('_',' ',$order['order_type'])}} @endif</label>
                                     </h6>
                                     @if($order->schedule_at && $order->scheduled)
                                     <h6 class="text-capitalize" style="color: #8a8a8a;">{{__('messages.scheduled_at')}}
@@ -206,8 +206,10 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <strong> {{$detail->food['name']}}</strong><br>
+                                            <strong> {{$detail->food['available_time_starts']}}</strong> {{__('messages.to')}} <strong> {{$detail->food['available_time_ends']}}</strong><br>
+                                            <strong> {{\App\Models\Category::where('id',$detail->food->category_id)->first()->name}}</strong><br>
 
-                                            @if(count(json_decode($detail['variation'],true))>0)
+                                        @if(count(json_decode($detail['variation'],true))>0)
                                                 <strong><u>{{__('messages.variation')}} : </u></strong>
                                                 @foreach(json_decode($detail['variation'],true)[0] as $key1 =>$variation)
                                                     <div class="font-size-sm text-body">

@@ -355,7 +355,7 @@ return [
     'size' => 'size',
     'sub_category' => 'Sub Category',
     'table'=>'Table',
-    'to' => 'to',
+    'to' => 'To',
     'total_earning'=>'Total earning',
     'transaction'=>'Transaction',
     'transaction_saved'=>'Transaction saved successfully!',
@@ -861,4 +861,5 @@ return [
     'Cetring'=>'Cetring',
     'Normal Order'=>'Normal Order',
     'confirmed payment'=>'The Order is Confirmed , Please Process The Payment',
+    'Done'=>'Done',
 ];
