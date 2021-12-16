@@ -787,7 +787,7 @@ class Helpers
                     'title' =>trans('messages.order_push_title'),
                     'description' => trans('messages.confirmed payment'),
                     'order_id' => $order->id,
-                    'image' => 'confirmed.png',
+                    'image' => '',
                     'type'=>'order_status',
                 ];
                 self::send_push_notif_to_device($order->restaurant->vendor->firebase_token, $data);
