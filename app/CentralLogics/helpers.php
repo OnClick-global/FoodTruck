@@ -785,7 +785,7 @@ class Helpers
             if ($order->order_status == 'confirmed' && $order->cetring = 1){
                 $data = [
                     'title' =>trans('messages.order_push_title'),
-                    'description' => trans('messages.the Order is confirmed , please go and process the payment'),
+                    'description' => trans('messages.the Order is confirmed , please process the payment'),
                     'order_id' => $order->id,
                     'image' => '',
                     'type'=>'order_status',
@@ -793,7 +793,7 @@ class Helpers
                 self::send_push_notif_to_device($order->restaurant->vendor->firebase_token, $data);
                 DB::table('user_notifications')->insert([
                     'data'=> json_encode($data),
-                    'vendor_id'=>$order->restaurant->vendor_id,
+                    'user_id'=>$order->user_id,
                     'created_at'=>now(),
                     'updated_at'=>now()
                 ]);

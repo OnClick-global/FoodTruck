@@ -127,6 +127,7 @@ class OrderController extends Controller
 
         if($request['order_status'] =="confirmed" & $order->cetring = 1)
         {
+
             $order->order_status ='confirmed';
             $order->payment_method ='digital_payment';
             $order->save();
