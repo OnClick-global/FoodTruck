@@ -21,7 +21,7 @@ class Food extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
     ];
-    protected $appends = ['cetring'];
+    protected $appends = ['cetring','day_name'];
 
     public function scopeActive($query)
     {
@@ -78,6 +78,16 @@ class Food extends Model
                 }else{
                     return false ;
                 }
+            }
+        }
+    }
+    public function getDayNameAttribute()
+    {
+
+        foreach ($this->category_ids as $row) {
+            if ($row['position'] == 2) {
+                $category = Category::where('id',$row['id'])->first();
+               return $category->name ;
             }
         }
     }
