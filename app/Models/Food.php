@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Food extends Model
 {
+    protected $guarded = [];
     protected $casts = [
         'tax' => 'float',
         'price' => 'float',

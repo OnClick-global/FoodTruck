@@ -130,6 +130,8 @@ class FoodController extends Controller
         $food->image = Helpers::upload('product/', 'png', $request->file('image'));
         $food->available_time_starts = $request->available_time_starts;
         $food->available_time_ends = $request->available_time_ends;
+        $food->cetring_time_from = $request->available_time_starts;
+        $food->cetring_time_to = $request->available_time_ends;
         $food->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
         $food->discount_type = $request->discount_type;
 
@@ -275,7 +277,8 @@ class FoodController extends Controller
         $p->image = $request->has('image') ? Helpers::update('product/', $p->image, 'png', $request->file('image')) : $p->image;
         $p->available_time_starts = $request->available_time_starts;
         $p->available_time_ends = $request->available_time_ends;
-
+        $p->cetring_time_from = $request->available_time_starts;
+        $p->cetring_time_to = $request->available_time_ends;
         $p->discount = $request->discount_type == 'amount' ? $request->discount : $request->discount;
         $p->discount_type = $request->discount_type;
 
@@ -363,7 +366,7 @@ class FoodController extends Controller
             foreach($request['addon_id'] as $id)
             {
                 $addon_price+= $request['addon-price'.$id]*$request['addon-quantity'.$id];
-            } 
+            }
         }
 
         if ($str != null) {
