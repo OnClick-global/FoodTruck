@@ -71,7 +71,7 @@ class ProductLogic
     {
         if($limit != null && $offset != null)
         {
-            $paginator = Food::with(['rating'])->whereHas('restaurant', function($q)use($zone_id){
+            $paginator = Food::with(['rating'])->whereNotBetween('category_id',[12,19])->whereHas('restaurant', function($q)use($zone_id){
                 $q->where('zone_id', $zone_id)->Weekday();
             })->active()->popular()->paginate($limit, ['*'], 'page', $offset);
 
