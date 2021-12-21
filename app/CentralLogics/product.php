@@ -15,7 +15,7 @@ class ProductLogic
 
     public static function get_latest_products($limit, $offset, $restaurant_id, $category_id)
     {
-        $paginator = Food::active();
+        $paginator = Food::active()->whereNotBetween([12,19]);
         if($category_id != 0)
         {
             $paginator = $paginator->whereHas('category',function($q)use($category_id){
