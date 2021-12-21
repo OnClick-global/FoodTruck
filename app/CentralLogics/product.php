@@ -82,7 +82,7 @@ class ProductLogic
                 'products' => $paginator->items()
             ];
         }
-        $paginator = Food::active()->with(['rating'])->whereHas('restaurant', function($q)use($zone_id){
+        $paginator = Food::active()->whereNotBetween('category_id',[12,19])->with(['rating'])->whereHas('restaurant', function($q)use($zone_id){
             $q->where('zone_id', $zone_id)->Weekday();
         })->withCount('orders')->orderBy('orders_count', 'desc')->limit(50)->get();
 
