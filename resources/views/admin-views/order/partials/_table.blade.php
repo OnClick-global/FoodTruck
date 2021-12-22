@@ -30,8 +30,8 @@
                 </span>
             @endif
         </td>
+        <td class="text-capitalize"> @if($order['cetring'] == '1') {{__('messages.Cetring')}} @else {{__('messages.Normal Order')}} @endif  </td>
         <td>{{\App\CentralLogics\Helpers::format_currency($order['order_amount'])}}</td>
-        <td class="text-capitalize"> normal </td> //eslam
         <td class="text-capitalize">
             @if($order['order_status']=='pending')
                 <span class="badge badge-soft-info ml-2 ml-sm-3">
