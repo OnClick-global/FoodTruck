@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Http;
 class ConfigController extends Controller
 {
     private $map_api_key;
-    
-    function __construct() 
+
+    function __construct()
     {
         $map_api_key_server=BusinessSetting::where(['key'=>'map_api_key_server'])->first();
         $map_api_key_server=$map_api_key_server?$map_api_key_server->value:null;
@@ -32,13 +32,14 @@ class ConfigController extends Controller
         $default_location=$default_location->value?json_decode($default_location->value, true):0;
         $free_delivery_over = BusinessSetting::where('key', 'free_delivery_over')->first()->value;
         $free_delivery_over = $free_delivery_over?(float)$free_delivery_over:$free_delivery_over;
-        
+
         // $dp = json_decode(BusinessSetting::where(['key' => 'digital_payment'])->first()->value, true);
         return response()->json([
             'business_name' => BusinessSetting::where(['key' => 'business_name'])->first()->value,
             // 'business_open_time' => BusinessSetting::where(['key' => 'business_open_time'])->first()->value,
             // 'business_close_time' => BusinessSetting::where(['key' => 'business_close_time'])->first()->value,
             'logo' => BusinessSetting::where(['key' => 'logo'])->first()->value,
+            'Annual_subscription' => BusinessSetting::where(['key' => 'Annual_subscription'])->first()->value,
             'address' => BusinessSetting::where(['key' => 'address'])->first()->value,
             'phone' => BusinessSetting::where(['key' => 'phone'])->first()->value,
             'email' => BusinessSetting::where(['key' => 'email_address'])->first()->value,
@@ -165,7 +166,7 @@ class ConfigController extends Controller
         $response = Http::get('https://maps.googleapis.com/maps/api/place/details/json?placeid='.$request['placeid'].'&key='.$this->map_api_key);
         return $response->json();
     }
-    
+
     public function geocode_api(Request $request)
     {
         $validator = Validator::make($request->all(), [

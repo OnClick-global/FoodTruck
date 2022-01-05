@@ -176,8 +176,8 @@ class RestaurantController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'restaurant_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:restaurants',
-            'minimum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
-            'maximum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
+//            'minimum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
+//            'maximum_delivery_time' => 'required|regex:/^([0-9]{2})$/|min:2|max:2',
             'logo' => 'required',
             'f_name' => 'required',
             'l_name' => 'required',
@@ -213,7 +213,7 @@ class RestaurantController extends Controller
         $restaurant->status = 0;
         $restaurant->zone_id = 1;
         $restaurant->restaurant_phone = $request->restaurant_phone;
-        $restaurant->delivery_time = $request->minimum_delivery_time . '-' . $request->maximum_delivery_time;
+//        $restaurant->delivery_time = $request->minimum_delivery_time . '-' . $request->maximum_delivery_time;
         $restaurant->save();
 
 
@@ -222,9 +222,43 @@ class RestaurantController extends Controller
         return response()->json([
             'message' => $msg,
             'restaurant' => $restaurant,
-            '$vendor' => $vendor
+            'vendor' => $vendor
 
         ], 200);
+    }
+
+    public function apply_coupon(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => Helpers::error_processor($validator)], 403);
+        }
+        $exists_coupon = RegisterCoupon::where('code',$request->code)->where('status',1)->where('limit','>',0)->first();
+        if($exists_coupon){
+            $data['done'] = true;
+            $annual_subscription = BusinessSetting::where('key','Annual_subscription')->first()->value;
+            if($exists_coupon->discount_type == 'percent'){
+               $discount_persentage =  $exists_coupon->discount / 100 ;
+               $discount =  $discount_persentage * $annual_subscription ;
+               $finat_price = $annual_subscription - $discount ;
+                $data['old_price'] = $annual_subscription;
+                $data['discount'] = $discount;
+                $data['new_price'] = $finat_price;
+            }else{
+                $finat_price = $annual_subscription - $exists_coupon->discount ;
+                $data['old_price'] = $annual_subscription;
+                $data['discount'] = $exists_coupon->discount;
+                $data['new_price'] = $finat_price;
+            }
+            return response()->json([
+                'message' => "coupon used successfully",
+                'data' => $data
+            ], 200);
+        }else{
+            return response()->json(['errors' => 'you should choose valid coupon'], 403);
+        }
     }
 
 
