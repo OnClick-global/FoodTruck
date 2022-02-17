@@ -195,6 +195,7 @@ class RestaurantController extends Controller
         $vendor->l_name = $request->l_name;
         $vendor->email = $request->email;
         $vendor->phone = $request->phone;
+        $vendor->status = 0 ;
         $vendor->password = bcrypt($request->password);
         $vendor->save();
 
@@ -209,7 +210,7 @@ class RestaurantController extends Controller
         $restaurant->longitude = $request->longitude;
         $restaurant->vendor_id = $vendor->id;
         $restaurant->tax = 0;
-        $restaurant->status = 0;
+        $restaurant->active = 0;
         $restaurant->status = 0;
         $restaurant->zone_id = 1;
         $restaurant->restaurant_phone = $request->restaurant_phone;
@@ -250,7 +251,7 @@ class RestaurantController extends Controller
                 $finat_price = $annual_subscription - $exists_coupon->discount ;
                 $data['old_price'] = $annual_subscription;
                 $data['discount'] = $exists_coupon->discount;
-                $data['new_price'] = $finat_price;
+                $data['new_price'] = ($finat_price < 0 ) ? 0 : $finat_price ;
             }
             return response()->json([
                 'message' => "coupon used successfully",

@@ -42,7 +42,7 @@ class CustomerAuthController extends Controller
                 {
                     $user->is_phone_verified = 1;
                     $user->save();
-                    
+
                     return response()->json([
                         'message' => trans('messages.phone_number_varified_successfully'),
                         'otp' => 'inactive'
@@ -209,17 +209,17 @@ class CustomerAuthController extends Controller
             'password' => $request->password
         ];
         $customer_verification = BusinessSetting::where('key','customer_verification')->first()->value;
-        if (auth()->attempt($data)) {
-            $token = auth()->user()->createToken('RestaurantCustomerAuth')->accessToken;
-            if(!auth()->user()->status)
-            {
-                $errors = [];
-                array_push($errors, ['code' => 'auth-003', 'message' => trans('messages.your_account_is_blocked')]);
-                return response()->json([
-                    'errors' => $errors
-                ], 403);
-            }
-            if($customer_verification && !auth()->user()->is_phone_verified && env('APP_MODE') != 'demo')
+        if (auth()->guard('vendor')->attempt($data)) {
+            $token = auth()->guard('vendor')->user()->createToken('RestaurantCustomerAuth')->accessToken;
+//            if(!auth()->user()->status)
+//            {
+//                $errors = [];
+//                array_push($errors, ['code' => 'auth-003', 'message' => trans('messages.your_account_is_blocked')]);
+//                return response()->json([
+//                    'errors' => $errors
+//                ], 403);
+//            }
+            if($customer_verification && !auth()->guard('vendor')->user()->is_phone_verified && env('APP_MODE') != 'demo')
             {
                 $otp = rand(1000, 9999);
                 DB::table('phone_verifications')->updateOrInsert(['phone' => $request['phone']],
@@ -239,7 +239,7 @@ class CustomerAuthController extends Controller
                     ], 405);
                 }
             }
-            return response()->json(['token' => $token, 'is_phone_verified'=>auth()->user()->is_phone_verified], 200);
+            return response()->json(['token' => $token, 'is_phone_verified'=>auth()->guard('vendor')->user()->is_phone_verified], 200);
         } else {
             $errors = [];
             array_push($errors, ['code' => 'auth-001', 'message' => 'Unauthorized.']);

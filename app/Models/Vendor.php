@@ -6,10 +6,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Restaurant;
 use Carbon\Carbon;
+use Laravel\Passport\HasApiTokens;
 
 class Vendor extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     protected $casts = [
         'created_at' => 'datetime',
@@ -26,7 +27,7 @@ class Vendor extends Authenticatable
     {
         return $this->hasMany(OrderTransaction::class);
     }
-    
+
     public function todays_earning()
     {
         return $this->hasMany(OrderTransaction::class)->whereDate('created_at',now());
