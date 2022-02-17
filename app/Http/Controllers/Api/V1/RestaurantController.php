@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\CentralLogics\Helpers;
 use App\CentralLogics\RestaurantLogic;
+use App\Http\Controllers\Api\PayMobController;
 use App\Http\Controllers\Controller;
 use App\Models\BusinessSetting;
 use App\Models\RegisterCoupon;
 use App\Models\Restaurant;
+use App\Models\User;
+use App\Models\User_fund;
 use App\Models\Vendor;
 use App\Models\Zone;
 use Illuminate\Http\Request;
@@ -195,7 +198,7 @@ class RestaurantController extends Controller
         $vendor->l_name = $request->l_name;
         $vendor->email = $request->email;
         $vendor->phone = $request->phone;
-        $vendor->status = 0 ;
+        $vendor->status = 0;
         $vendor->password = bcrypt($request->password);
         $vendor->save();
 
@@ -236,33 +239,59 @@ class RestaurantController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
-        $exists_coupon = RegisterCoupon::where('code',$request->code)->where('status',1)->where('limit','>',0)->first();
-        if($exists_coupon){
+        $exists_coupon = RegisterCoupon::where('code', $request->code)->where('status', 1)->where('limit', '>', 0)->first();
+        if ($exists_coupon) {
             $data['done'] = true;
-            $annual_subscription = BusinessSetting::where('key','Annual_subscription')->first()->value;
-            if($exists_coupon->discount_type == 'percent'){
-               $discount_persentage =  $exists_coupon->discount / 100 ;
-               $discount =  $discount_persentage * $annual_subscription ;
-               $finat_price = $annual_subscription - $discount ;
+            $annual_subscription = BusinessSetting::where('key', 'Annual_subscription')->first()->value;
+            if ($exists_coupon->discount_type == 'percent') {
+                $discount_persentage = $exists_coupon->discount / 100;
+                $discount = $discount_persentage * $annual_subscription;
+                $finat_price = $annual_subscription - $discount;
                 $data['old_price'] = $annual_subscription;
                 $data['discount'] = $discount;
                 $data['new_price'] = $finat_price;
-            }else{
-                $finat_price = $annual_subscription - $exists_coupon->discount ;
+            } else {
+                $finat_price = $annual_subscription - $exists_coupon->discount;
                 $data['old_price'] = $annual_subscription;
                 $data['discount'] = $exists_coupon->discount;
-                $data['new_price'] = ($finat_price < 0 ) ? 0 : $finat_price ;
+                $data['new_price'] = ($finat_price < 0) ? 0 : $finat_price;
             }
             return response()->json([
                 'message' => "coupon used successfully",
                 'data' => $data
             ], 200);
-        }else{
+        } else {
             return response()->json(['errors' => 'you should choose valid coupon'], 403);
         }
     }
 
+    public function DoPayment($id, $user_id)
+    {
+        $order = User_fund::find($id);
+        $user = User::find($user_id);
+        return view('payment.paymentMethods', compact('order', 'user'));
+    }
 
+    public function payway(Request $request, $payway = 'visa', $code, $resturant_id, $new_price)
+    {
+        $order = User_fund::find($resturant_id);
+        if ($order->payment == 'not paid') {
+            if ($payway == 'visa') {
+                $paymob = new PayMobController;
+                return $paymob->checkingOut(env('PAYMOB_VISA_ID'), env('PAYMOB_VISA_IFRAME_ID'), $order->id, $resturant_id, $request->phone);
+            } elseif ($payway == 'wallet') {
+                $paymob = new PayMobController;
+                return $paymob->checkingOut(env('PAYMOB_WALLET_ID'), 'wallet', $order->id, $resturant_id, $request->phone);
+            }
+        } else {
+            return redirect('payment-fail');
+        }
+    }
+
+    public function show_phone_page($payway = 'visa', $id, $user_id)
+    {
+        return view('payment.phone_page', compact('payway', 'id', 'user_id'));
+    }
     // public function get_product_rating($id)
     // {
     //     try {

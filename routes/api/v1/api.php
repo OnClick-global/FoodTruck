@@ -58,12 +58,12 @@ Route::group(['namespace' => 'Api\V1'], function () {
         Route::get('last-location', 'DeliverymanController@get_last_location');
 
 
-        Route::group(['prefix' => 'reviews','middleware'=>['auth:api']], function () {
+        Route::group(['prefix' => 'reviews', 'middleware' => ['auth:api']], function () {
             Route::get('/{delivery_man_id}', 'DeliveryManReviewController@get_reviews');
             Route::get('rating/{delivery_man_id}', 'DeliveryManReviewController@get_rating');
             Route::post('/submit', 'DeliveryManReviewController@submit_review');
         });
-        Route::group(['middleware'=>['dm.api']], function () {
+        Route::group(['middleware' => ['dm.api']], function () {
             Route::get('profile', 'DeliverymanController@get_profile');
             Route::get('notifications', 'DeliverymanController@get_notifications');
             Route::put('update-profile', 'DeliverymanController@update_profile');
@@ -81,7 +81,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
         });
     });
 
-    Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware'=>['vendor.api']], function () {
+    Route::group(['prefix' => 'vendor', 'namespace' => 'Vendor', 'middleware' => ['vendor.api']], function () {
         Route::get('notifications', 'VendorController@get_notifications');
         Route::get('profile', 'VendorController@get_profile');
         Route::post('update-active-status', 'VendorController@active_status');
@@ -107,7 +107,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
         Route::get('attributes', 'AttributeController@list');
 
         // Addon
-        Route::group(['prefix'=>'addon'], function(){
+        Route::group(['prefix' => 'addon'], function () {
             Route::get('/', 'AddOnController@list');
             Route::post('store', 'AddOnController@store');
             Route::put('update', 'AddOnController@update');
@@ -125,7 +125,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
             Route::post('search', 'DeliveryManController@search');
         });
         // Food
-        Route::group(['prefix'=>'product'], function(){
+        Route::group(['prefix' => 'product'], function () {
             Route::post('store', 'FoodController@store');
             Route::put('update', 'FoodController@update');
             Route::delete('delete', 'FoodController@delete');
@@ -134,7 +134,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
         });
 
         // POS
-        Route::group(['prefix'=>'pos'], function(){
+        Route::group(['prefix' => 'pos'], function () {
             Route::get('orders', 'POSController@order_list');
             Route::post('place-order', 'POSController@place_order');
             Route::get('customers', 'POSController@get_customers');
@@ -177,7 +177,6 @@ Route::group(['namespace' => 'Api\V1'], function () {
         Route::get('/', 'BannerController@get_banners');
         Route::get('/useonce/{id}', 'BannerController@useonce');
     });
-
 
 
     Route::group(['prefix' => 'categories'], function () {
