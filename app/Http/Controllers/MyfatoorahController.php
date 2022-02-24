@@ -39,7 +39,6 @@ class MyfatoorahController extends Controller
         );
         $call_back_url = $root_url . "/myfatoorah-oncomplate?resturant_id=" . $resturant->id;
         $error_url = $root_url . "/payment-fail";
-        dd($call_back_url, $error_url);
         $fields = array(
             "CustomerName" => $resturant->vendor->f_name,
             "NotificationOption" => "LNK",
