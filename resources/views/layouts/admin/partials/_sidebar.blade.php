@@ -682,15 +682,15 @@
                         </li>
 
 
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/business-settings/payment-method')?'active':''}}">
-                            <a class="nav-link " href="{{route('admin.business-settings.payment-method')}}"
-                               title="{{__('messages.payment')}} {{__('messages.methods')}}"
-                            >
-                                <span class="tio-atm nav-icon"></span>
-                                <span
-                                    class="text-truncate">{{__('messages.payment')}} {{__('messages.methods')}}</span>
-                            </a>
-                        </li>
+{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/business-settings/payment-method')?'active':''}}">--}}
+{{--                            <a class="nav-link " href="{{route('admin.business-settings.payment-method')}}"--}}
+{{--                               title="{{__('messages.payment')}} {{__('messages.methods')}}"--}}
+{{--                            >--}}
+{{--                                <span class="tio-atm nav-icon"></span>--}}
+{{--                                <span--}}
+{{--                                    class="text-truncate">{{__('messages.payment')}} {{__('messages.methods')}}</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li class="navbar-vertical-aside-has-menu {{Request::is('admin/business-settings/mail-config')?'active':''}}">
                             <a class="nav-link " href="{{route('admin.business-settings.mail-config')}}"
                                title="{{__('messages.mail')}} {{__('messages.config')}}"
