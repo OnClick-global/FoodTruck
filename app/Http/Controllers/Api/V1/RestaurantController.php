@@ -265,33 +265,7 @@ class RestaurantController extends Controller
         }
     }
 
-    public function DoPayment($id, $user_id)
-    {
-        $order = User_fund::find($id);
-        $user = User::find($user_id);
-        return view('payment.paymentMethods', compact('order', 'user'));
-    }
 
-    public function payway(Request $request, $payway = 'visa', $code, $resturant_id, $new_price)
-    {
-        $order = User_fund::find($resturant_id);
-        if ($order->payment == 'not paid') {
-            if ($payway == 'visa') {
-                $paymob = new PayMobController;
-                return $paymob->checkingOut(env('PAYMOB_VISA_ID'), env('PAYMOB_VISA_IFRAME_ID'), $order->id, $resturant_id, $request->phone);
-            } elseif ($payway == 'wallet') {
-                $paymob = new PayMobController;
-                return $paymob->checkingOut(env('PAYMOB_WALLET_ID'), 'wallet', $order->id, $resturant_id, $request->phone);
-            }
-        } else {
-            return redirect('payment-fail');
-        }
-    }
-
-    public function show_phone_page($payway = 'visa', $id, $user_id)
-    {
-        return view('payment.phone_page', compact('payway', 'id', 'user_id'));
-    }
     // public function get_product_rating($id)
     // {
     //     try {

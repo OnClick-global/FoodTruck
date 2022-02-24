@@ -286,11 +286,11 @@
                             <div class="card">
                                 <div class="card-body" style="height: 100px">
                                     <form class="needs-validation" method="POST" id="payment-form-paymob"
-                                        action="{{route('pay-myfatoorah')}}">
+                                        action="{{route('paymob-credit')}}">
                                         {{ csrf_field() }}
                                         <button class="btn btn-block" type="submit">
                                             <img width="150"
-                                                src="{{asset('public/assets/admin/img/knet.jpg')}}"/>
+                                                src="{{asset('public/assets/admin/img/paymob.png')}}"/>
                                         </button>
                                     </form>
                                 </div>

@@ -19,6 +19,27 @@ Route::get('about-us', 'HomeController@about_us')->name('about-us');
 Route::get('contact-us', 'HomeController@contact_us')->name('contact-us');
 Route::get('privacy-policy', 'HomeController@privacy_policy')->name('privacy-policy');
 
+
+//Payment
+//first page with knet and phonecash images
+Route::group(['prefix' => 'payment-mobile'], function () {
+    Route::get('/', 'PaymentController@payment')->name('payment-mobile'); //send in it {code}/{resturant_id}/{new_price}
+    Route::get('set-payment-method/{name}', 'PaymentController@set_payment_method')->name('set-payment-method');
+});
+
+Route::get("/payment", "PaymentController@DoPayment");
+Route::post("/payment/show/phone_page/{payway}/{id}/{user_id}", "PaymentController@show_phone_page")->name('show_phone_page');
+
+//response success and fail
+Route::get('payment-success', 'PaymentController@success')->name('payment-success');
+Route::get('payment-fail', 'PaymentController@fail')->name('payment-fail');
+
+//myfatoorah seond step
+Route::post('pay-myfatoorah', 'MyfatoorahController@paywith')->name('pay-myfatoorah');
+Route::get('myfatoorah-status', 'MyfatoorahController@getPaymentStatus')->name('myfatoorah-status');
+Route::get('myfatoorah-oncomplate', 'MyfatoorahController@oncomplate')->name('myfatoorah-oncomplate');
+
+
 Route::get('authentication-failed', function () {
     $errors = [];
     array_push($errors, ['code' => 'auth-001', 'message' => 'Unauthenticated.']);
@@ -27,10 +48,7 @@ Route::get('authentication-failed', function () {
     ], 401);
 })->name('authentication-failed');
 
-Route::group(['prefix' => 'payment-mobile'], function () {
-    Route::get('/', 'PaymentController@payment')->name('payment-mobile');
-    Route::get('set-payment-method/{name}', 'PaymentController@set_payment_method')->name('set-payment-method');
-});
+
 
 // SSLCOMMERZ Start
 /*Route::get('/example1', 'SslCommerzPaymentController@exampleEasyCheckout');
@@ -113,7 +131,7 @@ Route::get('/test',function (){
           'last_name' => 'Doe',
         )
       );
-      
+
     dd(unlink(public_path('assets/landing/image')));
     // return view('errors.404');
 });
