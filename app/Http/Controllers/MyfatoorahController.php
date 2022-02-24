@@ -37,8 +37,9 @@ class MyfatoorahController extends Controller
             'Authorization:' . $token,
             'Content-Type:application/json'
         );
-        $call_back_url = $root_url . "/myfatoorah-oncomplate?resturant_id=" . $resturant->id ;
+        $call_back_url = $root_url . "/myfatoorah-oncomplate?resturant_id=" . $resturant->id;
         $error_url = $root_url . "/payment-fail";
+        dd($call_back_url, $error_url);
         $fields = array(
             "CustomerName" => $resturant->vendor->f_name,
             "NotificationOption" => "LNK",
@@ -72,12 +73,13 @@ class MyfatoorahController extends Controller
     {
         $data['payment_status'] = 'paid';
         $data['status'] = 1;
-        $resturant = Restaurant::where('id', $request->resturant_id)
+        $updated_after_payment = Restaurant::where('id', $request->resturant_id)
             ->update($data);
-       $vndor = Vendor::findOrFail($resturant->vendor_id);
-        $vndor->status = 1;
-        $vndor->save();
-        if ($resturant) {
+        $resturant = Restaurant::where('id', $request->resturant_id)->first();
+        $vendor = Vendor::findOrFail($resturant->vendor_id);
+        $vendor->status = 1;
+        $vendor->save();
+        if ($updated_after_payment) {
             return \redirect()->route('payment-success');
         } else {
             return \redirect()->route('payment-fail');
