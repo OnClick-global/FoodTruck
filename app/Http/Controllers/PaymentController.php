@@ -65,19 +65,19 @@ class PaymentController extends Controller
 
     public function success()
     {
-        $order = Order::where(['id' => session('order_id'), 'user_id' => session('customer_id')])->first();
-        if ($order->callback != null) {
-            return redirect($order->callback . '&status=success');
-        }
+//        $order = Order::where(['id' => session('order_id'), 'user_id' => session('customer_id')])->first();
+//        if ($order->callback != null) {
+//            return redirect($order->callback . '&status=success');
+//        }
         return response()->json(['message' => 'Payment succeeded'], 200);
     }
 
     public function fail()
     {
-        $order = Order::where(['id' => session('order_id'), 'user_id' => session('customer_id')])->first();
-        if ($order->callback != null) {
-            return redirect($order->callback . '&status=fail');
-        }
+//        $order = Order::where(['id' => session('order_id'), 'user_id' => session('customer_id')])->first();
+//        if ($order->callback != null) {
+//            return redirect($order->callback . '&status=fail');
+//        }
         return response()->json(['message' => 'Payment failed'], 403);
     }
 
