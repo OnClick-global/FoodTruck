@@ -284,7 +284,7 @@
                     @if($config['status'])
                         <div class="col-md-6 mb-4" style="cursor: pointer">
                             <div class="card">
-                                <div class="card-body" style="height: 1120px">
+                                <div class="card-body" style="height: 120px">
                                     <form class="needs-validation" method="POST" id="payment-form-paymob"
                                         action="{{route('pay-myfatoorah')}}">
                                         {{ csrf_field() }}
