@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CentralLogics\Helpers;
+use App\Models\RegisterCoupon;
 use App\Models\Restaurant;
 use App\Models\Vendor;
 use Brian2694\Toastr\Facades\Toastr;
@@ -37,7 +38,12 @@ class MyfatoorahController extends Controller
             'Authorization:' . $token,
             'Content-Type:application/json'
         );
-        $call_back_url = $root_url . "/myfatoorah-oncomplate?resturant_id=" . $resturant->id;
+        if (session('code')) {
+            $code = session('code');
+        } else {
+            $code = '0';
+        }
+        $call_back_url = $root_url . "/myfatoorah-oncomplate?resturant_id=" . $resturant->id . '&code=' . $code;
         $error_url = $root_url . "/payment-fail";
         $fields = array(
             "CustomerName" => $resturant->vendor->f_name,
@@ -70,6 +76,13 @@ class MyfatoorahController extends Controller
 
     public function oncomplate(Request $request)
     {
+        if ($request->code) {
+            $exists_coupon = RegisterCoupon::where('code', $request->code)->where('status', 1)->where('limit', '>', 0)->first();
+            if ($exists_coupon) {
+                $exists_coupon->limit = $exists_coupon->limit - 1;
+                $exists_coupon->save();
+            }
+        }
         $data['payment_status'] = 'paid';
         $data['status'] = 1;
         $updated_after_payment = Restaurant::where('id', $request->resturant_id)

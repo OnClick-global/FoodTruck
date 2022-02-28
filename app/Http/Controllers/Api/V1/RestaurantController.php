@@ -52,14 +52,26 @@ class RestaurantController extends Controller
 
         return response()->json($restaurants['restaurants'], 200);
     }
+
     public function free_register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'resturant_id' => 'required|exists:restaurants,id',
+            'code' => 'nullable|exists:register_coupons,code'
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
+        if ($request->code) {
+            $exists_coupon = RegisterCoupon::where('code', $request->code)->where('status', 1)->where('limit', '>', 0)->first();
+            if ($exists_coupon) {
+                $exists_coupon->limit = $exists_coupon->limit - 1;
+                $exists_coupon->save();
+            } else {
+                return response()->json('coupon is expired', 401);
+            }
+        }
+
         $data['payment_status'] = 'paid';
         $data['status'] = 1;
         $updated_after_payment = Restaurant::where('id', $request->resturant_id)
@@ -73,8 +85,6 @@ class RestaurantController extends Controller
         } else {
             return response()->json('error', 401);
         }
-
-
     }
 
     public function get_popular_restaurants(Request $request)
