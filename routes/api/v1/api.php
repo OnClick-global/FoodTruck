@@ -17,6 +17,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
 
     Route::post('restaurant-register', 'RestaurantController@register');
     Route::post('apply_coupon', 'RestaurantController@apply_coupon');
+    Route::post('restaurant/free_register', 'RestaurantController@free_register');
 
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         Route::post('register', 'CustomerAuthController@register');

@@ -52,6 +52,30 @@ class RestaurantController extends Controller
 
         return response()->json($restaurants['restaurants'], 200);
     }
+    public function free_register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'resturant_id' => 'required|exists:restaurants,id',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => Helpers::error_processor($validator)], 403);
+        }
+        $data['payment_status'] = 'paid';
+        $data['status'] = 1;
+        $updated_after_payment = Restaurant::where('id', $request->resturant_id)
+            ->update($data);
+        $resturant = Restaurant::where('id', $request->resturant_id)->first();
+        $vendor = Vendor::findOrFail($resturant->vendor_id);
+        $vendor->status = 1;
+        $vendor->save();
+        if ($updated_after_payment) {
+            return response()->json($resturant, 200);
+        } else {
+            return response()->json('error', 401);
+        }
+
+
+    }
 
     public function get_popular_restaurants(Request $request)
     {
