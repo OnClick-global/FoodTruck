@@ -13,6 +13,7 @@ class VendorLoginController extends Controller
 {
     public function login(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'email' => 'required',
             'password' => 'required|min:6'
@@ -29,17 +30,22 @@ class VendorLoginController extends Controller
 
         if (auth('vendor')->attempt($data)) {
             $token = $this->genarate_token($request['email']);
+
             $vendor = Vendor::where(['email' => $request['email']])->first();
+
             if(!$vendor->status)
             {
+                $rest_id = (string)$vendor->restaurants[0]->id;
                 return response()->json([
                     'errors' => [
-                        ['code' => 'auth-002', 'message' => trans('messages.inactive_vendor_warning')]
+                        ['code' => '406', 'message' =>$rest_id]
                     ]
                 ], 403);
             }
+
             $vendor->auth_token = $token;
             $vendor->save();
+
             return response()->json(['token' => $token, 'zone_wise_topic'=> $vendor->restaurants[0]->zone->restaurant_wise_topic], 200);
         } else {
             $errors = [];

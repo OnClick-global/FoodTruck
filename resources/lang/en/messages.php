@@ -606,7 +606,7 @@ return [
     'cash_on_delivery'=>'Cash on delivery',
     'digital'=>'digital',
     'inactive'=>'Inactive',
-    'inactive_vendor_warning'=>'Inactive vendor! Please contact to admin.',
+    'inactive_vendor_warning'=>'you don`t pay! Please pay subscription price',
     'configure'=>'Configure',
     'sslcommerz'=>'SSLCOMMERZ',
     'razorpay'=>'Razor pay',
