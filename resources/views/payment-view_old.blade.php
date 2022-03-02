@@ -284,13 +284,13 @@
                     @if($config['status'])
                         <div class="col-md-6 mb-4" style="cursor: pointer">
                             <div class="card">
-                                <div class="card-body" style="height: 120px">
+                                <div class="card-body" style="height: 100px">
                                     <form class="needs-validation" method="POST" id="payment-form-paymob"
-                                        action="{{route('pay-myfatoorah')}}">
+                                        action="{{route('paymob-credit')}}">
                                         {{ csrf_field() }}
                                         <button class="btn btn-block" type="submit">
                                             <img width="150"
-                                                src="{{asset('public/assets/admin/img/my_fatoorah.png')}}"/>
+                                                src="{{asset('public/assets/admin/img/paymob.png')}}"/>
                                         </button>
                                     </form>
                                 </div>

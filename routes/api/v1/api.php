@@ -17,15 +17,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
 
     Route::post('restaurant-register', 'RestaurantController@register');
     Route::post('apply_coupon', 'RestaurantController@apply_coupon');
-
-    //Payment
-    Route::get("/payment/{code}/{resturant_id}/{new_price}", "RestaurantController@DoPayment");
-    Route::post("/payment/show/phone_page/{payway}/{id}/{user_id}", "RestaurantController@show_phone_page")->name('show_phone_page');
-    Route::post("/payment/{payway}/{id}/{user_id}", "RestaurantController@payway")->name('payWay');
-    Route::get("/payment/response", "PayMobController@processedCallback")->name('response');
-    Route::get("/payment/success", "PayMobController@succeeded")->name('succeeded');
-    Route::get("/payment/fail", "PayMobController@failed")->name('failed');
-
+    Route::post('restaurant/free_register', 'RestaurantController@free_register');
 
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         Route::post('register', 'CustomerAuthController@register');

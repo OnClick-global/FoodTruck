@@ -53,6 +53,40 @@ class RestaurantController extends Controller
         return response()->json($restaurants['restaurants'], 200);
     }
 
+    public function free_register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'resturant_id' => 'required|exists:restaurants,id',
+            'code' => 'nullable|exists:register_coupons,code'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => Helpers::error_processor($validator)], 403);
+        }
+        if ($request->code) {
+            $exists_coupon = RegisterCoupon::where('code', $request->code)->where('status', 1)->where('limit', '>', 0)->first();
+            if ($exists_coupon) {
+                $exists_coupon->limit = $exists_coupon->limit - 1;
+                $exists_coupon->save();
+            } else {
+                return response()->json('coupon is expired', 401);
+            }
+        }
+
+        $data['payment_status'] = 'paid';
+        $data['status'] = 1;
+        $updated_after_payment = Restaurant::where('id', $request->resturant_id)
+            ->update($data);
+        $resturant = Restaurant::where('id', $request->resturant_id)->first();
+        $vendor = Vendor::findOrFail($resturant->vendor_id);
+        $vendor->status = 1;
+        $vendor->save();
+        if ($updated_after_payment) {
+            return response()->json($resturant, 200);
+        } else {
+            return response()->json('error', 401);
+        }
+    }
+
     public function get_popular_restaurants(Request $request)
     {
         if (!$request->hasHeader('zoneId')) {
@@ -265,33 +299,7 @@ class RestaurantController extends Controller
         }
     }
 
-    public function DoPayment($id, $user_id)
-    {
-        $order = User_fund::find($id);
-        $user = User::find($user_id);
-        return view('payment.paymentMethods', compact('order', 'user'));
-    }
 
-    public function payway(Request $request, $payway = 'visa', $code, $resturant_id, $new_price)
-    {
-        $order = User_fund::find($resturant_id);
-        if ($order->payment == 'not paid') {
-            if ($payway == 'visa') {
-                $paymob = new PayMobController;
-                return $paymob->checkingOut(env('PAYMOB_VISA_ID'), env('PAYMOB_VISA_IFRAME_ID'), $order->id, $resturant_id, $request->phone);
-            } elseif ($payway == 'wallet') {
-                $paymob = new PayMobController;
-                return $paymob->checkingOut(env('PAYMOB_WALLET_ID'), 'wallet', $order->id, $resturant_id, $request->phone);
-            }
-        } else {
-            return redirect('payment-fail');
-        }
-    }
-
-    public function show_phone_page($payway = 'visa', $id, $user_id)
-    {
-        return view('payment.phone_page', compact('payway', 'id', 'user_id'));
-    }
     // public function get_product_rating($id)
     // {
     //     try {
