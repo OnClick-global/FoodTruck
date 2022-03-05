@@ -43,7 +43,7 @@ class Restaurant extends Model
     protected $hidden = [
         'gst'
     ];
-    
+
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
@@ -70,14 +70,14 @@ class Restaurant extends Model
 
     public function zone()
     {
-        return $this->belongsTo(Zone::class);
+        return $this->belongsTo(Zone::class,'zone_id');
     }
 
     public function campaigns()
     {
         return $this->belongsToMany(Campaign::class);
     }
-    
+
     public function itemCampaigns()
     {
         return $this->hasMany(ItemCampaign::class);
@@ -117,7 +117,7 @@ class Restaurant extends Model
     {
         $query->where('delivery',1);
     }
-    
+
     public function scopeTakeaway($query)
     {
         $query->where('take_away',1);
@@ -137,5 +137,5 @@ class Restaurant extends Model
     {
         return $query->where('off_day', 'not like', "%".now()->dayOfWeek."%");
     }
-    
+
 }
