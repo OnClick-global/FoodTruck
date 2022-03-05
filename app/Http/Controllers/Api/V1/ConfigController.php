@@ -35,6 +35,7 @@ class ConfigController extends Controller
 
         // $dp = json_decode(BusinessSetting::where(['key' => 'digital_payment'])->first()->value, true);
         return response()->json([
+            'testing' => BusinessSetting::where('key' , 'testing')->first()->value,
             'business_name' => BusinessSetting::where(['key' => 'business_name'])->first()->value,
             // 'business_open_time' => BusinessSetting::where(['key' => 'business_open_time'])->first()->value,
             // 'business_close_time' => BusinessSetting::where(['key' => 'business_close_time'])->first()->value,
