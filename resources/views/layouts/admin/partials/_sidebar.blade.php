@@ -460,47 +460,47 @@
                     @endif
                 <!-- End Food -->
                 <!-- DeliveryMan -->
-{{--                    @if(\App\CentralLogics\Helpers::module_permission_check('deliveryman'))--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <small class="nav-subtitle"--}}
-{{--                                   title="{{__('messages.deliveryman')}} {{__('messages.section')}}">{{__('messages.deliveryman')}} {{__('messages.section')}}</small>--}}
-{{--                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>--}}
-{{--                        </li>--}}
-{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/add')?'active':''}}">--}}
-{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-{{--                               href="{{route('admin.delivery-man.add')}}"--}}
-{{--                               title="{{__('messages.add_delivery_man')}}"--}}
-{{--                            >--}}
-{{--                                <i class="tio-running nav-icon"></i>--}}
-{{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-{{--                                    {{__('messages.add_delivery_man')}}--}}
-{{--                                </span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                    @if(\App\CentralLogics\Helpers::module_permission_check('deliveryman'))
+                        <li class="nav-item">
+                            <small class="nav-subtitle"
+                                   title="{{__('messages.deliveryman')}} {{__('messages.section')}}">{{__('messages.deliveryman')}} {{__('messages.section')}}</small>
+                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                        </li>
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/add')?'active':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{route('admin.delivery-man.add')}}"
+                               title="{{__('messages.add_delivery_man')}}"
+                            >
+                                <i class="tio-running nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    {{__('messages.add_delivery_man')}}
+                                </span>
+                            </a>
+                        </li>
 
-{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/list')?'active':''}}">--}}
-{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-{{--                               href="{{route('admin.delivery-man.list')}}"--}}
-{{--                               title="{{__('messages.deliveryman')}} {{__('messages.list')}}"--}}
-{{--                            >--}}
-{{--                                <i class="tio-filter-list nav-icon"></i>--}}
-{{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-{{--                                    {{__('messages.deliverymen')}}--}}
-{{--                                </span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/list')?'active':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{route('admin.delivery-man.list')}}"
+                               title="{{__('messages.deliveryman')}} {{__('messages.list')}}"
+                            >
+                                <i class="tio-filter-list nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    {{__('messages.deliverymen')}}
+                                </span>
+                            </a>
+                        </li>
 
-{{--                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/reviews/list')?'active':''}}">--}}
-{{--                            <a class="js-navbar-vertical-aside-menu-link nav-link"--}}
-{{--                               href="{{route('admin.delivery-man.reviews.list')}}" title="{{__('messages.reviews')}}"--}}
-{{--                            >--}}
-{{--                                <i class="tio-star-outlined nav-icon"></i>--}}
-{{--                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">--}}
-{{--                                    {{__('messages.reviews')}}--}}
-{{--                                </span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    @endif--}}
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('admin/delivery-man/reviews/list')?'active':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{route('admin.delivery-man.reviews.list')}}" title="{{__('messages.reviews')}}"
+                            >
+                                <i class="tio-star-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                    {{__('messages.reviews')}}
+                                </span>
+                            </a>
+                        </li>
+                    @endif
                 <!-- End DeliveryMan -->
                     <!-- Marketing section -->
                     <li class="nav-item">
